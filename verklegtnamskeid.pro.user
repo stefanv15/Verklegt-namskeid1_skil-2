@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 3.5.1, 2015-12-03T15:13:15. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
   <value type="QByteArray">{748f86bc-4f10-45dc-8a00-389dba0c6c1e}</value>
+=======
+<!-- Written by QtCreator 3.5.1, 2015-12-03T14:22:57. -->
+<qtcreator>
+ <data>
+  <variable>EnvironmentId</variable>
+  <value type="QByteArray">{46fed6ea-277a-428d-8169-a9907d642c8b}</value>
+>>>>>>> origin/master
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -226,6 +234,7 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">verklegtnamskeid</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Bríet/Documents/GitHub/Verklegt-namskeid1_skil-2/verklegtnamskeid.pro</value>
@@ -415,6 +424,8 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">-1</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+=======
+>>>>>>> origin/master
     <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
     <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable"></value>
     <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">%{buildDir}</value>
@@ -433,7 +444,11 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.TargetCount</variable>
+<<<<<<< HEAD
   <value type="int">2</value>
+=======
+  <value type="int">1</value>
+>>>>>>> origin/master
  </data>
  <data>
   <variable>ProjectExplorer.Project.Updater.FileVersion</variable>
