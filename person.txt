@@ -1,0 +1,31 @@
+Turing, Alan
+m
+1912
+1954Lovelace, Ada
+f
+1815
+1852Hopper, Grace
+f
+1906
+1992Church, Alonzo
+m
+1903
+1995Engelbart, Douglas
+m
+1925
+2013Borg, Anita
+f
+1949
+2003Denning, Dorothy
+f
+1945
+-1Clarke, Edmund
+m
+1945
+-1Goldberg, Adele
+f
+1945
+-1Babbage, Charles
+m
+1791
+1871
