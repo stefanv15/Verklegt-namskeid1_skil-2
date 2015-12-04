@@ -9,17 +9,18 @@ class Computers
 {
 public:
     Computers();
-    Computers(string nameOC, int idee, string yearB, string typeOC, string wasB);
-    string getNameOfCpu();
+    Computers(string nameOC, int idee, int yearB, string typeOC, string wasB);
+    Computers(string nameOC, int yearB, string typeOC, string wasB);
     int getId();
-    string getYearBuilt();
+    string getNameOfCpu();
+    int getYearBuilt();
     string getTypeOfCpu();
     string getWasBuilt();
 
 private:
-    string nameOfCpu;
     int id;
-    string yearBuilt;
+    string nameOfCpu;
+    int yearBuilt;
     string typeOfCpu;
     string wasBuilt;
 

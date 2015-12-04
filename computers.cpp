@@ -3,15 +3,24 @@ Computers::Computers()
 {
     nameOfCpu = "";
     id = 0;
-    yearBuilt = "";
+    yearBuilt = 0;
     typeOfCpu = "";
     wasBuilt = "";
 }
 
-Computers::Computers(string nameOC, int idee, string yearB, string typeOC, string wasB)
+Computers::Computers(string nameOC, int idee, int yearB, string typeOC, string wasB)
 {
     nameOfCpu = nameOC;
     id = idee;
+    yearBuilt = yearB;
+    typeOfCpu = typeOC;
+    wasBuilt = wasB;
+}
+
+Computers::Computers(string nameOC, int yearB, string typeOC, string wasB)
+{
+    nameOfCpu = nameOC;
+    id = 0;
     yearBuilt = yearB;
     typeOfCpu = typeOC;
     wasBuilt = wasB;
@@ -27,7 +36,7 @@ int Computers::getId()
     return id;
 }
 
-string Computers::getYearBuilt()
+int Computers::getYearBuilt()
 {
     return yearBuilt;
 }
