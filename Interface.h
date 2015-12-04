@@ -1,7 +1,7 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
-#include "Person.h"
-#include "Worker.h"
+#include "person.h"
+#include "worker.h"
 #include <iostream>
 #include <vector>
 

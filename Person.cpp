@@ -1,4 +1,4 @@
-#include "Person.h"
+#include "person.h"
 
 Person::Person()            //Sjálfgefni smiðurinn fyrir Person klasann.
 {

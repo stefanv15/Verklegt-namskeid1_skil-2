@@ -1,6 +1,6 @@
 #include <fstream>
-#include "Person.h"
-#include "Datalayer.h"
+#include "person.h"
+#include "datalayer.h"
 #include <cstdlib>
 
 DataLayer::DataLayer()
