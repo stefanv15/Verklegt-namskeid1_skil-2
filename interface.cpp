@@ -169,6 +169,7 @@ void Interface::printList(vector<Person> listOfPersons)         //Prentar út up
     cout << "---------------------------" << endl;
     for(unsigned int i = 0; i < listOfPersons.size(); i++)
     {
+        cout << "ID: " << listOfPersons[i].getId() << endl;
         cout << "Name: " << listOfPersons[i].getName() << endl;
         cout << "Gender: " << (listOfPersons[i].getGender()=="m"?"Male":"Female") << endl;
         cout << "Born: " << listOfPersons[i].getDayOfBirth() << endl;
