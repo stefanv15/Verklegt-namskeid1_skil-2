@@ -1,3 +1,5 @@
+//#include "person.h"
+//#include "computers.h"
 #include "interface.h"
 
 Interface::Interface()
@@ -27,7 +29,7 @@ void Interface::start()             //Keyrir forritið.
         {
             case 1:
             {
-                Person p = getPersonInfo(); //sækja upplýsingar um persónu.
+                Person p = getPersoninfo(); //sækja upplýsingar um persónu.
                 m_worker.createPerson(p);   //býr til eintak af persónu.
                 break;
             }

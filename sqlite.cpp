@@ -1,7 +1,6 @@
 #include "sqlite.h"
 #include <fstream>
 #include "person.h"
-#include "computers.h"
 #include <cstdlib>
 
 SQLite::SQLite()
@@ -25,13 +24,13 @@ void SQLite::getData()       //Sækir gögn úr gagnagrunni og geymir í vektor.
     while(query.next())
     {
 
-        int id = query.value("id").toUInt();
+        //int id = query.value("id").toUInt();
         string name = query.value("name").toString().toStdString();
         string gender = query.value("gender").toString().toStdString();
         int dob = query.value("yearOfBirth").toUInt();
         int dod  = query.value("yearOfDeath").toUInt();
 
-        Person newguy(id, name, gender, dob, dod);
+        Person newguy(name, gender, dob, dod);
         m_personList.push_back(newguy);
     }
 }
@@ -51,17 +50,7 @@ void SQLite::addData(Person& p)               // Vistar persónu í gagnagrunnin
     m_personList.push_back(p);
 }
 
-void SQLite::addComputer(Computers& c)
-{
-
-}
-
 vector<Person> SQLite::getPersonList()        //Skilar private breytunni m_personList.
 {
     return m_personList;
-}
-
-vector<Computers> SQLite::getComputerList()
-{
-    return m_computerList;
 }
