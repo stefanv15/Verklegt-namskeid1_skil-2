@@ -10,10 +10,25 @@ Person::Person()            //Sjálfgefni smiðurinn fyrir Person klasann.
 
 Person::Person(string n, string g, int dob, int dod)    //Smiður fyrir Person klasann til að upphafstilla private breytur.
 {
+    id = 0;
     name = n;
     gender = g;
     dayOfBirth = dob;
     dayOfDeath = dod;
+}
+
+Person::Person(int i, string n, string g, int dob, int dod)
+{
+    id = i;
+    name = n;
+    gender = g;
+    dayOfBirth = dob;
+    dayOfDeath = dod;
+}
+
+int Person::getId()
+{
+    return id;
 }
 
 string Person::getName()        //Skilar "name".

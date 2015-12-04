@@ -1,5 +1,6 @@
 #include "interface.h"
 #include "person.h"
+#include "computers.h"
 #include <ctype.h>
 
 Interface::Interface()
@@ -29,14 +30,14 @@ void Interface::start()             //Keyrir forritið.
         {
             case 1:
             {
-                Person p = getPersoninfo(); //sækja upplýsingar um persónu.
+                Person p = getPersonInfo(); //sækja upplýsingar um persónu.
                 m_worker.createPerson(p);   //býr til eintak af persónu.
                 break;
             }
             case 2:
             {
                 vector<Person> list = m_worker.getList(); // Sækja lista.
-                printList(list);
+                printListPerson(list);
 
                 int sos_ans = askSearchOrSort();
                 while(sos_ans != 3)
@@ -61,32 +62,29 @@ void Interface::start()             //Keyrir forritið.
                             printSortedYearReverse();
                         }
                     }
-
-
-                if(sos_ans == 2)
-                {
-                    string remove;
-                    cout << "Enter name to remove: ";
-                    cin >> remove;
-                    vector<Person> removelist = m_worker.removeScientist(remove); //
-                    printList(removelist);
+                    if(sos_ans == 2)
+                    {
+                        string remove;
+                        cout << "Enter name to remove: ";
+                        cin >> remove;
+                        vector<Person> removelist = m_worker.removeScientist(remove); //
+                        printListPerson(removelist);
+                    }
+                    if(sos_ans == 3)
+                    {
+                        break;
+                    }
+                    sos_ans = askSearchOrSort();
                 }
-                if(sos_ans == 3)
-                {
-                    break;
-                }
-                sos_ans = askSearchOrSort();
-              }
-              break;
+                break;
             }
-
             case 3:                     // Search list
             {
                 string search;
                 cout << "Enter search word: ";
                 cin >> search;
                 vector<Person> searchlist = m_worker.searchScientist(search);
-                printList(searchlist);
+                printListPerson(searchlist);
                 break;
             }
             case 4:
@@ -94,8 +92,8 @@ void Interface::start()             //Keyrir forritið.
                 m_worker.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
                 return;
             }
-       }
-     }
+        }
+    }
 }
 
 void Interface::programInfo() const  //Opnunarskilaboð til notanda.
@@ -120,7 +118,7 @@ void Interface::pickOption()        //Aðalvalmynd.
     cout << "4 - Save/Exit " << endl;
 }
 
-Person Interface::getPersoninfo()       //Inntak fyrir upplýsingar um persónu.
+Person Interface::getPersonInfo()       //Inntak fyrir upplýsingar um persónu.
 {
     string name;
     string gender;
@@ -162,18 +160,82 @@ Person Interface::getPersoninfo()       //Inntak fyrir upplýsingar um persónu.
     return Person(name, gender, dayOfBirth, dayOfDeath);
 }
 
-void Interface::printList(vector<Person> listOfPersons)         //Prentar út upplýsingar um persónur.
+Computers Interface::getComputerInfo()       //Inntak fyrir upplýsingar um tölvu.
+{
+    string name;
+    int year;
+    string type;
+    string built;
+
+    cin.ignore();
+
+    cout << "Name of computer: ";
+    getline(cin, name);
+
+    cout << "Enter year built (yyyy, Type -1 if computer was never built): ";
+    cin >> year;
+    while(cin.fail() || year < -1 || year > 2015) // Villu tjékk á innslætti dayofbirth
+    {
+        cin.clear();
+        cin.ignore(100,'\n');
+        cout << "Invalid year input!" << endl;
+        cout << "Enter year built (yyyy, Type -1 if computer was never built): ";
+        cin >> year;
+    }
+    cout << "Type (a/d/h for analog/digital/hybrid respectively): ";
+    cin >> type;
+    while(type != "a" && type != "d" && type != "h") // Villuskilaboð (ef notandi slær inn vitlausann innslátt
+    {
+        cout << "Invalid type input!" << endl;
+        cout << "Type (a/d/h for analog/digital/hybrid respectively): ";
+        cin >> type;
+    }
+    cout << "Was the computer built? (y/n): ";
+    cin >> built;
+    while(built != "y" && built != "n") // Villuskilaboð (ef notandi slær inn vitlausann innslátt
+    {
+        cout << "Invalid input!" << endl;
+        cout << "Was the computer built? (y/n): ";
+        cin >> built;
+    }
+    return Computers(name, year, type, built);
+}
+
+void Interface::printListPerson(vector<Person> listOfPersons)         //Prentar út upplýsingar um persónur.
 {
     cout << endl;
     cout << "LIST OF COMPUTER SCIENTISTS" << endl;
     cout << "---------------------------" << endl;
     for(unsigned int i = 0; i < listOfPersons.size(); i++)
     {
+        cout << "ID: " << listOfPersons[i].getId() << endl;
         cout << "Name: " << listOfPersons[i].getName() << endl;
         cout << "Gender: " << (listOfPersons[i].getGender()=="m"?"Male":"Female") << endl;
         cout << "Born: " << listOfPersons[i].getDayOfBirth() << endl;
         if (listOfPersons[i].getDayOfDeath() > 0)
             cout << "Died: " << listOfPersons[i].getDayOfDeath() << endl;
+        cout << "---------------------------" << endl;
+    }
+}
+
+void Interface::printListComputers(vector<Computers> listOfComputers)         //Prentar út upplýsingar um persónur.
+{
+    cout << endl;
+    cout << "     LIST OF COMPUTERS     " << endl;
+    cout << "---------------------------" << endl;
+    for(unsigned int i = 0; i < listOfComputers.size(); i++)
+    {
+        cout << "ID: " << listOfComputers[i].getId() << endl;
+        cout << "Name: " << listOfComputers[i].getNameOfCpu() << endl;
+        if (listOfComputers[i].getYearBuilt() > 0)
+            cout << "Year built: " << listOfComputers[i].getYearBuilt() << endl;
+        if (listOfComputers[i].getTypeOfCpu() == "a")
+            cout << "Type: Analog" << endl;
+        else if (listOfComputers[i].getTypeOfCpu() == "d")
+            cout << "Type: Digital" << endl;
+        else
+            cout << "Type: Hybrid" << endl;
+        cout << "Built?: " << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No") << endl;
         cout << "---------------------------" << endl;
     }
 }
@@ -213,25 +275,25 @@ int Interface::askSearchOrSort()            //Valmynd fyrir "show list".
 void Interface::printSorted()               //prentar út uppröðuðum upplýsingum á mismunandi vegu.
 {
     vector<Person>listOfPersons = m_worker.sortList(m_worker.getList());
-    printList(listOfPersons);
+    printListPerson(listOfPersons);
 }
 
 void Interface::printSortedReverse()
 {
     vector<Person>listOfPersons = m_worker.sortListReverse(m_worker.getList());
-    printList(listOfPersons);
+    printListPerson(listOfPersons);
 }
 
 void Interface::printSortedYear()
 {
     vector<Person>listOfPersons = m_worker.sortListYear(m_worker.getList());
-    printList(listOfPersons);
+    printListPerson(listOfPersons);
 }
 
 void Interface::printSortedYearReverse()
 {
     vector<Person>listOfPersons = m_worker.sortListYearReverse(m_worker.getList());
-    printList(listOfPersons);
+    printListPerson(listOfPersons);
 }
 
 int Interface::sortMenu()           //Valmynd fyrir "sort list".

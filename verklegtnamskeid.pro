@@ -1,10 +1,11 @@
 QT += core
+QT += sql
 QT -= gui
 #comment
 TARGET = verklegtnamskeid
 CONFIG += console
 CONFIG -= app_bundle
-QT += sql
+
 
 TEMPLATE = app
 
@@ -13,12 +14,14 @@ SOURCES += main.cpp \
     datalayer.cpp \
     interface.cpp \
     person.cpp \
-    worker.cpp
+    worker.cpp \
+    computers.cpp
 
 HEADERS += \
     sqlite.h \
     datalayer.h \
     interface.h \
     person.h \
-    worker.h
+    worker.h \
+    computers.h
 
