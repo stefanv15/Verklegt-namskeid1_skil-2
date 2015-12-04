@@ -13,12 +13,14 @@ SOURCES += main.cpp \
     datalayer.cpp \
     interface.cpp \
     person.cpp \
-    worker.cpp
+    worker.cpp \
+    computers.cpp
 
 HEADERS += \
     sqlite.h \
     datalayer.h \
     interface.h \
     person.h \
-    worker.h
+    worker.h \
+    computers.h
 
