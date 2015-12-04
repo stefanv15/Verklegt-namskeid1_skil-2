@@ -1,10 +1,11 @@
 QT += core
+QT += sql
 QT -= gui
 #comment
 TARGET = verklegtnamskeid
 CONFIG += console
 CONFIG -= app_bundle
-QT += sql
+
 
 TEMPLATE = app
 

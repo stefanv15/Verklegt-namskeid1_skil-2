@@ -62,25 +62,22 @@ void Interface::start()             //Keyrir forritið.
                             printSortedYearReverse();
                         }
                     }
-
-
-                if(sos_ans == 2)
-                {
-                    string remove;
-                    cout << "Enter name to remove: ";
-                    cin >> remove;
-                    vector<Person> removelist = m_worker.removeScientist(remove); //
-                    printListPerson(removelist);
+                    if(sos_ans == 2)
+                    {
+                        string remove;
+                        cout << "Enter name to remove: ";
+                        cin >> remove;
+                        vector<Person> removelist = m_worker.removeScientist(remove); //
+                        printListPerson(removelist);
+                    }
+                    if(sos_ans == 3)
+                    {
+                        break;
+                    }
+                    sos_ans = askSearchOrSort();
                 }
-                if(sos_ans == 3)
-                {
-                    break;
-                }
-                sos_ans = askSearchOrSort();
-              }
-              break;
+                break;
             }
-
             case 3:                     // Search list
             {
                 string search;
@@ -95,8 +92,8 @@ void Interface::start()             //Keyrir forritið.
                 m_worker.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
                 return;
             }
-       }
-     }
+        }
+    }
 }
 
 void Interface::programInfo() const  //Opnunarskilaboð til notanda.

@@ -144,6 +144,7 @@ debug/main.o: main.cpp interface.h \
 		person.h \
 		worker.h \
 		SQLite.h \
+		computers.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSql \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSqlDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
@@ -392,6 +393,7 @@ debug/main.o: main.cpp interface.h \
 
 debug/sqlite.o: sqlite.cpp sqlite.h \
 		person.h \
+		computers.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSql \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSqlDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
@@ -646,6 +648,7 @@ debug/interface.o: interface.cpp interface.h \
 		person.h \
 		worker.h \
 		SQLite.h \
+		computers.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSql \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSqlDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
@@ -898,6 +901,7 @@ debug/person.o: person.cpp person.h
 debug/worker.o: worker.cpp worker.h \
 		SQLite.h \
 		person.h \
+		computers.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSql \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSqlDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
