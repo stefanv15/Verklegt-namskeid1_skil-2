@@ -24,13 +24,13 @@ void SQLite::getData()       //Sækir gögn úr gagnagrunni og geymir í vektor.
     while(query.next())
     {
 
-        //int id = query.value("id").toUInt();
+        int id = query.value("id").toUInt();
         string name = query.value("name").toString().toStdString();
         string gender = query.value("gender").toString().toStdString();
         int dob = query.value("yearOfBirth").toUInt();
         int dod  = query.value("yearOfDeath").toUInt();
 
-        Person newguy(name, gender, dob, dod);
+        Person newguy(id, name, gender, dob, dod);
         m_personList.push_back(newguy);
     }
 }
