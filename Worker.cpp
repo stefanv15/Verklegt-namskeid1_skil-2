@@ -1,4 +1,4 @@
-#include "Worker.h"
+#include "worker.h"
 #include "person.h"
 #include "datalayer.h"
 #include <ctype.h>

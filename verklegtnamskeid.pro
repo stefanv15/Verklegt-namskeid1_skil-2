@@ -4,18 +4,21 @@ QT -= gui
 TARGET = verklegtnamskeid
 CONFIG += console
 CONFIG -= app_bundle
+QT += sql
 
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    Worker.cpp \
-    Datalayer.cpp \
-    Interface.cpp \
-    Person.cpp
+    sqlite.cpp \
+    datalayer.cpp \
+    interface.cpp \
+    person.cpp \
+    worker.cpp
 
 HEADERS += \
-    Worker.h \
-    Person.h \
-    Interface.h \
-    Datalayer.h
+    sqlite.h \
+    datalayer.h \
+    interface.h \
+    person.h \
+    worker.h
 

@@ -1,6 +1,6 @@
 #ifndef WORKER_H
 #define WORKER_H
-#include "Datalayer.h"
+#include "SQLite.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -23,7 +23,7 @@ public:
     vector<Person> sortListYearReverse(vector<Person> listOfPersons);
 
 private:
-    DataLayer m_datalayer;                                  // Object af DataLayer fyrir Worker klasann.
+    SQLite m_datalayer;                                  // Object af DataLayer fyrir Worker klasann.
 };
 
 #endif // WORKER_H
