@@ -1,6 +1,8 @@
 #ifndef WORKER_H
 #define WORKER_H
 #include "SQLite.h"
+#include "person.h"
+#include "computers.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -13,7 +15,9 @@ public:
     Worker();
 
     void createPerson(Person p);                            // Býr til eintak af persónu og vistar.
+    void createComputer(Computers c);
     vector<Person> getList();                               // sækja lista.
+    vector<Computers> getComputerList();
     void saveAllData();                                     // Vistar í .txt þegar notandi velur 3. exit.
     vector<Person> searchScientist(string search);          // Leitar af persónu í lista.
     vector<Person> removeScientist(string remove);

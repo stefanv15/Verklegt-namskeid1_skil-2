@@ -1,5 +1,6 @@
 #include "worker.h"
 #include "person.h"
+#include "computers.h"
 #include "datalayer.h"
 #include <ctype.h>
 #include <string>
@@ -15,9 +16,19 @@ void Worker::createPerson(Person p)     // Býr til eintak af persónu og vistar
     m_datalayer.addData(p);
 }
 
+void Worker::createComputer(Computers c)
+{
+    m_datalayer.addComputer(c);
+}
+
 vector<Person> Worker::getList()        //Nær í personlist úr datalayer og skilar honum.
 {
     return m_datalayer.getPersonList();
+}
+
+vector<Computers> Worker::getComputerList()
+{
+    return m_datalayer.getComputerList();
 }
 
 void Worker::saveAllData()              //Nær í savedata fallið úr datalayer og skilar því.

@@ -2,6 +2,7 @@
 #define INTERFACE_H
 #include "person.h"
 #include "worker.h"
+#include "computers.h"
 #include <iostream>
 #include <vector>
 
@@ -15,8 +16,10 @@ private:
     Worker m_worker;
     void programInfo()const;
     void pickOption();
-    Person getPersoninfo();  // fær upplýsingar um persónu frá notanda.
-    void printList(vector<Person> listOfPersons); // prentar út lista af persónum.
+    Person getPersonInfo();  // fær upplýsingar um persónu frá notanda.
+    Computers getComputerInfo();
+    void printListPerson(vector<Person> listOfPersons); // prentar út lista af persónum.
+    void printListComputers(vector<Computers> listOfComputers);
     int askSearchOrSort();
     void printSortedReverse();
     void printSorted();

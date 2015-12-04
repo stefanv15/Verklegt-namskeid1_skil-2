@@ -10,7 +10,7 @@ class Person
 public:
     Person();
     Person(string n, string g, int dob, int dod);
-    Person(int id, string n, string g, int dob, int dod);
+    Person(int i, string n, string g, int dob, int dod);
     int getId();
     string getName();
     string getGender();
