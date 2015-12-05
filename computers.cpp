@@ -8,19 +8,18 @@ Computers::Computers()
     wasBuilt = "";
 }
 
-Computers::Computers(string nameOC, int idee, int yearB, string typeOC, string wasB)
+Computers::Computers(string nameOC, int yearB, string typeOC, string wasB)
 {
     nameOfCpu = nameOC;
-    id = idee;
     yearBuilt = yearB;
     typeOfCpu = typeOC;
     wasBuilt = wasB;
 }
 
-Computers::Computers(string nameOC, int yearB, string typeOC, string wasB)
+Computers::Computers(int idee, string nameOC, int yearB, string typeOC, string wasB)
 {
-    nameOfCpu = nameOC;
     id = 0;
+    nameOfCpu = nameOC;
     yearBuilt = yearB;
     typeOfCpu = typeOC;
     wasBuilt = wasB;
