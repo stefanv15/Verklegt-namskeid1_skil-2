@@ -18,7 +18,7 @@ Computers::Computers(string nameOC, int yearB, string typeOC, string wasB)
 
 Computers::Computers(int idee, string nameOC, int yearB, string typeOC, string wasB)
 {
-    id = 0;
+    id = idee;
     nameOfCpu = nameOC;
     yearBuilt = yearB;
     typeOfCpu = typeOC;
