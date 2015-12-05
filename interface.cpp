@@ -100,8 +100,8 @@ void Interface::start()             //Keyrir forritið.
                 printListPerson(searchlist);
                 break;
 
-                /*m_worker.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
-                return;*/
+                m_worker.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
+                return;
             }
             case 6:
             {
