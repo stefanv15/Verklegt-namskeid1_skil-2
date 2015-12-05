@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     interface.cpp \
     person.cpp \
     worker.cpp \
-    computers.cpp
+    computers.cpp \
+    comp_pers.cpp
 
 HEADERS += \
     sqlite.h \
@@ -23,5 +24,6 @@ HEADERS += \
     interface.h \
     person.h \
     worker.h \
-    computers.h
+    computers.h \
+    comp_pers.h
 

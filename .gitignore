@@ -18,6 +18,8 @@ local.properties
 .loadpath
 debug/
 release/
+.debug/
+.release/
 *.autosave
 
 # External tool builders

@@ -53,7 +53,12 @@ void SQLite::addData(Person& p)               // Vistar persónu í gagnagrunnin
 
 void SQLite::addComputer(Computers& c)
 {
+    const QString sInsertSQL = QString("Insert into computers (name, built, typeOfComputer, wasBuilt) values ('%1',%2,'%3','%4)").arg(QString::fromStdString(c.getNameOfCpu()),QString::number(c.getYearBuilt()),QString::fromStdString(c.getTypeOfCpu()),QString::fromStdString(c.getWasBuilt()));
 
+    QSqlQuery query(m_db);
+    query.exec(sInsertSQL);
+
+    m_computerList.push_back(c);
 }
 
 vector<Person> SQLite::getPersonList()        //Skilar private breytunni m_personList.

@@ -2,12 +2,11 @@
 #include "interface.h"
 #include <windows.h>
 
-
 using namespace std;
 
 int main()
 {
-   if(false)
+    if(false)
     {
    /*     QSqlDatabase db;
         db = QSqlDatabase::addDatabase("QSQLITE");
