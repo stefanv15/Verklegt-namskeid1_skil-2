@@ -17,11 +17,9 @@ public:
 
 private:
     QSqlDatabase m_db;
-
     void getData(); // sækir allar persónur úr skrá og setur inn í vectorinn.
     vector<Person> m_personList; // geymir lista af persónum.
     vector<Computers> m_computerList;
-    void createTestData();      // temp. prufu data.
 };
 
 #endif
