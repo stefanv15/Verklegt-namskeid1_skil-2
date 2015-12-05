@@ -22,7 +22,7 @@ void Interface::start()             //Keyrir forritið.
             cin.clear();
             cin.ignore(100,'\n');
         }
-        if(numb < 1 || numb > 4)
+        if(numb < 1 || numb > 6)
         {
             cout << "The input you entered is not a valid option. Pick again!" << endl;     //Villuskilaboð fyrir valmynd.
         }
@@ -33,8 +33,14 @@ void Interface::start()             //Keyrir forritið.
                 Person p = getPersonInfo(); //sækja upplýsingar um persónu.
                 m_worker.createPerson(p);   //býr til eintak af persónu.
                 break;
-            }
+            }           
             case 2:
+            {
+                Computers c = getComputerInfo(); //Sækja upplýsingar um tölvu.
+                m_worker.createComputer(c); // Býr til eintak af tölvu.
+                break;
+            }
+            case 3:
             {
                 vector<Person> list = m_worker.getList(); // Sækja lista.
                 printListPerson(list);
@@ -77,20 +83,39 @@ void Interface::start()             //Keyrir forritið.
                     sos_ans = askSearchOrSort();
                 }
                 break;
+             }
+
+            case 4:
+            {
+                vector<Computers> cpulist = m_worker.getComputerList();
+                printListComputers(cpulist);
+                break;
             }
-            case 3:                     // Search list
+
+            case 5:
             {
                 string search;
+
                 cout << "Enter search word: ";
                 cin >> search;
+
                 vector<Person> searchlist = m_worker.searchScientist(search);
                 printListPerson(searchlist);
                 break;
+
+                /*m_worker.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
+                return;*/
             }
-            case 4:
+            case 6:
             {
-                m_worker.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
-                return;
+                string search;
+
+                cout << "Enter search word: ";
+                cin >> search;
+
+                vector<Computers> searchlist = m_worker.searchComputer(search);
+                printListComputers(searchlist);
+                break;
             }
         }
     }
@@ -98,24 +123,70 @@ void Interface::start()             //Keyrir forritið.
 
 void Interface::programInfo() const  //Opnunarskilaboð til notanda.
 {
-    cout << "**************************************************" << endl;
-    cout << "*                    WELCOME                     *" << endl;
-    cout << "*  This program allows you to store info about   *" << endl;
-    cout << "*  the most common computer scientists, search   *" << endl;
-    cout << "*  and sort your list.                           *" << endl;
-    cout << "*                               BREYTA!!!!       *" << endl;
-    cout << "**************************************************" << endl;
+    cout << "****************************************************" << endl;
+    cout << "*                    WELCOME                       *" << endl;
+    cout << "*           - Choose what you want                 *" << endl;
+    cout << "*           - Be who you are                       *" << endl;
+    cout << "*           - Hakuna matata                        *" << endl;
+    cout << "*                                  #gitKING        *" << endl;
+    cout << "****************************************************" << endl;
 }
 
 void Interface::pickOption()        //Aðalvalmynd.
 {
+    int pick;
     cout << endl;
-    cout << "       MAIN MENU       " << endl;
-    cout << "       ---------       " << endl;
-    cout << "1 - Add computer scientist " << endl;
-    cout << "2 - Show list " << endl;
-    cout << "3 - Search list " << endl;
-    cout << "4 - Save/Exit " << endl;
+    cout << "-------------- MAIN MENU --------------" << endl;
+    cout << "                                       " << endl;
+    cout << "1 - Add to list "                        << endl;
+    cout << "2 - Show list "                          << endl;
+    cout << "3 - Search list "                        << endl;
+    cout << "4 - Save/Exit "                          << endl;
+    cin >> pick;
+
+    if(pick == 1)
+    {
+        system("cls");
+        programInfo();
+        cout << endl;
+        cout << "-------------- MAIN MENU --------------" << endl;
+        cout << "                                       " << endl;
+        cout << "1 - Add to list "                        << endl;
+        cout << "          1. Scientist  2. Computer    " << endl;
+        cout << "2 - Show list "                          << endl;
+        cout << "3 - Search list "                        << endl;
+        cout << "4 - Save/Exit "                          << endl;
+    }
+    if(pick == 2)
+    {
+        system("cls");
+        programInfo();
+        cout << endl;
+        cout << "-------------- MAIN MENU --------------             "<< endl;
+        cout << "                                                    "<< endl;
+        cout << "1 - Add to list "                                    << endl;
+        cout << "2 - Show list "                                      << endl;
+        cout << "        3. SCIENTISTS  4. COMPUTERS                " << endl;
+        cout << "3 - Search list "                                    << endl;
+        cout << "4 - Save/Exit " << endl;
+    }
+    if(pick == 3)
+    {
+        system("cls");
+        programInfo();
+        cout << endl;
+        cout << "-------------- MAIN MENU --------------" << endl;
+        cout << "                                       " << endl;
+        cout << "1 - Add to list " << endl;
+        cout << "2 - Show list " << endl;
+        cout << "3 - Search list " << endl;
+        cout << "        5. Scientist list  6. Computer list   " << endl;
+        cout << "4 - Save/Exit " << endl;
+    }
+    if(pick == 4)
+    {
+        exit(1);
+    }
 }
 
 Person Interface::getPersonInfo()       //Inntak fyrir upplýsingar um persónu.
@@ -150,6 +221,7 @@ Person Interface::getPersonInfo()       //Inntak fyrir upplýsingar um persónu.
     cout << "Year of passing (yyyy, Type -1 if scientist is alive): ";
     cin >> dayOfDeath;
     while(cin.fail() || dayOfDeath < -1 || dayOfDeath > 2015) // Villu tjékk á innslætti dayofbirth
+
     {
         cin.clear();
         cin.ignore(100,'\n');
@@ -218,7 +290,7 @@ void Interface::printListPerson(vector<Person> listOfPersons)         //Prentar 
     }
 }
 
-void Interface::printListComputers(vector<Computers> listOfComputers)         //Prentar út upplýsingar um persónur.
+void Interface::printListComputers(vector<Computers> listOfComputers)         //Prentar út upplýsingar um tölvur.
 {
     cout << endl;
     cout << "     LIST OF COMPUTERS     " << endl;
@@ -270,7 +342,31 @@ int Interface::askSearchOrSort()            //Valmynd fyrir "show list".
 
     return answer;
 }
-
+// -------------------------------------------------------------------------------------------Sortlisti og sortföll
+int Interface::sortMenu()                   //Valmynd fyrir "sort list".
+{
+    int answer;
+    cout << "--------------------------------" << endl;
+    cout << "Sort by?" << endl;
+    cout << "1 - In alphabetical order " << endl;
+    cout << "2 - In reverse alphabetical order " << endl;
+    cout << "3 - Birth " << endl;
+    cout << "4 - Reverse birth " << endl;
+    cin >> answer;
+    while(cin.fail() || answer < 1 || answer > 4)
+    {
+        cin.clear();
+        cin.ignore(100,'\n');
+        cout << "The input you entered is not a valid option. Pick again!" << endl;
+        cout << "Sort by?" << endl;
+        cout << "1 - In alphabetical order " << endl;
+        cout << "2 - In reverse alphabetical order " << endl;
+        cout << "3 - Birth " << endl;
+        cout << "4 - Reverse birth " << endl;
+        cin >> answer;
+    }
+    return answer;
+}
 
 void Interface::printSorted()               //prentar út uppröðuðum upplýsingum á mismunandi vegu.
 {
@@ -294,30 +390,5 @@ void Interface::printSortedYearReverse()
 {
     vector<Person>listOfPersons = m_worker.sortListYearReverse(m_worker.getList());
     printListPerson(listOfPersons);
-}
-
-int Interface::sortMenu()           //Valmynd fyrir "sort list".
-{
-    int answer;
-    cout << "--------------------------------" << endl;
-    cout << "Sort by?" << endl;
-    cout << "1 - In alphabetical order " << endl;
-    cout << "2 - In reverse alphabetical order " << endl;
-    cout << "3 - Birth " << endl;
-    cout << "4 - Reverse birth " << endl;
-    cin >> answer;
-    while(cin.fail() || answer < 1 || answer > 4)
-    {
-        cin.clear();
-        cin.ignore(100,'\n');
-        cout << "The input you entered is not a valid option. Pick again!" << endl;
-        cout << "Sort by?" << endl;
-        cout << "1 - In alphabetical order " << endl;
-        cout << "2 - In reverse alphabetical order " << endl;
-        cout << "3 - Birth " << endl;
-        cout << "4 - Reverse birth " << endl;
-        cin >> answer;
-    }
-    return answer;
 }
 
