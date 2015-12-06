@@ -2,10 +2,18 @@
 #define COMP_PERS_H
 
 
-class comp_pers
+class Comp_pers
 {
 public:
-    comp_pers();
+    Comp_pers();
+    Comp_pers(int cID, int pID);
+
+    int getPersonID();
+    int getComputerID();
+
+private:
+    int personID;
+    int computerID;
 };
 
 #endif // COMP_PERS_H

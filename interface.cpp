@@ -283,6 +283,13 @@ void Interface::printListPerson(vector<Person> listOfPersons)         //Prentar 
         cout << "Born: " << listOfPersons[i].getDayOfBirth() << endl;
         if (listOfPersons[i].getDayOfDeath() > 0)
             cout << "Died: " << listOfPersons[i].getDayOfDeath() << endl;
+
+        string compList = m_worker.getComputerList(listOfPersons[i].getId());
+        if(compList.length()>0)
+        {
+            // Nú viljum við sækja hvaða tölvur tengjast þeim aðila sem við erum að prenta út.
+            cout << "Related computers: " << compList << endl;
+        }
         cout << "---------------------------" << endl;
     }
 }

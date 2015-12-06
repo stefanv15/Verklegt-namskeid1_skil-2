@@ -1,6 +1,7 @@
 #include "worker.h"
 #include "person.h"
 #include "computers.h"
+#include "comp_pers.h"
 #include "datalayer.h"
 #include <ctype.h>
 #include <string>
@@ -31,6 +32,20 @@ vector<Computers> Worker::getComputerList()
     return m_datalayer.getComputerList();
 }
 
+string Worker::getComputerList(int pId)
+{
+    vector<Comp_pers> cpList = m_datalayer.getLinkedComputers(pId);
+    string sComputers = "";
+    for(unsigned int i = 0; i < cpList.size(); i++)
+    {
+        if (i>0)
+            sComputers += ", ";
+        Computers comp = findComputerById(cpList[i].getComputerID());
+        sComputers += comp.getNameOfCpu();
+    }
+    return sComputers;
+}
+
 void Worker::saveAllData()              //Nær í savedata fallið úr datalayer og skilar því.
 {
     m_datalayer.saveData();
@@ -47,6 +62,21 @@ vector<Person> Worker::searchScientist(string search)   // Leitar af persónu í
             returnList.push_back(list[i]);
     }
     return returnList;
+}
+
+Computers Worker::findComputerById(int cID)             // Leitar af tölvu í lista og skilar henni
+{
+    vector<Computers> list = m_datalayer.getComputerList();
+    Computers retComp;
+    for(unsigned int i = 0; i < list.size(); i++)
+    {
+        if(list[i].getId()==cID)
+        {
+            retComp = list[i];
+            break;
+        }
+    }
+    return retComp;
 }
 
 vector<Person> Worker::removeScientist(string remove)   // Leitar af persónu í lista og skilar

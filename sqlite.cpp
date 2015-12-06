@@ -17,6 +17,12 @@ void SQLite::getData()       //Sækir gögn úr gagnagrunni og geymir í vektor.
 
     m_db.open();
 
+    loadPersonData();
+    loadComputerData();
+}
+
+void SQLite::loadPersonData()
+{
     QSqlQuery query(m_db);
 
     const QString sSQL = "SELECT * FROM person";
@@ -36,14 +42,8 @@ void SQLite::getData()       //Sækir gögn úr gagnagrunni og geymir í vektor.
     }
 }
 
-void SQLite::getDataCpu()
+void SQLite::loadComputerData()
 {
-    m_db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbName = "prufa.sqlite";
-    m_db.setDatabaseName(dbName);
-
-    m_db.open();
-
     QSqlQuery query(m_db);
 
     const QString sSQL = "SELECT * FROM computers";
@@ -57,9 +57,9 @@ void SQLite::getDataCpu()
         string typeOfCpu = query.value("typeOfCpu").toString().toStdString();
         string wasBuilt = query.value("wasBuilt").toString().toStdString();
 
+        Computers c(id, nameOfCpu, yearBuilt, typeOfCpu, wasBuilt);
         Computers newCpu(id, nameOfCpu, yearBuilt, typeOfCpu, wasBuilt);
         m_computerList.push_back(newCpu);
-
     }
 }
 
@@ -80,11 +80,6 @@ void SQLite::addData(Person& p)               // Vistar persónu í gagnagrunnin
 
 void SQLite::addComputer(Computers& c)
 {
-//    const QString sInsertSQL = QString("Insert into computers (name, built, typeOfComputer, wasBuilt) values ('%1',%2,'%3','%4)").arg(QString::fromStdString(c.getNameOfCpu()),QString::number(c.getYearBuilt()),QString::fromStdString(c.getTypeOfCpu()),QString::fromStdString(c.getWasBuilt()));
-
-//    QSqlQuery query(m_db);
-//    query.exec(sInsertSQL);
-
 
     const QString sInsertSQL = QString("Insert into computers(nameOfCpu, yearBuilt, typeOfCpu, wasBuilt) values ('%1','%2,'%3','%4')").arg(QString::fromStdString(c.getNameOfCpu()),QString::number(c.getYearBuilt()),QString::fromStdString(c.getTypeOfCpu()),QString::fromStdString(c.getWasBuilt()));
 
@@ -102,4 +97,23 @@ vector<Person> SQLite::getPersonList()        //Skilar private breytunni m_perso
 vector<Computers> SQLite::getComputerList()
 {
     return m_computerList;
+}
+
+vector<Comp_pers> SQLite::getLinkedComputers(int pID)
+{
+    QSqlQuery query(m_db);
+
+    const QString sSQL = "SELECT * FROM comp_pers where persID="+QString::number(pID);
+    query.exec(sSQL);
+
+    vector<Comp_pers> cpList;
+    while(query.next())
+    {
+        int cid = query.value("compID").toUInt();
+        int pid = query.value("persID").toUInt();
+
+        Comp_pers newCP(cid, pid);
+        cpList.push_back(newCP);
+    }
+    return cpList;
 }

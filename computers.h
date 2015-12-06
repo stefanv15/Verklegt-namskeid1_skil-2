@@ -11,6 +11,7 @@ public:
     Computers();
     Computers(int idee, string nameOC, int yearB, string typeOC, string wasB);
     Computers(string nameOC, int yearB, string typeOC, string wasB);
+
     string getNameOfCpu();
     int getYearBuilt();
     int getId();
