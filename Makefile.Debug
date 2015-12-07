@@ -146,9 +146,9 @@ compiler_clean:
 
 debug/main.o: main.cpp interface.h \
 		person.h \
+		computers.h \
 		domain.h \
 		SQLite.h \
-		computers.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSql \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSqlDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
@@ -646,15 +646,14 @@ debug/sqlite.o: sqlite.cpp sqlite.h \
 		comp_pers.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\sqlite.o sqlite.cpp
 
-debug/datalayer.o: datalayer.cpp person.h \
-		datalayer.h
+debug/datalayer.o: datalayer.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\datalayer.o datalayer.cpp
 
 debug/interface.o: interface.cpp interface.h \
 		person.h \
+		computers.h \
 		domain.h \
 		SQLite.h \
-		computers.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSql \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSqlDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
@@ -1159,8 +1158,7 @@ debug/domain.o: domain.cpp domain.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
-		comp_pers.h \
-		datalayer.h
+		comp_pers.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\domain.o domain.cpp
 
 ####### Install

@@ -2,12 +2,12 @@
 #include "person.h"
 #include "computers.h"
 #include "comp_pers.h"
-#include "datalayer.h"
-#include <ctype.h>
-#include <string>
+//#include "datalayer.h"
+//#include <ctype.h>
+//#include <string>
 #include <algorithm>
 
-Domain::Domain()            //Sjálfgefni smiðurinn fyrir domain klasann.
+Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann.
 {
 
 }
@@ -64,7 +64,20 @@ vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í 
     return returnList;
 }
 
-Computers Domain::findComputerById(int cID) //Leitar af tölvu í lista og skilar henni
+vector<Computers> Domain::searchComputer(string search)   //Leitar af persónu í lista og skilar
+{                                                       // vector af persónum sem fundust.
+    vector<Computers> list = m_datalayer.getComputerList();
+    vector<Computers> returnList;
+
+    for(unsigned int i = 0; i < list.size(); i++)
+    {
+        if(list[i].getNameOfCpu().find(search, 0)!= string::npos)
+            returnList.push_back(list[i]);
+    }
+    return returnList;
+}
+
+Computers Domain::findComputerById(int cID) // Leitar af tölvu í lista og skilar henni
 {
     vector<Computers> list = m_datalayer.getComputerList();
     Computers retComp;
@@ -92,7 +105,7 @@ vector<Person> Domain::removeScientist(string remove)   //Leitar af persónu í 
     return returnList;
 }
 
-bool compareName(Person& name1, Person& name2)  //Hjálparfall fyrir sortlist fallið.
+bool compareName(Person& name1, Person& name2)  //Hjálparfall fyrir Sortföllin.
 {
     return name1.getName() < name2.getName();
 }

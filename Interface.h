@@ -1,10 +1,10 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 #include "person.h"
+#include "computers.h"
 #include "domain.h"
 #include <iostream>
 #include <vector>
-#include "computers.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ private:
     Domain m_domain;
     void programInfo()const;    //Opnunarskilaboð til notanda.
     void mainMenu() const;  //Aðalvalmynd.
-    int listMenu() const;   //Valmynd fyrir lista.
+    char listMenu() const;   //Valmynd fyrir lista.
     int sortMenu() const;   //Valmynd fyrir uppröðun á lista.
     Person getPersonInfo(); //Fær upplýsingar um persónu frá notanda.
     Computers getComputerInfo(); //Inntak fyrir upplýsingar um tölvu.

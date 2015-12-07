@@ -1,7 +1,7 @@
-#ifndef DATALAYER_H
+/*#ifndef DATALAYER_H
 #define DATALAYER_H
 #include "person.h"
-#include <vector>
+//#include <vector>
 
 
 class DataLayer
@@ -19,3 +19,4 @@ private:
 };
 
 #endif // DATALAYER_H
+*/

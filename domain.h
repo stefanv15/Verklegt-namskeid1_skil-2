@@ -21,6 +21,7 @@ public:
     string getComputerList(int pId);    //Sækja lista af tölvum fyrir e-a persónu
     void saveAllData(); //Vistar í .txt þegar notandi velur 3. exit.
     vector<Person> searchScientist(string search);  //Leitar af persónu í lista.
+    vector<Computers> searchComputer(string search);
     vector<Person> removeScientist(string remove);
     vector<Person> sortList(vector<Person> listOfPersons);  //Raðar lista í stafrófsröð og skilar til baka.
     vector<Person> sortListReverse(vector<Person> listOfPersons);   //Raðar lista í öfugri stafrófsröð og skilar til baka.

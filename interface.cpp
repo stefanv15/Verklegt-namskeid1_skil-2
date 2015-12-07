@@ -19,10 +19,7 @@ void Interface::start()    //Keyrir forritið.
             cin.clear();
             cin.ignore(100,'\n');
         }
-        if(numb < 1 || numb > 6)
-        {
-            cout << "The input you entered is not a valid option. Pick again!" << endl;     //Villuskilaboð fyrir valmynd.
-        }
+
         switch(numb)
         {
             case 1:
@@ -42,10 +39,9 @@ void Interface::start()    //Keyrir forritið.
                 vector<Person> list = m_domain.getList(); // Sækja lista.
                 this->printListPerson(list);
 
-                int sos_ans = listMenu();
-                while(sos_ans != 3)
-                {
-                    if(sos_ans == 1)
+                char sos_ans = listMenu();
+
+                    if(sos_ans == 'S' || sos_ans == 's')
                     {
                         int sort_ans = sortMenu();
                         if(sort_ans == 1)
@@ -65,28 +61,103 @@ void Interface::start()    //Keyrir forritið.
                             printSortedYearReverse();
                         }
                     }
-                    if(sos_ans == 2)
+                    if(sos_ans == 'R' || sos_ans == 'r')
                     {
-                        string remove;
-                        cout << "Enter name to remove: ";
-                        cin >> remove;
-                        vector<Person> removelist = m_domain.removeScientist(remove); //
-                        printListPerson(removelist);
+                        int list_ans;
+                        cout << endl;
+                        cout << "       LIST MENU      " << endl;
+                        cout << "       ---------      " << endl;
+                        cout << "S - Sort list" << endl;
+                        cout << "R - Remove from list" << endl;
+                        cout << "       1. Scientist    2. Computer" << endl;
+                        cout << "E - Return to main menu" << endl;
+                        cin >> list_ans;
+
+                        if(list_ans == 1)
+                        {
+                            string remove;
+                            cout << "Enter name to remove: ";
+                            cin >> remove;
+
+                            vector<Person> removelist = m_domain.removeScientist(remove); //
+                            printListPerson(removelist);
+                            break;
+                        }
+                        /*if(list_ans == 2)
+                        {
+                            //HÉR KEMUR REMOVE COMPUTERFALLIÐ!!
+                        }*/
+
                     }
-                    if(sos_ans == 3)
+                    if(sos_ans == 'E' || sos_ans == 'e')
                     {
                         system("cls");
                         break;
                     }
-                    sos_ans = listMenu();
-                }
-                break;
+                   // sos_ans = listMenu();
+                    break;
              }
 
             case 4:
             {
                 vector<Computers> cpulist = m_domain.getComputerList();
                 printListComputers(cpulist);
+
+                char sos_ans = listMenu();
+                if(sos_ans == 'S' || sos_ans == 's')
+                {
+                    /*int sort_ans = sortMenu();               <-- Hér koma sort föllin fyrir computer.
+                    if(sort_ans == 1)
+                    {
+
+                    }
+                    if(sort_ans == 2)
+                    {
+
+                    }
+                    if(sort_ans == 3)
+                    {
+
+                    }
+                    if(sort_ans == 4)
+                    {
+
+                    }*/
+                }
+                if(sos_ans == 'R' || sos_ans == 'r')
+                {
+                    int list_ans;
+                    cout << endl;
+                    cout << "       LIST MENU      " << endl;
+                    cout << "       ---------      " << endl;
+                    cout << "S - Sort list" << endl;
+                    cout << "R - Remove from list" << endl;
+                    cout << "       1. Scientist    2. Computer" << endl;
+                    cout << "E - Return to main menu" << endl;
+                    cin >> list_ans;
+
+                    if(list_ans == 1)
+                    {
+                        string remove;
+                        cout << "Enter name to remove: ";
+                        cin >> remove;
+
+                        vector<Person> removelist = m_domain.removeScientist(remove); //
+                        printListPerson(removelist);
+                        listMenu();
+                    }
+                    /*if(list_ans == 2)
+                    {
+                        //HÉR KEMUR REMOVE COMPUTERFALLIÐ!!
+                    }*/
+
+                 }
+                if(sos_ans == 'E' || sos_ans == 'e')
+                {
+                    system("cls");
+                    break;
+                }
+               // sos_ans = listMenu();
                 break;
             }
 
@@ -110,9 +181,8 @@ void Interface::start()    //Keyrir forritið.
 
                 cout << "Enter search word: ";
                 cin >> search;
-
-                //vector<Computers> searchlist = m_domain.searchComputer(search);
-                //printListComputers(searchlist);
+                vector<Computers> searchlist = m_domain.searchComputer(search);
+                printListComputers(searchlist);
                 break;
             }
         }
@@ -126,7 +196,7 @@ void Interface::programInfo() const  //Opnunarskilaboð til notanda.
     cout << "*  This program was made by the group \"22\"         *" << endl;
     cout << "*  Students from Reykjavik University              *" << endl;
     cout << "*                                                  *" << endl;
-    cout << "* #Add        #Sort        #Search        #Link    *" << endl;
+    cout << "*  #Add        #Sort        #Search        #Link   *" << endl;
     cout << "****************************************************" << endl;
 }
 
@@ -139,14 +209,15 @@ void Interface::mainMenu() const    //Aðalvalmynd.
     cout << "A - Add to list " << endl;
     cout << "S - Show list   " << endl;
     cout << "L - Search list " << endl;
-    cout << "E - Save/Exit   " << endl;
-    cout << endl;
-    cout << "Your answer: ";
+    cout << "Q - Quit   " << endl;
     cin >> pick;
-    if(pick != 'A' || pick != 'a' || pick != 'S' || pick != 's' || pick != 'L' || pick != 'l' || pick != 'E' || pick != 'e')
+
+    /*while(pick != 'A' || pick != 'a' || pick != 'S' || pick != 's' || pick != 'L' || pick != 'L' || pick != 'Q' || pick != 'q')
     {
-        cout << "You entered a wrong input please pick again!" << endl;
-    }
+        cout << "The input you entered is not a valid option. Pick again!" << endl;
+        mainMenu();
+    }*/
+
     if(pick == 'A' || pick == 'a')
     {
         system("cls");
@@ -158,7 +229,7 @@ void Interface::mainMenu() const    //Aðalvalmynd.
         cout << "          1. Scientist  2. Computer    " << endl;
         cout << "S - Show list "                          << endl;
         cout << "L - Search list "                        << endl;
-        cout << "E - Save/Exit "                          << endl;
+        cout << "E - Quit "                               << endl;
     }
     if(pick == 'S' || pick == 's')
     {
@@ -171,7 +242,7 @@ void Interface::mainMenu() const    //Aðalvalmynd.
         cout << "S - Show list "                                      << endl;
         cout << "        3. SCIENTISTS  4. COMPUTERS                " << endl;
         cout << "L - Search list "                                    << endl;
-        cout << "E - Save/Exit " << endl;
+        cout << "Q - Quit " << endl;
     }
     if(pick == 'L' || pick == 'l')
     {
@@ -184,12 +255,13 @@ void Interface::mainMenu() const    //Aðalvalmynd.
         cout << "S - Show list " << endl;
         cout << "L - Search list " << endl;
         cout << "        5. Scientist list  6. Computer list   " << endl;
-        cout << "E - Save/Exit " << endl;
+        cout << "Q - Quit " << endl;
     }
-    if(pick == 'E' || pick == 'e')
+    if(pick == 'Q' || pick == 'q')
     {
         exit(1);
     }
+
 }
 
 Person Interface::getPersonInfo()   //Inntak fyrir upplýsingar um persónu.
@@ -322,38 +394,22 @@ void Interface::printListComputers(vector<Computers> listOfComputers)   //Prenta
     }
 }
 
-int Interface::listMenu() const    //Valmynd fyrir "show list".
+char Interface::listMenu() const    //Valmynd fyrir "Show list".
 {
-
-    int answer;
+    char answer;
 
     cout << endl;
     cout << "       LIST MENU      " << endl;
     cout << "       ---------      " << endl;
-    cout << "1 - Sort list" << endl;
-    cout << "2 - Remove from list" << endl;
-    cout << "3 - Return to main menu" << endl;
-
+    cout << "S - Sort list" << endl;
+    cout << "R - Remove from list" << endl;
+    cout << "E - Return to main menu" << endl;
     cin >> answer;
-
-    while(cin.fail() || answer < 1 || answer > 3)
-    {
-        cin.clear();
-        cin.ignore(100,'\n');
-        cout << "The input you entered is not a valid option. Pick again!" << endl;
-        cout << endl;
-        cout << "       LIST MENU      " << endl;
-        cout << "       ---------      " << endl;
-        cout << "1 - Sort list" << endl;
-        cout << "2 - Remove from list" << endl;
-        cout << "3 - Return to main menu" << endl;
-        cin >> answer;
-    }
 
     return answer;
 }
 
-// --------------SORTLISTI-OG-SORTFÖLL-------------- //
+// --------------SORTLISTI-OG-SORTFÖLL-FYRIR-PERSON------------ //
 
 int Interface::sortMenu() const   //Valmynd fyrir "sort list".
 
@@ -403,3 +459,5 @@ void Interface::printSortedYearReverse()    //Prentar út upplýsingar frá yngs
     vector<Person>listOfPersons = m_domain.sortListYearReverse(m_domain.getList());
     printListPerson(listOfPersons);
 }
+
+// --------------SORTLISTI-OG-SORTFÖLL-FYRIR-COMPUTER------------ //
