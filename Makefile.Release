@@ -392,7 +392,8 @@ release/main.o: main.cpp interface.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h
+		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
+		comp_pers.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o main.cpp
 
 release/sqlite.o: sqlite.cpp sqlite.h \
@@ -641,7 +642,8 @@ release/sqlite.o: sqlite.cpp sqlite.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h
+		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
+		comp_pers.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\sqlite.o sqlite.cpp
 
 release/datalayer.o: datalayer.cpp person.h \
@@ -896,7 +898,8 @@ release/interface.o: interface.cpp interface.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h
+		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
+		comp_pers.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\interface.o interface.cpp
 
 release/person.o: person.cpp person.h
@@ -1150,6 +1153,7 @@ release/worker.o: worker.cpp worker.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
+		comp_pers.h \
 		datalayer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\worker.o worker.cpp
 

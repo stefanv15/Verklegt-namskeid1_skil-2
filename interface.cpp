@@ -110,8 +110,8 @@ void Interface::start()             //Keyrir forritið.
                 cout << "Enter search word: ";
                 cin >> search;
 
-                //vector<Computers> searchlist = m_worker.searchComputer(search);
-                //printListComputers(searchlist);
+                vector<Computers> searchlist = m_worker.searchComputer(search);
+                printListComputers(searchlist);
                 break;
             }
         }

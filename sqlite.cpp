@@ -1,8 +1,8 @@
 #include "sqlite.h"
-#include <fstream>
+//#include <fstream>
 #include "person.h"
 #include "computers.h"
-#include <cstdlib>
+//#include <cstdlib>
 
 SQLite::SQLite()
 {
