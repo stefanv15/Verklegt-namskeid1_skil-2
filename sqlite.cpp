@@ -106,3 +106,17 @@ vector<Comp_pers> SQLite::getLinkedComputers(int pID)
     }
     return cpList;
 }
+
+void SQLite::removeScientist(int input)
+{
+    QSqlQuery query(m_db);
+    QString delSQL = "DELETE FROM person WHERE id = "+QString::number(input);
+    query.exec(delSQL);
+}
+
+void SQLite::removeComputer(int input)
+{
+    QSqlQuery query(m_db);
+    QString delSQL = "DELETE FROM person WHERE id = "+QString::number(input);
+    query.exec(delSQL);
+}

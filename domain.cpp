@@ -94,17 +94,14 @@ Computers Domain::findComputerById(int cID)               // Leitar af tölvu í
     return retComp;
 }
 
-vector<Person> Domain::removeScientist(string remove)    //Leitar af persónu í lista og skilar
-{                                                        // vector án persónum sem leitar var af.
-    vector<Person> list = m_datalayer.getPersonList();
-    vector<Person> returnList;
+void Domain::removeScientist(int input)   //Leitar af persónu í lista og skilar
+{                                                       // vector án persónum sem leitar var af.
+    return m_datalayer.removeScientist(input);
+}
 
-    for(unsigned int i = 0; i < list.size(); i++)
-    {
-        if(list[i].getName().find(remove, 0) == string::npos)
-            returnList.push_back(list[i]);
-    }
-    return returnList;
+void Domain::removeComputer(int input)   //Leitar af persónu í lista og skilar
+{                                                       // vector án persónum sem leitar var af.
+    return m_datalayer.removeComputer(input);
 }
 
 bool compareName(Person& name1, Person& name2)              //Hjálparfall fyrir Sortföllin.

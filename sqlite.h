@@ -16,7 +16,8 @@ public:
     vector<Comp_pers> getLinkedComputers(int pID);  // Sækir lista af venslafærslum fyrir person
     vector<Person> getPersonList();
     vector<Computers> getComputerList();
-
+    void removeScientist(int input);
+    void removeComputer(int input);
 private:
     QSqlDatabase m_db;
     void openDatabase();                            // opnar tengingu við gagnagrunn.
