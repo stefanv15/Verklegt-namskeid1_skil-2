@@ -1,8 +1,8 @@
 #ifndef COMPUTERS_H
 #define COMPUTERS_H
-#include <iostream>
+//#include <iostream>
 #include <string>
-#include <vector>
+//#include <vector>
 using namespace std;
 
 class Computers

@@ -1,7 +1,7 @@
-#include <fstream>
+/*#include <fstream>
 #include "person.h"
 #include "datalayer.h"
-#include <cstdlib>
+//#include <cstdlib>
 
 DataLayer::DataLayer()
 {
@@ -58,3 +58,4 @@ vector<Person> DataLayer::getPersonList()        //Skilar private breytunni m_pe
 {
     return m_personList;
 }
+*/
