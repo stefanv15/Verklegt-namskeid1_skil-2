@@ -67,11 +67,7 @@ void Interface::start()    //Keyrir forritið.
                     }
                     if(sos_ans == 2)
                     {
-                        string remove;
-                        cout << "Enter name to remove: ";
-                        cin >> remove;
-                        vector<Person> removelist = m_domain.removeScientist(remove); //
-                        printListPerson(removelist);
+                        //removeScientist();
                     }
                     if(sos_ans == 3)
                     {
@@ -373,6 +369,23 @@ int Interface::sortMenu() const   //Valmynd fyrir "sort list".
     }
     return answer;
 }
+
+void Interface::removeScientist()
+{
+    int remove;
+    cout << "Insert ID of the computer scientist you want to remove: ";
+    cin >> remove;
+    m_domain.removeScientist(remove);
+}
+
+void Interface::removeComputer()
+{
+    int remove;
+    cout << "Insert ID of the computer you want to remove: ";
+    cin >> remove;
+    m_domain.removeComputer(remove);
+}
+
 void Interface::printSorted()   //Prentar út upplýsingar í Stafrófsröð.
 {
     vector<Person>listOfPersons = m_domain.sortList(m_domain.getList());
