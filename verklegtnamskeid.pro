@@ -9,14 +9,14 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += main.cpp \
-    sqlite.cpp \
-    datalayer.cpp \
-    interface.cpp \
-    person.cpp \
-    computers.cpp \
-    comp_pers.cpp \
-    domain.cpp
+SOURCES += main.cpp
+SOURCES += sqlite.cpp
+SOURCES += datalayer.cpp
+SOURCES += interface.cpp
+SOURCES += person.cpp
+SOURCES += computers.cpp
+SOURCES += comp_pers.cpp
+SOURCES += domain.cpp
 
 HEADERS += \
     sqlite.h \

@@ -7,12 +7,18 @@
 //#include <string>
 #include <algorithm>
 
+<<<<<<< HEAD
 Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann.
+=======
+//Sjálfgefni smiðurinn fyrir domain klasann.
+Domain::Domain()
+>>>>>>> 526ed041765fd279637b4377dd71b5e016824a28
 {
 
 }
 
-void Domain::createPerson(Person p) //Býr til eintak af persónu og vistar.
+//Býr til eintak af persónu og vistar.
+void Domain::createPerson(Person p)
 {
     m_datalayer.addData(p);
 }
@@ -22,7 +28,7 @@ void Domain::createComputer(Computers c)
     m_datalayer.addComputer(c);
 }
 
-vector<Person> Domain::getList()  //Nær í personlist úr datalayer og skilar honum.
+vector<Person> Domain::getList()                        //Nær í personlist úr datalayer og skilar honum.
 {
     return m_datalayer.getPersonList();
 }
@@ -46,7 +52,7 @@ string Domain::getComputerList(int pId)
     return sComputers;
 }
 
-void Domain::saveAllData()  //Nær í savedata fallið úr datalayer og skilar því.
+void Domain::saveAllData()                              // Nær í savedata fallið úr datalayer og skilar því.
 {
     m_datalayer.saveData();
 }
@@ -64,8 +70,13 @@ vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í 
     return returnList;
 }
 
+<<<<<<< HEAD
 vector<Computers> Domain::searchComputer(string search)   //Leitar af persónu í lista og skilar
 {                                                       // vector af persónum sem fundust.
+=======
+vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu í lista og skilar
+{                                                         // vector af persónum sem fundust.
+>>>>>>> 526ed041765fd279637b4377dd71b5e016824a28
     vector<Computers> list = m_datalayer.getComputerList();
     vector<Computers> returnList;
 
@@ -77,7 +88,11 @@ vector<Computers> Domain::searchComputer(string search)   //Leitar af persónu �
     return returnList;
 }
 
+<<<<<<< HEAD
 Computers Domain::findComputerById(int cID) // Leitar af tölvu í lista og skilar henni
+=======
+Computers Domain::findComputerById(int cID)               // Leitar af tölvu í lista og skilar henni
+>>>>>>> 526ed041765fd279637b4377dd71b5e016824a28
 {
     vector<Computers> list = m_datalayer.getComputerList();
     Computers retComp;
@@ -92,17 +107,14 @@ Computers Domain::findComputerById(int cID) // Leitar af tölvu í lista og skil
     return retComp;
 }
 
-vector<Person> Domain::removeScientist(string remove)   //Leitar af persónu í lista og skilar
+void Domain::removeScientist(int input)   //Leitar af persónu í lista og skilar
 {                                                       // vector án persónum sem leitar var af.
-    vector<Person> list = m_datalayer.getPersonList();
-    vector<Person> returnList;
+    return m_datalayer.removeScientist(input);
+}
 
-    for(unsigned int i = 0; i < list.size(); i++)
-    {
-        if(list[i].getName().find(remove, 0) == string::npos)
-            returnList.push_back(list[i]);
-    }
-    return returnList;
+void Domain::removeComputer(int input)   //Leitar af persónu í lista og skilar
+{                                                       // vector án persónum sem leitar var af.
+    return m_datalayer.removeComputer(input);
 }
 
 bool compareName(Person& name1, Person& name2)  //Hjálparfall fyrir Sortföllin.

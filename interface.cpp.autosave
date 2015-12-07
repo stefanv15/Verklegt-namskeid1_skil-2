@@ -63,7 +63,6 @@ void Interface::start()    //Keyrir forritið.
                     }
                     if(sos_ans == 'R' || sos_ans == 'r')
                     {
-<<<<<<< HEAD
                         int list_ans;
                         cout << endl;
                         cout << "       LIST MENU      " << endl;
@@ -82,16 +81,13 @@ void Interface::start()    //Keyrir forritið.
 
                             vector<Person> removelist = m_domain.removeScientist(remove); //
                             printListPerson(removelist);
-                            break;
+                            listMenu();
                         }
                         /*if(list_ans == 2)
                         {
                             //HÉR KEMUR REMOVE COMPUTERFALLIÐ!!
                         }*/
 
-=======
-                        //removeScientist();
->>>>>>> 526ed041765fd279637b4377dd71b5e016824a28
                     }
                     if(sos_ans == 'E' || sos_ans == 'e')
                     {
@@ -440,23 +436,6 @@ int Interface::sortMenu() const   //Valmynd fyrir "sort list".
     }
     return answer;
 }
-
-void Interface::removeScientist()
-{
-    int remove;
-    cout << "Insert ID of the computer scientist you want to remove: ";
-    cin >> remove;
-    m_domain.removeScientist(remove);
-}
-
-void Interface::removeComputer()
-{
-    int remove;
-    cout << "Insert ID of the computer you want to remove: ";
-    cin >> remove;
-    m_domain.removeComputer(remove);
-}
-
 void Interface::printSorted()   //Prentar út upplýsingar í Stafrófsröð.
 {
     vector<Person>listOfPersons = m_domain.sortList(m_domain.getList());

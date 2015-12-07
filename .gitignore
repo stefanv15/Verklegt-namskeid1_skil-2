@@ -222,3 +222,12 @@ pip-log.txt
 .mr.developer.cfg
 debug/verklegtnamskeid.exe
 *.exe
+verklegtnamskeid.pro.user
+*.748f86b
+*.Debug
+Makefile.Release
+Makefile.Debug
+*.Release
+debug/verklegtnamskeid.exe
+debug/verklegtnamskeid.exe
+Makefile.Debug
