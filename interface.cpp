@@ -350,6 +350,7 @@ int Interface::listMenu() const    //Valmynd fyrir "show list".
 // --------------SORTLISTI-OG-SORTFÖLL-------------- //
 
 int Interface::sortMenu() const   //Valmynd fyrir "sort list".
+
 {
     int answer;
     cout << "--------------------------------" << endl;

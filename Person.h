@@ -11,13 +11,13 @@ public:
     Person();
     Person(string n, string g, int dob, int dod);
     Person(int i, string n, string g, int dob, int dod);
-    int getId();
-    string getName();
-    string getGender();
-    int getDayOfBirth();
-    int getDayOfDeath();
+    int getId();            //Sækir ID.
+    string getName();       //Sækir nafn viðkomandi.
+    string getGender();     //Sækir kyn.
+    int getDayOfBirth();    //Sækir fæðingarárið.
+    int getDayOfDeath();    //Sækir dánar árið.
 
-private:
+private:    //Private breytur fyrir upplýsingar yfir person.
     int id;
     string name;
     string gender;
