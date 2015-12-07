@@ -75,6 +75,7 @@ void Interface::start()    //Keyrir forritið.
                     }
                     if(sos_ans == 3)
                     {
+                        system("cls");
                         break;
                     }
                     sos_ans = listMenu();
@@ -139,8 +140,13 @@ void Interface::mainMenu() const    //Aðalvalmynd.
     cout << "S - Show list   " << endl;
     cout << "L - Search list " << endl;
     cout << "E - Save/Exit   " << endl;
+    cout << endl;
+    cout << "Your answer: ";
     cin >> pick;
-
+    if(pick != 'A' || pick != 'a' || pick != 'S' || pick != 's' || pick != 'L' || pick != 'l' || pick != 'E' || pick != 'e')
+    {
+        cout << "You entered a wrong input please pick again!" << endl;
+    }
     if(pick == 'A' || pick == 'a')
     {
         system("cls");
