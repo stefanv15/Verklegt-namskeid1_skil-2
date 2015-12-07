@@ -7,12 +7,14 @@
 //#include <string>
 #include <algorithm>
 
-Domain::Domain()            //Sjálfgefni smiðurinn fyrir domain klasann.
+//Sjálfgefni smiðurinn fyrir domain klasann.
+Domain::Domain()
 {
 
 }
 
-void Domain::createPerson(Person p) //Býr til eintak af persónu og vistar.
+//Býr til eintak af persónu og vistar.
+void Domain::createPerson(Person p)
 {
     m_datalayer.addData(p);
 }
@@ -22,7 +24,7 @@ void Domain::createComputer(Computers c)
     m_datalayer.addComputer(c);
 }
 
-vector<Person> Domain::getList()  //Nær í personlist úr datalayer og skilar honum.
+vector<Person> Domain::getList()                        //Nær í personlist úr datalayer og skilar honum.
 {
     return m_datalayer.getPersonList();
 }
@@ -46,7 +48,7 @@ string Domain::getComputerList(int pId)
     return sComputers;
 }
 
-void Domain::saveAllData()  //Nær í savedata fallið úr datalayer og skilar því.
+void Domain::saveAllData()                              // Nær í savedata fallið úr datalayer og skilar því.
 {
     m_datalayer.saveData();
 }
@@ -65,7 +67,7 @@ vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í 
 }
 
 vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu í lista og skilar
-{                                                       // vector af persónum sem fundust.
+{                                                         // vector af persónum sem fundust.
     vector<Computers> list = m_datalayer.getComputerList();
     vector<Computers> returnList;
 
@@ -77,7 +79,7 @@ vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu 
     return returnList;
 }
 
-Computers Domain::findComputerById(int cID)             // Leitar af tölvu í lista og skilar henni
+Computers Domain::findComputerById(int cID)               // Leitar af tölvu í lista og skilar henni
 {
     vector<Computers> list = m_datalayer.getComputerList();
     Computers retComp;
@@ -92,8 +94,8 @@ Computers Domain::findComputerById(int cID)             // Leitar af tölvu í l
     return retComp;
 }
 
-vector<Person> Domain::removeScientist(string remove)   //Leitar af persónu í lista og skilar
-{                                                       // vector án persónum sem leitar var af.
+vector<Person> Domain::removeScientist(string remove)    //Leitar af persónu í lista og skilar
+{                                                        // vector án persónum sem leitar var af.
     vector<Person> list = m_datalayer.getPersonList();
     vector<Person> returnList;
 

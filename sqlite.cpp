@@ -6,27 +6,26 @@
 
 SQLite::SQLite()
 {
-    getData();
+    openDatabase();
 }
 
-void SQLite::getData()       //Sækir gögn úr gagnagrunni og geymir í vektor.
+void SQLite::openDatabase()       //Sækir gögn úr gagnagrunni og geymir í vektor.
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "prufa.sqlite";
     m_db.setDatabaseName(dbName);
 
     m_db.open();
-
-    loadPersonData();
-    loadComputerData();
 }
 
-void SQLite::loadPersonData()
+vector<Person> SQLite::getPersonList()
 {
     QSqlQuery query(m_db);
 
     const QString sSQL = "SELECT * FROM person";
     query.exec(sSQL);
+
+    vector<Person> list;
 
     while(query.next())
     {
@@ -38,16 +37,19 @@ void SQLite::loadPersonData()
         int dod  = query.value("yearOfDeath").toUInt();
 
         Person newguy(id, name, gender, dob, dod);
-        m_personList.push_back(newguy);
+        list.push_back(newguy);
     }
+    return list;
 }
 
-void SQLite::loadComputerData()
+vector<Computers> SQLite::getComputerList()
 {
     QSqlQuery query(m_db);
 
     const QString sSQL = "SELECT * FROM computers";
     query.exec(sSQL);
+
+    vector<Computers> list;
 
     while(query.next())
     {
@@ -59,8 +61,9 @@ void SQLite::loadComputerData()
 
         Computers c(id, nameOfCpu, yearBuilt, typeOfCpu, wasBuilt);
         Computers newCpu(id, nameOfCpu, yearBuilt, typeOfCpu, wasBuilt);
-        m_computerList.push_back(newCpu);
+        list.push_back(newCpu);
     }
+    return list;
 }
 
 void SQLite::saveData()                       //Sækir gögn úr vektor og vistar í skrá.
@@ -74,8 +77,6 @@ void SQLite::addData(Person& p)               // Vistar persónu í gagnagrunnin
 
     QSqlQuery query(m_db);
     query.exec(sInsertSQL);
-
-    m_personList.push_back(p);
 }
 
 void SQLite::addComputer(Computers& c)
@@ -85,18 +86,6 @@ void SQLite::addComputer(Computers& c)
 
     QSqlQuery query(m_db);
     query.exec(sInsertSQL);
-
-    m_computerList.push_back(c);
-}
-
-vector<Person> SQLite::getPersonList()        //Skilar private breytunni m_personList.
-{
-    return m_personList;
-}
-
-vector<Computers> SQLite::getComputerList()
-{
-    return m_computerList;
 }
 
 vector<Comp_pers> SQLite::getLinkedComputers(int pID)
