@@ -5,14 +5,14 @@ Interface::Interface()
 
 }
 
-void Interface::start()             //Keyrir forritið.
+void Interface::start()    //Keyrir forritið.
 {
     programInfo();     //Opnunarskilaboð til notanda.
     int numb;
 
     while(true)
     {
-        pickOption();
+        mainMenu();
         cin >> numb;
         if(cin.fail())
         {
@@ -28,21 +28,21 @@ void Interface::start()             //Keyrir forritið.
             case 1:
             {
                 Person p = getPersonInfo(); //sækja upplýsingar um persónu.
-                m_worker.createPerson(p);   //býr til eintak af persónu.
+                m_domain.createPerson(p);   //býr til eintak af persónu.
                 break;
             }           
             case 2:
             {
                 Computers c = getComputerInfo(); //Sækja upplýsingar um tölvu.
-                m_worker.createComputer(c); // Býr til eintak af tölvu.
+                m_domain.createComputer(c); // Býr til eintak af tölvu.
                 break;
             }
             case 3:
             {
-                vector<Person> list = m_worker.getList(); // Sækja lista.
+                vector<Person> list = m_domain.getList(); // Sækja lista.
                 this->printListPerson(list);
 
-                int sos_ans = askSearchOrSort();
+                int sos_ans = listMenu();
                 while(sos_ans != 3)
                 {
                     if(sos_ans == 1)
@@ -70,21 +70,21 @@ void Interface::start()             //Keyrir forritið.
                         string remove;
                         cout << "Enter name to remove: ";
                         cin >> remove;
-                        vector<Person> removelist = m_worker.removeScientist(remove); //
+                        vector<Person> removelist = m_domain.removeScientist(remove); //
                         printListPerson(removelist);
                     }
                     if(sos_ans == 3)
                     {
                         break;
                     }
-                    sos_ans = askSearchOrSort();
+                    sos_ans = listMenu();
                 }
                 break;
              }
 
             case 4:
             {
-                vector<Computers> cpulist = m_worker.getComputerList();
+                vector<Computers> cpulist = m_domain.getComputerList();
                 printListComputers(cpulist);
                 break;
             }
@@ -96,11 +96,11 @@ void Interface::start()             //Keyrir forritið.
                 cout << "Enter search word: ";
                 cin >> search;
 
-                vector<Person> searchlist = m_worker.searchScientist(search);
+                vector<Person> searchlist = m_domain.searchScientist(search);
                 printListPerson(searchlist);
                 break;
 
-                m_worker.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
+                m_domain.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
                 return;
             }
             case 6:
@@ -110,7 +110,7 @@ void Interface::start()             //Keyrir forritið.
                 cout << "Enter search word: ";
                 cin >> search;
 
-                //vector<Computers> searchlist = m_worker.searchComputer(search);
+                //vector<Computers> searchlist = m_domain.searchComputer(search);
                 //printListComputers(searchlist);
                 break;
             }
@@ -122,71 +122,71 @@ void Interface::programInfo() const  //Opnunarskilaboð til notanda.
 {
     cout << "****************************************************" << endl;
     cout << "*                    WELCOME                       *" << endl;
-    cout << "*           - Choose what you want                 *" << endl;
-    cout << "*           - Be who you are                       *" << endl;
-    cout << "*           - Hakuna matata                        *" << endl;
-    cout << "*                                  #gitKING        *" << endl;
+    cout << "*  This program was made by the group \"22\"         *" << endl;
+    cout << "*  Students from Reykjavik University              *" << endl;
+    cout << "*                                                  *" << endl;
+    cout << "* #Add        #Sort        #Search        #Link    *" << endl;
     cout << "****************************************************" << endl;
 }
 
-void Interface::pickOption()        //Aðalvalmynd.
+void Interface::mainMenu() const    //Aðalvalmynd.
 {
-    int pick;
+    char pick;
     cout << endl;
-    cout << "-------------- MAIN MENU --------------" << endl;
-    cout << "                                       " << endl;
-    cout << "1 - Add to list "                        << endl;
-    cout << "2 - Show list "                          << endl;
-    cout << "3 - Search list "                        << endl;
-    cout << "4 - Save/Exit "                          << endl;
+    cout << "-- MAIN MENU -- " << endl;
+    cout << "                " << endl;
+    cout << "A - Add to list " << endl;
+    cout << "S - Show list   " << endl;
+    cout << "L - Search list " << endl;
+    cout << "E - Save/Exit   " << endl;
     cin >> pick;
 
-    if(pick == 1)
+    if(pick == 'A' || pick == 'a')
     {
         system("cls");
         programInfo();
         cout << endl;
         cout << "-------------- MAIN MENU --------------" << endl;
         cout << "                                       " << endl;
-        cout << "1 - Add to list "                        << endl;
+        cout << "A - Add to list "                        << endl;
         cout << "          1. Scientist  2. Computer    " << endl;
-        cout << "2 - Show list "                          << endl;
-        cout << "3 - Search list "                        << endl;
-        cout << "4 - Save/Exit "                          << endl;
+        cout << "S - Show list "                          << endl;
+        cout << "L - Search list "                        << endl;
+        cout << "E - Save/Exit "                          << endl;
     }
-    if(pick == 2)
+    if(pick == 'S' || pick == 's')
     {
         system("cls");
         programInfo();
         cout << endl;
         cout << "-------------- MAIN MENU --------------             "<< endl;
         cout << "                                                    "<< endl;
-        cout << "1 - Add to list "                                    << endl;
-        cout << "2 - Show list "                                      << endl;
+        cout << "A - Add to list "                                    << endl;
+        cout << "S - Show list "                                      << endl;
         cout << "        3. SCIENTISTS  4. COMPUTERS                " << endl;
-        cout << "3 - Search list "                                    << endl;
-        cout << "4 - Save/Exit " << endl;
+        cout << "L - Search list "                                    << endl;
+        cout << "E - Save/Exit " << endl;
     }
-    if(pick == 3)
+    if(pick == 'L' || pick == 'l')
     {
         system("cls");
         programInfo();
         cout << endl;
         cout << "-------------- MAIN MENU --------------" << endl;
         cout << "                                       " << endl;
-        cout << "1 - Add to list " << endl;
-        cout << "2 - Show list " << endl;
-        cout << "3 - Search list " << endl;
+        cout << "A - Add to list " << endl;
+        cout << "S - Show list " << endl;
+        cout << "L - Search list " << endl;
         cout << "        5. Scientist list  6. Computer list   " << endl;
-        cout << "4 - Save/Exit " << endl;
+        cout << "E - Save/Exit " << endl;
     }
-    if(pick == 4)
+    if(pick == 'E' || pick == 'e')
     {
         exit(1);
     }
 }
 
-Person Interface::getPersonInfo()       //Inntak fyrir upplýsingar um persónu.
+Person Interface::getPersonInfo()   //Inntak fyrir upplýsingar um persónu.
 {
     string name;
     string gender;
@@ -229,7 +229,7 @@ Person Interface::getPersonInfo()       //Inntak fyrir upplýsingar um persónu.
     return Person(name, gender, dayOfBirth, dayOfDeath);
 }
 
-Computers Interface::getComputerInfo()       //Inntak fyrir upplýsingar um tölvu.
+Computers Interface::getComputerInfo()  //Inntak fyrir upplýsingar um tölvu.
 {
     string name;
     int year;
@@ -270,7 +270,7 @@ Computers Interface::getComputerInfo()       //Inntak fyrir upplýsingar um töl
     return Computers(name, year, type, built);
 }
 
-void Interface::printListPerson(vector<Person> listOfPersons)         //Prentar út upplýsingar um persónur.
+void Interface::printListPerson(vector<Person> listOfPersons)   //Prentar út upplýsingar um persónur.
 {
     cout << endl;
     cout << "LIST OF COMPUTER SCIENTISTS" << endl;
@@ -284,7 +284,7 @@ void Interface::printListPerson(vector<Person> listOfPersons)         //Prentar 
         if (listOfPersons[i].getDayOfDeath() > 0)
             cout << "Died: " << listOfPersons[i].getDayOfDeath() << endl;
 
-        string compList = m_worker.getComputerList(listOfPersons[i].getId());
+        string compList = m_domain.getComputerList(listOfPersons[i].getId());
         if(compList.length()>0)
         {
             // Nú viljum við sækja hvaða tölvur tengjast þeim aðila sem við erum að prenta út.
@@ -294,7 +294,7 @@ void Interface::printListPerson(vector<Person> listOfPersons)         //Prentar 
     }
 }
 
-void Interface::printListComputers(vector<Computers> listOfComputers)         //Prentar út upplýsingar um tölvur.
+void Interface::printListComputers(vector<Computers> listOfComputers)   //Prentar út upplýsingar um tölvur.
 {
     cout << endl;
     cout << "     LIST OF COMPUTERS     " << endl;
@@ -316,7 +316,7 @@ void Interface::printListComputers(vector<Computers> listOfComputers)         //
     }
 }
 
-int Interface::askSearchOrSort()            //Valmynd fyrir "show list".
+int Interface::listMenu() const    //Valmynd fyrir "show list".
 {
 
     int answer;
@@ -346,8 +346,10 @@ int Interface::askSearchOrSort()            //Valmynd fyrir "show list".
 
     return answer;
 }
-// -------------------------------------------------------------------------------------------Sortlisti og sortföll
-int Interface::sortMenu()                   //Valmynd fyrir "sort list".
+
+// --------------SORTLISTI-OG-SORTFÖLL-------------- //
+
+int Interface::sortMenu() const   //Valmynd fyrir "sort list".
 {
     int answer;
     cout << "--------------------------------" << endl;
@@ -371,28 +373,26 @@ int Interface::sortMenu()                   //Valmynd fyrir "sort list".
     }
     return answer;
 }
-
-void Interface::printSorted()               //prentar út uppröðuðum upplýsingum á mismunandi vegu.
+void Interface::printSorted()   //Prentar út upplýsingar í Stafrófsröð.
 {
-    vector<Person>listOfPersons = m_worker.sortList(m_worker.getList());
+    vector<Person>listOfPersons = m_domain.sortList(m_domain.getList());
     printListPerson(listOfPersons);
 }
 
-void Interface::printSortedReverse()
+void Interface::printSortedReverse()    //Prentar út upplýsingar í öfugri stafrófsröð.
 {
-    vector<Person>listOfPersons = m_worker.sortListReverse(m_worker.getList());
+    vector<Person>listOfPersons = m_domain.sortListReverse(m_domain.getList());
     printListPerson(listOfPersons);
 }
 
-void Interface::printSortedYear()
+void Interface::printSortedYear()   //Prentar út upplýsingar frá elsta ári til yngsta.
 {
-    vector<Person>listOfPersons = m_worker.sortListYear(m_worker.getList());
+    vector<Person>listOfPersons = m_domain.sortListYear(m_domain.getList());
     printListPerson(listOfPersons);
 }
 
-void Interface::printSortedYearReverse()
+void Interface::printSortedYearReverse()    //Prentar út upplýsingar frá yngsta ári til elsta.
 {
-    vector<Person>listOfPersons = m_worker.sortListYearReverse(m_worker.getList());
+    vector<Person>listOfPersons = m_domain.sortListYearReverse(m_domain.getList());
     printListPerson(listOfPersons);
 }
-
