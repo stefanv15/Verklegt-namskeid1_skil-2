@@ -2,7 +2,7 @@
 #define SQLITE_H
 #include "person.h"
 #include "computers.h"
-#include <vector>
+//#include <vector>
 #include <QtSql>
 #include "comp_pers.h"
 

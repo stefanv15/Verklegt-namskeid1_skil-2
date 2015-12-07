@@ -1,38 +1,38 @@
-#include "worker.h"
+#include "domain.h"
 #include "person.h"
 #include "computers.h"
 #include "comp_pers.h"
-#include "datalayer.h"
-#include <ctype.h>
-#include <string>
+//#include "datalayer.h"
+//#include <ctype.h>
+//#include <string>
 #include <algorithm>
 
-Worker::Worker()            //Sjálfgefni smiðurinn fyrir Worker klasann.
+Domain::Domain()            //Sjálfgefni smiðurinn fyrir domain klasann.
 {
 
 }
 
-void Worker::createPerson(Person p)     // Býr til eintak af persónu og vistar.
+void Domain::createPerson(Person p) //Býr til eintak af persónu og vistar.
 {
     m_datalayer.addData(p);
 }
 
-void Worker::createComputer(Computers c)
+void Domain::createComputer(Computers c)
 {
     m_datalayer.addComputer(c);
 }
 
-vector<Person> Worker::getList()        //Nær í personlist úr datalayer og skilar honum.
+vector<Person> Domain::getList()  //Nær í personlist úr datalayer og skilar honum.
 {
     return m_datalayer.getPersonList();
 }
 
-vector<Computers> Worker::getComputerList()
+vector<Computers> Domain::getComputerList()
 {
     return m_datalayer.getComputerList();
 }
 
-string Worker::getComputerList(int pId)
+string Domain::getComputerList(int pId)
 {
     vector<Comp_pers> cpList = m_datalayer.getLinkedComputers(pId);
     string sComputers = "";
@@ -46,12 +46,12 @@ string Worker::getComputerList(int pId)
     return sComputers;
 }
 
-void Worker::saveAllData()              //Nær í savedata fallið úr datalayer og skilar því.
+void Domain::saveAllData()  //Nær í savedata fallið úr datalayer og skilar því.
 {
     m_datalayer.saveData();
 }
 
-vector<Person> Worker::searchScientist(string search)   // Leitar af persónu í lista og skilar
+vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í lista og skilar
 {                                                       // vector af persónum sem fundust.
     vector<Person> list = m_datalayer.getPersonList();
     vector<Person> returnList;
@@ -64,7 +64,20 @@ vector<Person> Worker::searchScientist(string search)   // Leitar af persónu í
     return returnList;
 }
 
-Computers Worker::findComputerById(int cID)             // Leitar af tölvu í lista og skilar henni
+vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu í lista og skilar
+{                                                       // vector af persónum sem fundust.
+    vector<Computers> list = m_datalayer.getComputerList();
+    vector<Computers> returnList;
+
+    for(unsigned int i = 0; i < list.size(); i++)
+    {
+        if(list[i].getNameOfCpu().find(search, 0)!= string::npos)
+            returnList.push_back(list[i]);
+    }
+    return returnList;
+}
+
+Computers Domain::findComputerById(int cID)             // Leitar af tölvu í lista og skilar henni
 {
     vector<Computers> list = m_datalayer.getComputerList();
     Computers retComp;
@@ -79,7 +92,7 @@ Computers Worker::findComputerById(int cID)             // Leitar af tölvu í l
     return retComp;
 }
 
-vector<Person> Worker::removeScientist(string remove)   // Leitar af persónu í lista og skilar
+vector<Person> Domain::removeScientist(string remove)   //Leitar af persónu í lista og skilar
 {                                                       // vector án persónum sem leitar var af.
     vector<Person> list = m_datalayer.getPersonList();
     vector<Person> returnList;
@@ -97,39 +110,40 @@ bool compareName(Person& name1, Person& name2)              //Hjálparfall fyrir
     return name1.getName() < name2.getName();
 }
 
-
-vector<Person> Worker::sortList(vector<Person> listOfPersons)
+vector<Person> Domain::sortList(vector<Person> listOfPersons)   //Raðar upp lista af persónum í stafrófsröð.
 {
     sort(listOfPersons.begin(), listOfPersons.end(), compareName);
     return listOfPersons;
 }
 
-bool compareNameTwo(Person& name1, Person& name2)
+bool compareNameTwo(Person& name1, Person& name2)   //Hjálparfall fyrir sortListReverse fallið.
 {
     return name1.getName() > name2.getName();
 }
 
-vector<Person> Worker::sortListReverse(vector<Person> listOfPersons)
+vector<Person> Domain::sortListReverse(vector<Person> listOfPersons)    //Raðar upp lista af persónum í öfugri stafrófsröð.
+
 {
     sort(listOfPersons.begin(), listOfPersons.end(), compareNameTwo);
     return listOfPersons;
 }
-bool compareYear(Person& year1, Person& year2)
+bool compareYear(Person& year1, Person& year2)  //Hjálparfall fyrir sortListYear fallið.
 {
     return year1.getDayOfBirth() < year2.getDayOfBirth();
 }
 
-vector<Person> Worker::sortListYear(vector<Person> listOfPersons)
+vector<Person> Domain::sortListYear(vector<Person> listOfPersons)   //Raðar upp persónum eftir fæðingarári.
+
 {
     sort(listOfPersons.begin(), listOfPersons.end(), compareYear);
     return listOfPersons;
 }
-bool compareYearTwo(Person& year1, Person& year2)
+bool compareYearTwo(Person& year1, Person& year2) //Hjálpar fall fyrir sortListYearReverse fallið.
 {
     return year1.getDayOfBirth() > year2.getDayOfBirth();
 }
 
-vector<Person> Worker::sortListYearReverse(vector<Person> listOfPersons)
+vector<Person> Domain::sortListYearReverse(vector<Person> listOfPersons)    //Raðar upp persónum eftir öfugu fæðingarári (yngsti efst)
 {
     sort(listOfPersons.begin(), listOfPersons.end(), compareYearTwo);
     return listOfPersons;

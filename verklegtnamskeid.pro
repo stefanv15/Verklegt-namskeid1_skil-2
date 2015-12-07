@@ -14,16 +14,16 @@ SOURCES += main.cpp \
     datalayer.cpp \
     interface.cpp \
     person.cpp \
-    worker.cpp \
     computers.cpp \
-    comp_pers.cpp
+    comp_pers.cpp \
+    domain.cpp
 
 HEADERS += \
     sqlite.h \
     datalayer.h \
     interface.h \
     person.h \
-    worker.h \
     computers.h \
-    comp_pers.h
+    comp_pers.h \
+    domain.h
 
