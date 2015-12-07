@@ -228,3 +228,6 @@ verklegtnamskeid.pro.user
 Makefile.Release
 Makefile.Debug
 *.Release
+debug/verklegtnamskeid.exe
+debug/verklegtnamskeid.exe
+Makefile.Debug
