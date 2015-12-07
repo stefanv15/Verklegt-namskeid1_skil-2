@@ -226,3 +226,5 @@ verklegtnamskeid.pro.user
 *.748f86b
 *.Debug
 Makefile.Release
+Makefile.Debug
+*.Release
