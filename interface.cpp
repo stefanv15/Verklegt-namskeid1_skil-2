@@ -257,7 +257,6 @@ void Interface::printColumnListPerson(vector<Person> listOfPersons)
         string compList = m_domain.getComputerList(listOfPersons[i].getId());
         if(compList.length()>0)
         {
-            // Nú viljum við sækja hvaða tölvur tengjast þeim aðila sem við erum að prenta út.
             cout << compList;
         }
         cout << endl;
@@ -286,12 +285,11 @@ void Interface::printColumnListComputers(vector<Computers> listOfComputers)
             cout << "Digital" << "\t\t\t";
         else
             cout << "Hybrid" << "\t\t\t ";
-        cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No\t\t");
-        string compList = m_domain.getPersList(listOfComputers[i].getId());
-        if(compList.length()>0)
+        cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes\t\t":"No\t\t");
+        string persList = m_domain.getPersList(listOfComputers[i].getId());
+        if(persList.length()>0)
         {
-            // Nú viljum við sækja hvaða tölvur tengjast þeim aðila sem við erum að prenta út.
-            cout << compList;
+            cout << persList;
         }
         cout << endl;
     }
@@ -318,7 +316,7 @@ void Interface::addRelation()
     int computerID;
     int personID;
     printColumnListComputers(m_domain.getComputerList()); //breyta
-    cout << "Please select a computer to relate to a computer scientist: " << endl;
+    cout << "Please select a computer ID to relate to a computer scientist: " << endl;
     cin >> computerID;
     while(cin.fail() || computerID < 0)
     {
@@ -328,7 +326,7 @@ void Interface::addRelation()
         cin >> computerID;
     }
     printColumnListPerson(m_domain.getList());
-    cout << "Please select a computer scientist to relate to the selected computer: " << endl;
+    cout << "Please select a computer scientist ID to relate to the selected computer: " << endl;
     cin >> personID;
     while(cin.fail() || personID < 0)
     {
