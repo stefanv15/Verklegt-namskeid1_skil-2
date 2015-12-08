@@ -63,7 +63,7 @@ void Interface::start()
             {
                 int computerID;
                 int personID;
-                printListComputers(m_domain.getComputerList()); //breyta
+                printColumnListComputers(m_domain.getComputerList()); //breyta
                 cout << "Please select a computer to relate to a computer scientist: " << endl;
                 cin >> computerID;
                 printColumnListPerson(m_domain.getList());
@@ -245,29 +245,6 @@ Computers Interface::getComputerInfo()
     return Computers(name, year, type, built);
 }
 
-//Prentar út upplýsingar um persónur.
-void Interface::printListPerson(vector<Person> listOfPersons)
-{
-    cout << endl;
-    cout << "LIST OF COMPUTER SCIENTISTS" << endl;
-    cout << "---------------------------" << endl;
-    for(unsigned int i = 0; i < listOfPersons.size(); i++)
-    {
-        cout << "ID: " << listOfPersons[i].getId() << endl;
-        cout << "Name: " << listOfPersons[i].getName() << endl;
-        cout << "Gender: " << (listOfPersons[i].getGender()=="m"?"Male":"Female") << endl;
-        cout << "Born: " << listOfPersons[i].getDayOfBirth() << endl;
-        if (listOfPersons[i].getDayOfDeath() > 0)
-            cout << "Died: " << listOfPersons[i].getDayOfDeath() << endl;
-        string compList = m_domain.getComputerList(listOfPersons[i].getId());
-        if(compList.length()>0)
-        {
-            // Nú viljum við sækja hvaða tölvur tengjast þeim aðila sem við erum að prenta út.
-            cout << "Related computers: " << compList << endl;
-        }
-        cout << "---------------------------" << endl;
-    }
-}
 
 //Prentar út upplýsingar um persónur.
 void Interface::printColumnListPerson(vector<Person> listOfPersons)
@@ -301,26 +278,29 @@ void Interface::printColumnListPerson(vector<Person> listOfPersons)
 }
 
 //Prentar út upplýsingar um tölvur.
-void Interface::printListComputers(vector<Computers> listOfComputers)
+void Interface::printColumnListComputers(vector<Computers> listOfComputers)
 {
     cout << endl;
-    cout << "     LIST OF COMPUTERS     " << endl;
-    cout << "---------------------------" << endl;
+    cout << "LIST OF COMPUTERS" << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "ID\tName of computer\t\tYear built\tType of computer\t Was built?" << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+
     for(unsigned int i = 0; i < listOfComputers.size(); i++)
     {
-        cout << "ID: " << listOfComputers[i].getId() << endl;
-        cout << "Name: " << listOfComputers[i].getNameOfCpu() << endl;
+        cout << listOfComputers[i].getId() << "\t";
+        cout << listOfComputers[i].getNameOfCpu() << "\t\t\t\t";
         if (listOfComputers[i].getYearBuilt() > 0)
-            cout << "Year built: " << listOfComputers[i].getYearBuilt() << endl;
+            cout << listOfComputers[i].getYearBuilt() << "\t\t";
         if (listOfComputers[i].getTypeOfCpu() == "a")
-            cout << "Type: Analog" << endl;
+            cout << "Analog" << "\t\t";
         else if (listOfComputers[i].getTypeOfCpu() == "d")
-            cout << "Type: Digital" << endl;
+            cout << "Digital" << "\t\t";
         else
-            cout << "Type: Hybrid" << endl;
-        cout << "Built?: " << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No") << endl;
-        cout << "---------------------------" << endl;
+            cout << "Hybrid" << "\t\t\t ";
+        cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No") << endl;
     }
+    cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
 //Sækir upplýsingar og býr til persónu.
@@ -391,7 +371,7 @@ void Interface::showListPerson()
 void Interface::showListComputer()
 {
     vector<Computers> cpulist = m_domain.getComputerList();
-    printListComputers(cpulist);
+    printColumnListComputers(cpulist);
 
     char sos_ans = listMenu();
     if(sos_ans == 'S' || sos_ans == 's')
@@ -400,32 +380,32 @@ void Interface::showListComputer()
         if(sort_ans == 1)
         {
             cpulist = m_domain.sortAscNameOfCpu();
-            printListComputers(cpulist);
+            printColumnListComputers(cpulist);
         }
         if(sort_ans == 2)
         {
             cpulist = m_domain.sortDescNameOfCpu();
-            printListComputers(cpulist);
+            printColumnListComputers(cpulist);
         }
         if(sort_ans == 3)
         {
             cpulist = m_domain.sortAscYearBuilt();
-            printListComputers(cpulist);
+            printColumnListComputers(cpulist);
         }
         if(sort_ans == 4)
         {
             cpulist = m_domain.sortDescYearBuilt();
-            printListComputers(cpulist);
+            printColumnListComputers(cpulist);
         }
         if(sort_ans == 5)
         {
             cpulist = m_domain.sortAscTypeOfCpu();
-            printListComputers(cpulist);
+            printColumnListComputers(cpulist);
         }
         if(sort_ans == 6)
         {
             cpulist = m_domain.sortDescTypeOfCpu();
-            printListComputers(cpulist);
+            printColumnListComputers(cpulist);
         }
     }
     if(sos_ans == 'R' || sos_ans == 'r')
@@ -543,7 +523,7 @@ void Interface::searchSci()
     if (searchlist.size() == 0)
         {cout << "\nYour search did not match any scientists!" << endl;}
     else
-        printListPerson(searchlist);
+        printColumnListPerson(searchlist);
 }
 
 //Leitar af tölvu.
@@ -557,7 +537,7 @@ void Interface::searchComp()
     if (searchlist.size() == 0)
         {cout << "\nYour search did not match any computers!" << endl;}
     else
-        printListComputers(searchlist);
+        printColumnListComputers(searchlist);
 }
 
 //Valmynd fyrir "sort list hja computers".

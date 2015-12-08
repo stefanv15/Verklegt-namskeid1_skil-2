@@ -11,7 +11,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp
 SOURCES += sqlite.cpp
-SOURCES += datalayer.cpp
+SOURCES +=
 SOURCES += interface.cpp
 SOURCES += person.cpp
 SOURCES += computers.cpp

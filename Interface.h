@@ -24,8 +24,7 @@ private:
     int sortMenu2() const;
     Person getPersonInfo(); //Fær upplýsingar um persónu frá notanda.
     Computers getComputerInfo(); //Inntak fyrir upplýsingar um tölvu.
-    void printListPerson(vector<Person> listOfPersons); //Prentar út lista af persónum.
-    void printListComputers(vector<Computers> listOfComputers); //Prentar út upplýsingar um tölvur.
+    void printColumnListComputers(vector<Computers> listOfComputers); //Prentar út upplýsingar um tölvur.
     void addPerson();
     void addComputer();
     void showListPerson();
