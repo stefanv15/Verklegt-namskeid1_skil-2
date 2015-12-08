@@ -30,6 +30,17 @@ public:
     vector<Person> sortListYearReverse(vector<Person> listOfPersons);   //Raðar lista upp eftir öfugu fæðingar ári(yngsti efst)
     Computers findComputerById(int cID);
     void createRelation(int computerID, int personID);
+    void sortAscName();
+    void sortDescName();
+    void sortGender();
+    void sortAscYearOfBirth();
+    void sortDescYearOfBirth();
+    void sortAscNameOfCpu();
+    void sortDescNameOfCpu();
+    void sortAscYearBuilt();
+    void sortDescYearBuilt();
+    void sortAscTypeOfCpu();
+    void sortDescTypeOfCpu();
 
 private:
     SQLite m_datalayer;   //Object af DataLayer fyrir Worker klasann.

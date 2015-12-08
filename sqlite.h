@@ -21,6 +21,17 @@ public:
     void removeComputer(int input);
     vector<Person> getPersonListByName();
     vector<Person> searchPersons(string search);
+    void sortAscName();
+    void sortDescName();
+    void sortGender();
+    void sortAscYearOfBirth();
+    void sortDescYearOfBirth();
+    void sortAscNameOfCpu();
+    void sortDescNameOfCpu();
+    void sortAscYearBuilt();
+    void sortDescYearBuilt();
+    void sortAscTypeOfCpu();
+    void sortDescTypeOfCpu();
 
 private:
     QSqlDatabase m_db;

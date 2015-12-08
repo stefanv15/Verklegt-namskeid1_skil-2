@@ -117,35 +117,57 @@ vector<Person> Domain::getPersonlistByName()            //Raðar upp lista af pe
     return m_datalayer.getPersonListByName();
 }
 
-bool compareNameTwo(Person& name1, Person& name2)   //Hjálparfall fyrir sortListReverse fallið.
+void Domain::sortAscName()
 {
-    return name1.getName() > name2.getName();
+    m_datalayer.sortAscName();
 }
 
-vector<Person> Domain::sortListReverse(vector<Person> listOfPersons)    //Raðar upp lista af persónum í öfugri stafrófsröð.
-
+void Domain::sortDescName()
 {
-    sort(listOfPersons.begin(), listOfPersons.end(), compareNameTwo);
-    return listOfPersons;
-}
-bool compareYear(Person& year1, Person& year2)  //Hjálparfall fyrir sortListYear fallið.
-{
-    return year1.getDayOfBirth() < year2.getDayOfBirth();
+    m_datalayer.sortDescName();
 }
 
-vector<Person> Domain::sortListYear(vector<Person> listOfPersons)   //Raðar upp persónum eftir fæðingarári.
-
+void Domain::sortGender()
 {
-    sort(listOfPersons.begin(), listOfPersons.end(), compareYear);
-    return listOfPersons;
-}
-bool compareYearTwo(Person& year1, Person& year2) //Hjálpar fall fyrir sortListYearReverse fallið.
-{
-    return year1.getDayOfBirth() > year2.getDayOfBirth();
+    m_datalayer.sortGender();
 }
 
-vector<Person> Domain::sortListYearReverse(vector<Person> listOfPersons)    //Raðar upp persónum eftir öfugu fæðingarári (yngsti efst)
+void Domain::sortAscYearOfBirth()
 {
-    sort(listOfPersons.begin(), listOfPersons.end(), compareYearTwo);
-    return listOfPersons;
+    m_datalayer.sortAscYearOfBirth();
+}
+
+void Domain::sortDescYearOfBirth()
+{
+    m_datalayer.sortDescYearOfBirth();
+}
+
+void Domain::sortAscNameOfCpu()
+{
+    m_datalayer.sortAscNameOfCpu();
+}
+
+void Domain::sortDescNameOfCpu()
+{
+    m_datalayer.sortDescNameOfCpu();
+}
+
+void Domain::sortAscYearBuilt()
+{
+    m_datalayer.sortAscYearBuilt();
+}
+
+void Domain::sortDescYearBuilt()
+{
+    m_datalayer.sortDescYearBuilt();
+}
+
+void Domain::sortAscTypeOfCpu()
+{
+    m_datalayer.sortAscTypeOfCpu();
+}
+
+void Domain::sortDescTypeOfCpu()
+{
+    m_datalayer.sortDescTypeOfCpu();
 }

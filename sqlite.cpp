@@ -155,3 +155,80 @@ void SQLite::removeComputer(int input)
     QString delSQL = "DELETE FROM person WHERE id = "+QString::number(input);
     query.exec(delSQL);
 }
+
+void SQLite::sortAscName()
+{
+    QSqlQuery query(m_db);
+    const QString ascSQL = "SELECT * FROM person ORDER BY name ASC";
+    query.exec(ascSQL);
+}
+
+void SQLite::sortDescName()
+{
+     QSqlQuery query(m_db);
+     const QString descSQL = "SELECT * FROM person ORDER BY name DESC";
+     query.exec(descSQL);
+}
+
+void SQLite::sortGender()
+{
+     QSqlQuery query(m_db);
+     const QString genderAscSQL = "SELECT * FROM person ORDER BY gender ASC";
+     query.exec(genderAscSQL);
+}
+
+void SQLite::sortAscYearOfBirth()
+{
+     QSqlQuery query(m_db);
+     const QString yobAscSQL = "SELECT * FROM person ORDER BY yearOfBirth ASC";
+     query.exec(yobAscSQL);
+}
+
+void SQLite::sortDescYearOfBirth()
+{
+     QSqlQuery query(m_db);
+     const QString yobDescSQL = "SELECT * FROM person ORDER BY yearOfBirth DESC";
+     query.exec(yobDescSQL);
+}
+
+void SQLite::sortAscNameOfCpu()
+{
+     QSqlQuery query(m_db);
+     const QString cpuAscSQL = "SELECT * FROM computers ORDER BY nameOfCpu ASC";
+     query.exec(cpuAscSQL);
+}
+void SQLite::sortDescNameOfCpu()
+{
+     QSqlQuery query(m_db);
+     const QString cpuDescSQL = "SELECT * FROM computers ORDER BY nameOfCpu DESC";
+     query.exec(cpuDescSQL);
+}
+
+void SQLite::sortAscYearBuilt()
+{
+     QSqlQuery query(m_db);
+     const QString ybAscSQL = "SELECT * FROM computers ORDER BY yearBuilt ASC";
+     query.exec(ybAscSQL);
+}
+
+void SQLite::sortDescYearBuilt()
+{
+     QSqlQuery query(m_db);
+     const QString ybDescSQL = "SELECT * FROM computers ORDER BY yearBuilt DESC";
+     query.exec(ybDescSQL);
+}
+
+void SQLite::sortAscTypeOfCpu()
+{
+     QSqlQuery query(m_db);
+     const QString typeAscSQL = "SELECT * FROM computers ORDER BY typeOfCpu ASC";
+     query.exec(typeAscSQL);
+}
+
+void SQLite::sortDescTypeOfCpu()
+{
+     QSqlQuery query(m_db);
+     const QString typeDescSQL = "SELECT * FROM computers ORDER BY typeOfCpu descSQL";
+     query.exec(typeDescSQL);
+}
+
