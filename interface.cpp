@@ -291,6 +291,7 @@ void Interface::printColumnListComputers(vector<Computers> listOfComputers)
             cout << "Hybrid" << "\t\t\t ";
         cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No") << endl;
     }
+    cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
 //Sækir upplýsingar og býr til persónu.
