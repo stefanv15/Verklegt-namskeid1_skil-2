@@ -19,7 +19,6 @@ public:
     vector<Computers> getComputerList();            //Sækir lista af computer.
     void removeScientist(int input);                //Eyðir person úr gagnagrunninum.
     void removeComputer(int input);                 //Eyðir computer úr gagnagrunnninum.
-    vector<Person> getPersonListByName();           //
     vector<Person> searchPersons(string search);    //
     vector<Computers> searchComputers(string search);
     vector<Person> sortAscName();

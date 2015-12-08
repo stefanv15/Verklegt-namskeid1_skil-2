@@ -62,16 +62,7 @@ vector<Person> SQLite::getPersonList()
 
     return addPersonQueryToList(query);
 }
-//
-vector<Person> SQLite::getPersonListByName()
-{
-    QSqlQuery query(m_db);
 
-    const QString sSQL = "SELECT * FROM person order by name";
-    query.exec(sSQL);
-
-    return addPersonQueryToList(query);
-}
 //
 vector<Computers> SQLite::getComputerList()
 {

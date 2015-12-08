@@ -25,6 +25,7 @@ private:
     Person getPersonInfo(); //Fær upplýsingar um persónu frá notanda.
     Computers getComputerInfo(); //Inntak fyrir upplýsingar um tölvu.
     void printColumnListComputers(vector<Computers> listOfComputers); //Prentar út upplýsingar um tölvur.
+    void printColumnListPerson(vector<Person> listOfPersons);
     void addPerson();
     void addComputer();
     void addRelation();
@@ -34,11 +35,7 @@ private:
     void removeComputer();
     void searchSci();
     void searchComp();
-    void printSortedReverse(); //Prentar út upplýsingar í öfugri stafrófsröð.
-    void printSorted(); //Prentar út upplýsingar í stafrófsröð.
-    void printSortedYear(); //Prentar út upplýsingar frá elsta ári til yngsta.
-    void printSortedYearReverse();  //Prentar út upplýsingar frá yngsta ári til elsta.
-    void printColumnListPerson(vector<Person> listOfPersons);
+
 };
 
 #endif // INTERFACE_H

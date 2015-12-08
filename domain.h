@@ -17,17 +17,13 @@ public:
     void createComputer(Computers c);      //Býr til eintak af computer.
     vector<Person> getList();              //Sækir Persónu lista.
     vector<Computers> getComputerList();   //Sækir Computer lista.
-    string getComputerList(int pId);       //Sækja lista af tölvum fyrir e-a persónu
-    string getPersList(int pId);         //Sækja lista af persónum fyrir e-a tölvu
     void saveAllData();                    //Vistar í .txt þegar notandi velur 3. exit.
     vector<Person> searchScientist(string search);      //Leitar af persónu í lista.
     vector<Computers> searchComputer(string search);    //Leitar af computer í lista.
     void removeScientist(int input);       //Eyðir persónu úr gagnagrunni.
     void removeComputer(int input);        //Eyðir computer úr gagnagrunni.
-    vector<Person> getPersonlistByName();  //Raðar lista í stafrófsröð og skilar til baka.
-    vector<Person> sortListReverse(vector<Person> listOfPersons);       //Raðar lista í öfugri stafrófsröð og skilar til baka.
-    vector<Person> sortListYear(vector<Person> listOfPersons);          //Raðar lista upp eftir fæðingarári og skilar til baka.
-    vector<Person> sortListYearReverse(vector<Person> listOfPersons);   //Raðar lista upp eftir öfugu fæðingar ári(yngsti efst)
+    string getComputerList(int pId);       //Sækja lista af tölvum fyrir e-a persónu
+    string getPersList(int pId);         //Sækja lista af persónum fyrir e-a tölvu
     Computers findComputerById(int cID);
     Person findPersonById(int cID);
     void createRelation(int computerID, int personID);

@@ -23,7 +23,7 @@ void Interface::start()
         {
             cin.clear();
             cin.ignore(100,'\n');
-            cout << "Invalid input! Pick again:";
+            cout << "Invalid input! Pick again: ";
             cin >> numb;
         }
 
@@ -323,9 +323,23 @@ void Interface::addRelation()
     printColumnListComputers(m_domain.getComputerList()); //breyta
     cout << "Please select a computer to relate to a computer scientist: " << endl;
     cin >> computerID;
+    while(cin.fail() || computerID < 0)
+    {
+        cin.clear();
+        cin.ignore(100,'\n');
+        cout << "Invalid input! Select again: ";
+        cin >> computerID;
+    }
     printColumnListPerson(m_domain.getList());
     cout << "Please select a computer scientist to relate to the selected computer: " << endl;
     cin >> personID;
+    while(cin.fail() || personID < 0)
+    {
+        cin.clear();
+        cin.ignore(100,'\n');
+        cout << "Invalid input! Select again: ";
+        cin >> personID;
+    }
     m_domain.createRelation(computerID, personID);
 }
 
@@ -462,8 +476,6 @@ char Interface::listMenu() const
     return answer;
 }
 
-// --------------SORTLISTI-OG-SORTFÖLL-FYRIR-PERSON------------ //
-
 //Valmynd fyrir "sort list".
 int Interface::sortMenu() const
 {
@@ -487,6 +499,36 @@ int Interface::sortMenu() const
         cout << "3 - Gender " << endl;
         cout << "4 - Year of birth " << endl;
         cout << "5 - Reverse year of birth " << endl;
+        cin >> answer;
+    }
+    return answer;
+}
+
+//Valmynd fyrir "sort list hja computers".
+int Interface::sortMenu2() const
+{
+    int answer;
+    cout << "--------------------------------" << endl;
+    cout << "Sort by?" << endl;
+    cout << "1 - Name of computer" << endl;
+    cout << "2 - Reverse name of computer " << endl;
+    cout << "3 - Year built " << endl;
+    cout << "4 - Reverse year built " << endl;
+    cout << "5 - Type of computer" << endl;
+    cout << "6 - Reverse type of computer " << endl;
+    cin >> answer;
+    while(cin.fail() || answer < 1 || answer > 6)
+    {
+        cin.clear();
+        cin.ignore(100,'\n');
+        cout << "The input you entered is not a valid option. Pick again!" << endl;
+        cout << "Sort by?" << endl;
+        cout << "1 - Name of computer" << endl;
+        cout << "2 - Reverse name of computer " << endl;
+        cout << "3 - Year built " << endl;
+        cout << "4 - Reverse year built " << endl;
+        cout << "5 - Type of computer" << endl;
+        cout << "6 - Reverse type of computer " << endl;
         cin >> answer;
     }
     return answer;
@@ -552,32 +594,4 @@ void Interface::searchComp()
         printColumnListComputers(searchlist);
 }
 
-//Valmynd fyrir "sort list hja computers".
-int Interface::sortMenu2() const
-{
-    int answer;
-    cout << "--------------------------------" << endl;
-    cout << "Sort by?" << endl;
-    cout << "1 - Name of computer" << endl;
-    cout << "2 - Reverse name of computer " << endl;
-    cout << "3 - Year built " << endl;
-    cout << "4 - Reverse year built " << endl;
-    cout << "5 - Type of computer" << endl;
-    cout << "6 - Reverse type of computer " << endl;
-    cin >> answer;
-    while(cin.fail() || answer < 1 || answer > 6)
-    {
-        cin.clear();
-        cin.ignore(100,'\n');
-        cout << "The input you entered is not a valid option. Pick again!" << endl;
-        cout << "Sort by?" << endl;
-        cout << "1 - Name of computer" << endl;
-        cout << "2 - Reverse name of computer " << endl;
-        cout << "3 - Year built " << endl;
-        cout << "4 - Reverse year built " << endl;
-        cout << "5 - Type of computer" << endl;
-        cout << "6 - Reverse type of computer " << endl;
-        cin >> answer;
-    }
-    return answer;
-}
+

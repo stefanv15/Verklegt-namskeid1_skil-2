@@ -138,10 +138,6 @@ void Domain::createRelation(int computerID, int personID)
 // ------------------SORT-FÖLL-OG-UPPRAÐANIR------------------
 
 
-vector<Person> Domain::getPersonlistByName()
-{
-    return m_sqlite.getPersonListByName();
-}
 //Raðar upp lista af perónum í stafrófsröð.
 vector<Person> Domain::sortAscName()
 {
