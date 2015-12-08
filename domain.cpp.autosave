@@ -2,9 +2,9 @@
 #include "person.h"
 #include "computers.h"
 #include "comp_pers.h"
-#include "datalayer.h"
-#include <ctype.h>
-#include <string>
+//#include "datalayer.h"
+//#include <ctype.h>
+//#include <string>
 #include <algorithm>
 
 Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann

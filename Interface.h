@@ -5,6 +5,7 @@
 #include "domain.h"
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -36,6 +37,7 @@ private:
     void printSorted(); //Prentar út upplýsingar í stafrófsröð.
     void printSortedYear(); //Prentar út upplýsingar frá elsta ári til yngsta.
     void printSortedYearReverse();  //Prentar út upplýsingar frá yngsta ári til elsta.
+    void printColumnListPerson(vector<Person> listOfPersons);
 };
 
 #endif // INTERFACE_H

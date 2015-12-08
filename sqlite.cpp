@@ -1,8 +1,6 @@
-#include "sqlite.h"
-//#include <fstream>
 #include "person.h"
 #include "computers.h"
-//#include <cstdlib>
+#include "sqlite.h"
 
 SQLite::SQLite()
 {
@@ -12,19 +10,14 @@ SQLite::SQLite()
 void SQLite::openDatabase()       //Sækir gögn úr gagnagrunni og geymir í vektor.
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbName = "prufa.sqlite";
+    QString dbName = "scientists.sqlite";
     m_db.setDatabaseName(dbName);
 
     m_db.open();
 }
+vector<Person> SQLite::AddPersonQueryToList(QSqlQuery &query)
 
-vector<Person> SQLite::getPersonList()
 {
-    QSqlQuery query(m_db);
-
-    const QString sSQL = "SELECT * FROM person";
-    query.exec(sSQL);
-
     vector<Person> list;
 
     while(query.next())
@@ -40,6 +33,26 @@ vector<Person> SQLite::getPersonList()
         list.push_back(newguy);
     }
     return list;
+}
+
+vector<Person> SQLite::getPersonList()
+{
+    QSqlQuery query(m_db);
+
+    const QString sSQL = "SELECT * FROM person";
+    query.exec(sSQL);
+
+    return AddPersonQueryToList(query);
+}
+
+vector<Person> SQLite::getPersonListByName()
+{
+    QSqlQuery query(m_db);
+
+    const QString sSQL = "SELECT * FROM person order by name";
+    query.exec(sSQL);
+
+    return AddPersonQueryToList(query);
 }
 
 vector<Computers> SQLite::getComputerList()
@@ -66,6 +79,8 @@ vector<Computers> SQLite::getComputerList()
     return list;
 }
 
+
+
 void SQLite::saveData()                       //Sækir gögn úr vektor og vistar í skrá.
 {
     m_db.close();
@@ -88,11 +103,19 @@ void SQLite::addComputer(Computers& c)
     query.exec(sInsertSQL);
 }
 
+void SQLite::addRelation(int computerID, int personID)
+{
+    const QString sInsertSQL = QString("Insert into comp_pers(compID, persID) values (%1,%2)").arg(QString::number(computerID),QString::number(personID));
+
+    QSqlQuery query(m_db);
+    query.exec(sInsertSQL);
+}
+
 vector<Comp_pers> SQLite::getLinkedComputers(int pID)
 {
     QSqlQuery query(m_db);
 
-    const QString sSQL = "SELECT * FROM comp_pers where persID="+QString::number(pID);
+    const QString sSQL = "SELECT * FROM comp_pers where persID = "+QString::number(pID);
     query.exec(sSQL);
 
     vector<Comp_pers> cpList;
@@ -105,6 +128,18 @@ vector<Comp_pers> SQLite::getLinkedComputers(int pID)
         cpList.push_back(newCP);
     }
     return cpList;
+}
+
+vector<Person> SQLite::searchPersons(string search)
+{
+    QSqlQuery query(m_db);
+
+    QString sSQL = "select * from person where name like '%%%1%%'";
+    sSQL = sSQL.arg(QString::fromStdString(search));
+
+    query.exec(sSQL);
+
+    return AddPersonQueryToList(query);
 }
 
 void SQLite::removeScientist(int input)

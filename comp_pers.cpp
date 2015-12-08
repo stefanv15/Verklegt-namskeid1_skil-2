@@ -5,7 +5,7 @@ Comp_pers::Comp_pers()
 
 }
 
-Comp_pers::Comp_pers(int pID, int cID)
+Comp_pers::Comp_pers(int cID, int pID)
 {
     personID = pID;
     computerID = cID;
