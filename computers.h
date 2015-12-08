@@ -9,22 +9,20 @@ class Computers
 {
 public:
     Computers();                //Sjálfgefinn smiður
-    Computers(int idee, string nameOC, int yearB, string typeOC, string wasB);      //Computers fall sem hefur aðgang að 5 private breytum.
-    Computers(string nameOC, int yearB, string typeOC, string wasB);                //Computers fall sem hefur aðgang að 4 private breytum.
-    string getNameOfCpu();      //Sækir nafn á tölvu.
-    int getYearBuilt();         //Sækir byggingarár tölvu.
-    int getId();                //Sækir ID á tölvu.
-    string getTypeOfCpu();      //Sækir tegund tölvu.
-    string getWasBuilt();       //Sækir upplýsingar um hvort tölva hafi verið byggð.
+    Computers(int idee, string nameOC, int yearB, string typeOC, string wasB);      //Smiður sem upphafsstillir 5 prívat breytur.
+    Computers(string nameOC, int yearB, string typeOC, string wasB);                //Smiður sem upphafsstillir 4 prívat breytur.
+    string getNameOfCpu();      //Skilar nafn á tölvu.
+    int getYearBuilt();         //Skilar byggingarár tölvu.
+    int getId();                //Skilar ID á tölvu.
+    string getTypeOfCpu();      //Skilar tegund tölvu.
+    string getWasBuilt();       //Skilar upplýsingar um hvort tölva hafi verið byggð.
 
-private:                        //Private breytur.
+private:                        //Prívat breytur.
     int id;
     string nameOfCpu;
     int yearBuilt;
     string typeOfCpu;
     string wasBuilt;
-
-
 };
 
 #endif // COMPUTERS_H

@@ -9,8 +9,8 @@ class Person
 {
 public:
     Person();
-    Person(string n, string g, int dob, int dod);
-    Person(int i, string n, string g, int dob, int dod);
+    Person(string n, string g, int dob, int dod);           //Smiður fyrir Person til að upphafsstilla 4 prívat breytur.
+    Person(int i, string n, string g, int dob, int dod);    //Smiður fyrir Person til að upphafsstilla 5 prívat breytur.
     int getId();            //Sækir ID.
     string getName();       //Sækir nafn viðkomandi.
     string getGender();     //Sækir kyn.

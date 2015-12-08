@@ -10,7 +10,7 @@ Computers::Computers()
     wasBuilt = "";
 }
 
-//Computers fall sem hefur aðgang að 5 private breytum.
+//Smiður sem upphafsstillir 4 prívat breytur.
 Computers::Computers(string nameOC, int yearB, string typeOC, string wasB)
 {
     nameOfCpu = nameOC;
@@ -19,7 +19,7 @@ Computers::Computers(string nameOC, int yearB, string typeOC, string wasB)
     wasBuilt = wasB;
 }
 
-//Computers fall sem hefur aðgang að 4 private breytum.
+//Smiður sem upphafsstillir 5 prívat breytur.
 Computers::Computers(int idee, string nameOC, int yearB, string typeOC, string wasB)
 {
     id = idee;
@@ -53,7 +53,7 @@ string Computers::getTypeOfCpu()
     return typeOfCpu;
 }
 
-//Sækir upplýsingar um hvort tölva hafi verið byggð.
+//Skilar upplýsingar um hvort tölva hafi verið byggð.
 string Computers::getWasBuilt()
 {
     return wasBuilt;
