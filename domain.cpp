@@ -2,9 +2,9 @@
 #include "person.h"
 #include "computers.h"
 #include "comp_pers.h"
-#include "datalayer.h"
-#include <ctype.h>
-#include <string>
+//#include "datalayer.h"
+//#include <ctype.h>
+//#include <string>
 #include <algorithm>
 
 Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann
@@ -96,12 +96,14 @@ Computers Domain::findComputerById(int cID)               // Leitar af tölvu í
     return retComp;
 }
 
-void Domain::removeScientist(int input)   //Leitar af persónu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
+//Leitar af persónu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
+void Domain::removeScientist(int input)
 {
     return m_datalayer.removeScientist(input);
 }
 
-void Domain::removeComputer(int input)   //Leitar af tölvu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
+//Leitar af tölvu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
+void Domain::removeComputer(int input)
 {
     return m_datalayer.removeComputer(input);
 }
