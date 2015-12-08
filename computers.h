@@ -1,14 +1,12 @@
 #ifndef COMPUTERS_H
 #define COMPUTERS_H
-//#include <iostream>
 #include <string>
-//#include <vector>
 using namespace std;
 
 class Computers
 {
 public:
-    Computers();                //Sjálfgefinn smiður
+    Computers();                //Sjálfgefinn smiður.
     Computers(int idee, string nameOC, int yearB, string typeOC, string wasB);      //Smiður sem upphafsstillir 5 prívat breytur.
     Computers(string nameOC, int yearB, string typeOC, string wasB);                //Smiður sem upphafsstillir 4 prívat breytur.
     string getNameOfCpu();      //Skilar nafn á tölvu.

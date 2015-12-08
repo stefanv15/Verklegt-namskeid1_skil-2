@@ -2,23 +2,20 @@
 #include "person.h"
 #include "computers.h"
 #include "comp_pers.h"
-//#include "datalayer.h"
-//#include <ctype.h>
-//#include <string>
 #include <algorithm>
 
-Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann
+Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann.
 {
 
 }
 
-//Býr til eintak af persónu
+//Býr til eintak af persónu.
 void Domain::createPerson(Person p)
 {
     m_sqlite.addData(p);
 }
 
-//Býr til eintak af tölvu
+//Býr til eintak af tölvu.
 void Domain::createComputer(Computers c)
 {
     m_sqlite.addComputer(c);
@@ -36,7 +33,7 @@ vector<Computers> Domain::getComputerList()
     return m_sqlite.getComputerList();
 }
 
-//Sækir lista af persónum fyrir e-a tölvu
+//Sækir lista af persónum fyrir e-a tölvu.
 string Domain::getPersList(int pId)
 {
     vector<Comp_pers> pList = m_sqlite.getLinkedPerson(pId);
@@ -44,14 +41,14 @@ string Domain::getPersList(int pId)
     for(unsigned int i = 0; i < pList.size(); i++)
     {
         if (i>0)
-            sPersons += " ";
+            sPersons += ", ";
         Person pers = findPersonById(pList[i].getPersonID());
         sPersons += pers.getName();
     }
     return sPersons;
 }
 
-//Sækir lista af tölvum fyrir e-a persónu
+//Sækir lista af tölvum fyrir e-a persónu.
 string Domain::getComputerList(int pId)
 {
     vector<Comp_pers> cpList = m_sqlite.getLinkedComputers(pId);
@@ -59,7 +56,7 @@ string Domain::getComputerList(int pId)
     for(unsigned int i = 0; i < cpList.size(); i++)
     {
         if (i>0)
-            sComputers += " ";
+            sComputers += ", ";
         Computers comp = findComputerById(cpList[i].getComputerID());
         sComputers += comp.getNameOfCpu();
     }
@@ -80,11 +77,11 @@ vector<Person> Domain::searchScientist(string search)
 
 //Leitar af persónu í lista og skilar honum.
 vector<Computers> Domain::searchComputer(string search)
-{                                                         // vector af persónum sem fundust.
+{
     return m_sqlite.searchComputers(search);
 }
 
-//Finnur og skilar persónu út frá id
+//Finnur og skilar persónu út frá id.
 Person Domain::findPersonById(int cID)
 {
     vector<Person> list = m_sqlite.getPersonList();
@@ -100,7 +97,7 @@ Person Domain::findPersonById(int cID)
     return retPers;
 }
 
-//Finnur og skilar tölvu út frá id
+//Finnur og skilar tölvu út frá id.
 Computers Domain::findComputerById(int cID)
 {
     vector<Computers> list = m_sqlite.getComputerList();

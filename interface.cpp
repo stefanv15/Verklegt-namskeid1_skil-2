@@ -166,7 +166,7 @@ Person Interface::getPersonInfo()
     getline(cin, name);
     cout << "Gender (f/m): ";
     cin >> gender;
-    while(gender != "f" && gender != "m") // Villuskilaboð (ef notandi slær inn vitlausann innslátt
+    while(gender != "f" && gender != "m")
     {
         cout << "Invalid gender input!" << endl;
         cout << "Gender (f/m): ";
@@ -174,7 +174,7 @@ Person Interface::getPersonInfo()
     }
     cout << "Enter year of birth (yyyy): ";
     cin >> dayOfBirth;
-    while(cin.fail() || dayOfBirth < 0 || dayOfBirth > 2015) // Villu tjékk á innslætti dayofbirth
+    while(cin.fail() || dayOfBirth < 0 || dayOfBirth > 2015)
     {
         cin.clear();
         cin.ignore(100,'\n');
@@ -184,7 +184,7 @@ Person Interface::getPersonInfo()
     }
     cout << "Year of passing (yyyy, Type -1 if scientist is alive): ";
     cin >> dayOfDeath;
-    while(cin.fail() || dayOfDeath < -1 || dayOfDeath > 2015) // Villu tjékk á innslætti dayofbirth
+    while(cin.fail() || dayOfDeath < -1 || dayOfDeath > 2015)
     {
         cin.clear();
         cin.ignore(100,'\n');
@@ -209,7 +209,7 @@ Computers Interface::getComputerInfo()
     getline(cin, name);
     cout << "Enter year built (yyyy, Type -1 if computer was never built): ";
     cin >> year;
-    while(cin.fail() || year < -1 || year > 2015) // Villu tjékk á innslætti dayofbirth
+    while(cin.fail() || year < -1 || year > 2015)
     {
         cin.clear();
         cin.ignore(100,'\n');
@@ -219,7 +219,7 @@ Computers Interface::getComputerInfo()
     }
     cout << "Type (a/d/h for analog/digital/hybrid respectively): ";
     cin >> type;
-    while(type != "a" && type != "d" && type != "h") // Villuskilaboð (ef notandi slær inn vitlausann innslátt
+    while(type != "a" && type != "d" && type != "h")
     {
         cout << "Invalid type input!" << endl;
         cout << "Type (a/d/h for analog/digital/hybrid respectively): ";
@@ -227,7 +227,7 @@ Computers Interface::getComputerInfo()
     }
     cout << "Was the computer built? (y/n): ";
     cin >> built;
-    while(built != "y" && built != "n") // Villuskilaboð (ef notandi slær inn vitlausann innslátt
+    while(built != "y" && built != "n")
     {
         cout << "Invalid input!" << endl;
         cout << "Was the computer built? (y/n): ";
@@ -276,13 +276,13 @@ void Interface::printColumnListComputers(vector<Computers> listOfComputers)
     for(unsigned int i = 0; i < listOfComputers.size(); i++)
     {
         cout << listOfComputers[i].getId() << "\t";
-        cout << listOfComputers[i].getNameOfCpu() << "\t\t\t";
+        cout << std::left << std::setw(23) << std::setfill(' ') << listOfComputers[i].getNameOfCpu() << "\t";
         if (listOfComputers[i].getYearBuilt() > 0)
             cout << listOfComputers[i].getYearBuilt() << "\t\t";
         if (listOfComputers[i].getTypeOfCpu() == "a")
-            cout << "Analog" << "\t\t\t";
+            cout << "Analog" << "\t\t\t ";
         else if (listOfComputers[i].getTypeOfCpu() == "d")
-            cout << "Digital" << "\t\t\t";
+            cout << "Digital" << "\t\t\t ";
         else
             cout << "Hybrid" << "\t\t\t ";
         cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes\t\t":"No\t\t");
@@ -315,7 +315,9 @@ void Interface::addRelation()
 {
     int computerID;
     int personID;
-    printColumnListComputers(m_domain.getComputerList()); //breyta
+    printColumnListComputers(m_domain.getComputerList());
+
+
     cout << "Please select a computer ID to relate to a computer scientist: " << endl;
     cin >> computerID;
     while(cin.fail() || computerID < 0)
@@ -341,7 +343,7 @@ void Interface::addRelation()
 //Sýnir lista yfir persónur, listmenu & sortmenu.
 void Interface::showListPerson()
 {
-    vector<Person> list = m_domain.getList(); // Sækja lista.
+    vector<Person> list = m_domain.getList();
     printColumnListPerson(list);
 
     char sos_ans = listMenu();
