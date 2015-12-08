@@ -15,14 +15,13 @@ void SQLite::openDatabase()       //Sækir gögn úr gagnagrunni og geymir í ve
 
     m_db.open();
 }
-vector<Person> SQLite::AddPersonQueryToList(QSqlQuery &query)
 
+vector<Person> SQLite::addPersonQueryToList(QSqlQuery &query)
 {
     vector<Person> list;
 
     while(query.next())
     {
-
         int id = query.value("id").toUInt();
         string name = query.value("name").toString().toStdString();
         string gender = query.value("gender").toString().toStdString();
@@ -35,33 +34,8 @@ vector<Person> SQLite::AddPersonQueryToList(QSqlQuery &query)
     return list;
 }
 
-vector<Person> SQLite::getPersonList()
+vector<Computers> SQLite::addComputerQueryToList(QSqlQuery &query)
 {
-    QSqlQuery query(m_db);
-
-    const QString sSQL = "SELECT * FROM person";
-    query.exec(sSQL);
-
-    return AddPersonQueryToList(query);
-}
-
-vector<Person> SQLite::getPersonListByName()
-{
-    QSqlQuery query(m_db);
-
-    const QString sSQL = "SELECT * FROM person order by name";
-    query.exec(sSQL);
-
-    return AddPersonQueryToList(query);
-}
-
-vector<Computers> SQLite::getComputerList()
-{
-    QSqlQuery query(m_db);
-
-    const QString sSQL = "SELECT * FROM computers";
-    query.exec(sSQL);
-
     vector<Computers> list;
 
     while(query.next())
@@ -72,11 +46,40 @@ vector<Computers> SQLite::getComputerList()
         string typeOfCpu = query.value("typeOfCpu").toString().toStdString();
         string wasBuilt = query.value("wasBuilt").toString().toStdString();
 
-        Computers c(id, nameOfCpu, yearBuilt, typeOfCpu, wasBuilt);
         Computers newCpu(id, nameOfCpu, yearBuilt, typeOfCpu, wasBuilt);
         list.push_back(newCpu);
     }
     return list;
+}
+
+vector<Person> SQLite::getPersonList()
+{
+    QSqlQuery query(m_db);
+
+    const QString sSQL = "SELECT * FROM person";
+    query.exec(sSQL);
+
+    return addPersonQueryToList(query);
+}
+
+vector<Person> SQLite::getPersonListByName()
+{
+    QSqlQuery query(m_db);
+
+    const QString sSQL = "SELECT * FROM person order by name";
+    query.exec(sSQL);
+
+    return addPersonQueryToList(query);
+}
+
+vector<Computers> SQLite::getComputerList()
+{
+    QSqlQuery query(m_db);
+
+    const QString sSQL = "SELECT * FROM computers";
+    query.exec(sSQL);
+
+    return addComputerQueryToList(query);
 }
 
 
@@ -139,7 +142,19 @@ vector<Person> SQLite::searchPersons(string search)
 
     query.exec(sSQL);
 
-    return AddPersonQueryToList(query);
+    return addPersonQueryToList(query);
+}
+
+vector<Computers> SQLite::searchComputers(string search)
+{
+    QSqlQuery query(m_db);
+
+    QString sSQL = "select * from computers where nameOfCpu like '%%%1%%'";
+    sSQL = sSQL.arg(QString::fromStdString(search));
+
+    query.exec(sSQL);
+
+    return addComputerQueryToList(query);
 }
 
 void SQLite::removeScientist(int input)

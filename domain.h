@@ -32,7 +32,7 @@ public:
     void createRelation(int computerID, int personID);
 
 private:
-    SQLite m_datalayer;   //Object af DataLayer fyrir Domain klasann.
+    SQLite m_sqlite;   //Object af DataLayer fyrir Domain klasann.
 };
 
 #endif // DOMAIN_H

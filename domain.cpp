@@ -15,27 +15,27 @@ Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann
 //Býr til eintak af persónu og vistar.
 void Domain::createPerson(Person p)
 {
-    m_datalayer.addData(p);
+    m_sqlite.addData(p);
 }
 
 void Domain::createComputer(Computers c)
 {
-    m_datalayer.addComputer(c);
+    m_sqlite.addComputer(c);
 }
 
 vector<Person> Domain::getList()                        //Nær í personlist úr datalayer og skilar honum.
 {
-    return m_datalayer.getPersonList();
+    return m_sqlite.getPersonList();
 }
 
 vector<Computers> Domain::getComputerList()
 {
-    return m_datalayer.getComputerList();
+    return m_sqlite.getComputerList();
 }
 
 string Domain::getComputerList(int pId)
 {
-    vector<Comp_pers> cpList = m_datalayer.getLinkedComputers(pId);
+    vector<Comp_pers> cpList = m_sqlite.getLinkedComputers(pId);
     string sComputers = "";
     for(unsigned int i = 0; i < cpList.size(); i++)
     {
@@ -49,41 +49,22 @@ string Domain::getComputerList(int pId)
 
 void Domain::saveAllData()                              // Nær í savedata fallið úr datalayer og skilar því.
 {
-    m_datalayer.saveData();
+    m_sqlite.saveData();
 }
 
 vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í lista og skilar
 {
-    return m_datalayer.searchPersons(search);
-    /* geyma
-    // vector af persónum sem fundust.
-    vector<Person> list = m_datalayer.getPersonList();
-    vector<Person> returnList;
-
-    for(unsigned int i = 0; i < list.size(); i++)
-    {
-        if(list[i].getName().find(search, 0)!= string::npos)
-            returnList.push_back(list[i]);
-    }
-    return returnList;*/
+    return m_sqlite.searchPersons(search);
 }
 
 vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu í lista og skilar
 {                                                         // vector af persónum sem fundust.
-    vector<Computers> list = m_datalayer.getComputerList();
-    vector<Computers> returnList;
-
-    for(unsigned int i = 0; i < list.size(); i++)
-    {
-        if(list[i].getNameOfCpu().find(search, 0)!= string::npos)
-            returnList.push_back(list[i]);
-    }
-    return returnList;
+    return m_sqlite.searchComputers(search);
 }
 
 Computers Domain::findComputerById(int cID)               // Leitar af tölvu í lista og skilar henni
 {
-    vector<Computers> list = m_datalayer.getComputerList();
+    vector<Computers> list = m_sqlite.getComputerList();
     Computers retComp;
     for(unsigned int i = 0; i < list.size(); i++)
     {
@@ -99,23 +80,23 @@ Computers Domain::findComputerById(int cID)               // Leitar af tölvu í
 //Leitar af persónu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
 void Domain::removeScientist(int input)
 {
-    return m_datalayer.removeScientist(input);
+    return m_sqlite.removeScientist(input);
 }
 
 //Leitar af tölvu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
 void Domain::removeComputer(int input)
 {
-    return m_datalayer.removeComputer(input);
+    return m_sqlite.removeComputer(input);
 }
 
 void Domain::createRelation(int computerID, int personID)
 {
-    m_datalayer.addRelation(computerID, personID);
+    m_sqlite.addRelation(computerID, personID);
 }
 
 vector<Person> Domain::getPersonListByName()            //Raðar upp lista af persónum í stafrófsröð.
 {
-    return m_datalayer.getPersonListByName();
+    return m_sqlite.getPersonListByName();
 }
 
 bool compareNameTwo(Person& name1, Person& name2)   //Hjálparfall fyrir sortListReverse fallið.

@@ -459,22 +459,27 @@ void Interface::removeComputer()
 void Interface::searchSci()
 {
     string search;
-
     cout << "Enter search word: ";
     cin >> search;
 
     vector<Person> searchlist = m_domain.searchScientist(search);
-    printListPerson(searchlist);
+    if (searchlist.size() == 0)
+        {cout << "\nYour search did not match any scientists!" << endl;}
+    else
+        printListPerson(searchlist);
 }
 
 void Interface::searchComp()
 {
     string search;
-
     cout << "Enter search word: ";
     cin >> search;
+
     vector<Computers> searchlist = m_domain.searchComputer(search);
-    printListComputers(searchlist);
+    if (searchlist.size() == 0)
+        {cout << "\nYour search did not match any computers!" << endl;}
+    else
+        printListComputers(searchlist);
 }
 
 void Interface::printSorted()   //Prentar út upplýsingar í Stafrófsröð.

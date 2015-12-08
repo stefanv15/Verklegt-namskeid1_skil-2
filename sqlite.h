@@ -21,11 +21,13 @@ public:
     void removeComputer(int input);
     vector<Person> getPersonListByName();
     vector<Person> searchPersons(string search);
+    vector<Computers> searchComputers(string search);
 
 private:
     QSqlDatabase m_db;
     void openDatabase();                            // opnar tengingu við gagnagrunn.
-    vector<Person> AddPersonQueryToList(QSqlQuery &query);
+    vector<Person> addPersonQueryToList(QSqlQuery &query);
+    vector<Computers> addComputerQueryToList(QSqlQuery &query);
 
 };
 
