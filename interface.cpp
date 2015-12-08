@@ -292,12 +292,13 @@ void Interface::printColumnListComputers(vector<Computers> listOfComputers)
         else
             cout << "Hybrid" << "\t\t\t ";
         cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No\t\t");
-        string compList = m_domain.getPersList(listOfComputers[i].getId());
-        if(compList.length()>0)
+        string persList = m_domain.getPersList(listOfComputers[i].getId());
+        if(persList.length()>0)
         {
             // Nú viljum við sækja hvaða tölvur tengjast þeim aðila sem við erum að prenta út.
-            cout << compList << endl;
+            cout << persList;
         }
+        cout << endl;
     }
     cout << "----------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }

@@ -94,7 +94,7 @@ void SQLite::addComputer(Computers& c)
 {
 
     const QString sInsertSQL = QString("Insert into computers(nameOfCpu, yearBuilt, typeOfCpu, wasBuilt) "
-                                       "values ('%1','%2,'%3','%4')").arg(QString::fromStdString(c.getNameOfCpu()),QString::number(c.getYearBuilt()),QString::fromStdString(c.getTypeOfCpu()),QString::fromStdString(c.getWasBuilt()));
+                                       "values ('%1','%2','%3','%4')").arg(QString::fromStdString(c.getNameOfCpu()),QString::number(c.getYearBuilt()),QString::fromStdString(c.getTypeOfCpu()),QString::fromStdString(c.getWasBuilt()));
 
     QSqlQuery query(m_db);
     query.exec(sInsertSQL);
