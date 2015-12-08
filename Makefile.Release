@@ -912,8 +912,6 @@ release/comp_pers.o: comp_pers.cpp comp_pers.h
 
 release/domain.o: domain.cpp domain.h \
 		SQLite.h \
-		person.h \
-		computers.h \
 		C:/qt/5.5/mingw492_32/include/QtSql/QtSql \
 		C:/qt/5.5/mingw492_32/include/QtSql/QtSqlDepends \
 		C:/qt/5.5/mingw492_32/include/QtCore/QtCore \
@@ -1158,6 +1156,8 @@ release/domain.o: domain.cpp domain.h \
 		C:/qt/5.5/mingw492_32/include/QtSql/qsqlrelationaltablemodel.h \
 		C:/qt/5.5/mingw492_32/include/QtSql/qsqltablemodel.h \
 		C:/qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
+		person.h \
+		computers.h \
 		comp_pers.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\domain.o domain.cpp
 

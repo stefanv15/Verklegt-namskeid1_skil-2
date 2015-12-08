@@ -8,9 +8,11 @@ Interface::Interface()
 
 }
 
-void Interface::start()    //Keyrir forritið.
+//Keyrir forritið.
+void Interface::start()
 {
-    programInfo();     //Opnunarskilaboð til notanda.
+    //Opnunarskilaboð til notanda.
+    programInfo();
 
     while(true)
     {
@@ -340,17 +342,17 @@ void Interface::showListPerson()
         if(sort_ans == 3)
         {
             m_domain.sortGender();
-            printListPerson(list);
+            printColumnListPerson(list);
         }
         if(sort_ans == 4)
         {
             m_domain.sortAscYearOfBirth();
-            printListPerson(list);
+            printColumnListPerson(list);
         }
         if(sort_ans == 5)
         {
             m_domain.sortDescName();
-            printListPerson(list);
+            printColumnListPerson(list);
         }
     }
     if(sos_ans == 'R' || sos_ans == 'r')

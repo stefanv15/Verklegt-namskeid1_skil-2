@@ -7,7 +7,8 @@ SQLite::SQLite()
     openDatabase();
 }
 
-void SQLite::openDatabase()       //Sækir gögn úr gagnagrunni og geymir í vektor.
+//Sækir gögn úr gagnagrunni og geymir í vektor.
+void SQLite::openDatabase()
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     QString dbName = "scientists.sqlite";
@@ -61,7 +62,7 @@ vector<Person> SQLite::getPersonList()
 
     return addPersonQueryToList(query);
 }
-
+//
 vector<Person> SQLite::getPersonListByName()
 {
     QSqlQuery query(m_db);
@@ -71,7 +72,7 @@ vector<Person> SQLite::getPersonListByName()
 
     return addPersonQueryToList(query);
 }
-
+//
 vector<Computers> SQLite::getComputerList()
 {
     QSqlQuery query(m_db);
@@ -82,14 +83,14 @@ vector<Computers> SQLite::getComputerList()
     return addComputerQueryToList(query);
 }
 
-
-
-void SQLite::saveData()                       //Sækir gögn úr vektor og vistar í skrá.
+//Sækir gögn úr vektor og vistar í skrá.
+void SQLite::saveData()
 {
     m_db.close();
 }
 
-void SQLite::addData(Person& p)               // Vistar persónu í gagnagrunninn.
+// Vistar persónu í gagnagrunninn.
+void SQLite::addData(Person& p)
 {
     const QString sInsertSQL = QString("Insert into person(name, gender, yearOfBirth, yearOfDeath) values ('%1','%2',%3,%4)").arg(QString::fromStdString(p.getName()),QString::fromStdString(p.getGender()),QString::number( p.getDayOfBirth()),QString::number(p.getDayOfDeath()));
 
@@ -97,23 +98,27 @@ void SQLite::addData(Person& p)               // Vistar persónu í gagnagrunnin
     query.exec(sInsertSQL);
 }
 
+//
 void SQLite::addComputer(Computers& c)
 {
 
-    const QString sInsertSQL = QString("Insert into computers(nameOfCpu, yearBuilt, typeOfCpu, wasBuilt) values ('%1','%2,'%3','%4')").arg(QString::fromStdString(c.getNameOfCpu()),QString::number(c.getYearBuilt()),QString::fromStdString(c.getTypeOfCpu()),QString::fromStdString(c.getWasBuilt()));
+    const QString sInsertSQL = QString("Insert into computers(nameOfCpu, yearBuilt, typeOfCpu, wasBuilt) "
+                                       "values ('%1','%2,'%3','%4')").arg(QString::fromStdString(c.getNameOfCpu()),QString::number(c.getYearBuilt()),QString::fromStdString(c.getTypeOfCpu()),QString::fromStdString(c.getWasBuilt()));
 
     QSqlQuery query(m_db);
     query.exec(sInsertSQL);
 }
 
+//
 void SQLite::addRelation(int computerID, int personID)
 {
-    const QString sInsertSQL = QString("Insert into comp_pers(compID, persID) values (%1,%2)").arg(QString::number(computerID),QString::number(personID));
+    const QString sInsertSQL = QString("Insert into comp_pers(compID, persID) "
+                                       "values (%1,%2)").arg(QString::number(computerID),QString::number(personID));
 
     QSqlQuery query(m_db);
     query.exec(sInsertSQL);
 }
-
+//
 vector<Comp_pers> SQLite::getLinkedComputers(int pID)
 {
     QSqlQuery query(m_db);
@@ -132,7 +137,26 @@ vector<Comp_pers> SQLite::getLinkedComputers(int pID)
     }
     return cpList;
 }
+//
+vector<Comp_pers> SQLite::getLinkedPerson(int cID)
+{
+    QSqlQuery query(m_db);
 
+    const QString sSQL = "SELECT * FROM comp_pers where compID =  "+QString::number(cID);
+    query.exec(sSQL);
+
+    vector<Comp_pers> persList;
+    while(query.next())
+    {
+        int cid = query.value("compID").toUInt();
+        int pid = query.value("persID").toUInt();
+
+        Comp_pers newPers(cid, pid);
+        persList.push_back(newPers);
+    }
+    return persList;
+}
+//
 vector<Person> SQLite::searchPersons(string search)
 {
     QSqlQuery query(m_db);
@@ -156,14 +180,14 @@ vector<Computers> SQLite::searchComputers(string search)
 
     return addComputerQueryToList(query);
 }
-
+//
 void SQLite::removeScientist(int input)
 {
     QSqlQuery query(m_db);
     QString delSQL = "DELETE FROM person WHERE id = "+QString::number(input);
     query.exec(delSQL);
 }
-
+//
 void SQLite::removeComputer(int input)
 {
     QSqlQuery query(m_db);

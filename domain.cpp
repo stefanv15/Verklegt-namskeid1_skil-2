@@ -18,21 +18,25 @@ void Domain::createPerson(Person p)
     m_sqlite.addData(p);
 }
 
+//Býr til computer.
 void Domain::createComputer(Computers c)
 {
     m_sqlite.addComputer(c);
 }
 
-vector<Person> Domain::getList()                        //Nær í personlist úr datalayer og skilar honum.
+//Nær í personlist úr datalayer og skilar honum.
+vector<Person> Domain::getList()
 {
     return m_sqlite.getPersonList();
 }
 
+//Sækir ???????????????????????????????????????????????????????????????????????????????????
 vector<Computers> Domain::getComputerList()
 {
     return m_sqlite.getComputerList();
 }
 
+//Sækir????????????????????????????????????????????????????????????????????????????????????
 string Domain::getComputerList(int pId)
 {
     vector<Comp_pers> cpList = m_sqlite.getLinkedComputers(pId);
@@ -47,22 +51,28 @@ string Domain::getComputerList(int pId)
     return sComputers;
 }
 
-void Domain::saveAllData()                              // Nær í savedata fallið úr datalayer og skilar því.
+//Nær í savedata fallið úr domain og skilar því.
+void Domain::saveAllData()
 {
     m_sqlite.saveData();
 }
 
-vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í lista og skilar
+//Leitar af persónu í lista og skilar honum.
+vector<Person> Domain::searchScientist(string search)
+
 {
     return m_sqlite.searchPersons(search);
 }
 
-vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu í lista og skilar
+//Leitar af persónu í lista og skilar honum.
+vector<Computers> Domain::searchComputer(string search)
 {                                                         // vector af persónum sem fundust.
     return m_sqlite.searchComputers(search);
 }
 
-Computers Domain::findComputerById(int cID)               // Leitar af tölvu í lista og skilar henni
+//Leitar af tölvu í lista og skilar henni.
+Computers Domain::findComputerById(int cID)
+
 {
     vector<Computers> list = m_sqlite.getComputerList();
     Computers retComp;
@@ -89,12 +99,18 @@ void Domain::removeComputer(int input)
     return m_sqlite.removeComputer(input);
 }
 
+
+//Býr til tengingu milli pers og computer.
 void Domain::createRelation(int computerID, int personID)
 {
     m_sqlite.addRelation(computerID, personID);
 }
 
-vector<Person> Domain::getPersonListByName()            //Raðar upp lista af persónum í stafrófsröð.
+
+// ------------------SORT-FÖLL-OG-UPPRAÐANIR------------------
+
+//Raðar upp lista af persónum í stafrófsröð.
+vector<Person> Domain::getPersonlistByName()
 {
     return m_sqlite.getPersonListByName();
 }
@@ -109,11 +125,13 @@ void Domain::sortDescName()
     m_sqlite.sortDescName();
 }
 
+
 void Domain::sortGender()
 {
     m_sqlite.sortGender();
 }
 
+//Raðar upp lista af persónum í öfugri stafrófsröð.
 void Domain::sortAscYearOfBirth()
 {
     m_sqlite.sortAscYearOfBirth();
@@ -129,6 +147,7 @@ void Domain::sortAscNameOfCpu()
     m_sqlite.sortAscNameOfCpu();
 }
 
+//Raðar upp persónum eftir fæðingarári.
 void Domain::sortDescNameOfCpu()
 {
     m_sqlite.sortDescNameOfCpu();
