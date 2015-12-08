@@ -21,16 +21,13 @@ private:
     void mainMenu() const;  //Aðalvalmynd.
     char listMenu() const;   //Valmynd fyrir lista.
     int sortMenu() const;   //Valmynd fyrir uppröðun á lista.
+    int sortMenu2() const;
     Person getPersonInfo(); //Fær upplýsingar um persónu frá notanda.
     Computers getComputerInfo(); //Inntak fyrir upplýsingar um tölvu.
     void printListPerson(vector<Person> listOfPersons); //Prentar út lista af persónum.
     void printListComputers(vector<Computers> listOfComputers); //Prentar út upplýsingar um tölvur.
     void removeScientist();
     void removeComputer();
-    void printSortedReverse(); //Prentar út upplýsingar í öfugri stafrófsröð.
-    void printSorted(); //Prentar út upplýsingar í stafrófsröð.
-    void printSortedYear(); //Prentar út upplýsingar frá elsta ári til yngsta.
-    void printSortedYearReverse();  //Prentar út upplýsingar frá yngsta ári til elsta.
     void printColumnListPerson(vector<Person> listOfPersons);
 };
 
