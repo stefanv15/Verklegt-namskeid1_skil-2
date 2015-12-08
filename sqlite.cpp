@@ -194,80 +194,92 @@ void SQLite::removeComputer(int input)
     QString delSQL = "DELETE FROM computers WHERE id = "+QString::number(input);
     query.exec(delSQL);
 }
-
-void SQLite::sortAscName()
+//  raða nafni tölvunarfræðings eftir stafrófsröð
+vector <Person> SQLite::sortAscName()
 {
     QSqlQuery query(m_db);
     const QString ascSQL = "SELECT * FROM person ORDER BY name ASC";
     query.exec(ascSQL);
+    return addPersonQueryToList(query);
 }
-
-void SQLite::sortDescName()
+//  raða nafni tölvunarfræðings í öfugri stafrófsröð
+vector<Person> SQLite::sortDescName()
 {
      QSqlQuery query(m_db);
      const QString descSQL = "SELECT * FROM person ORDER BY name DESC";
      query.exec(descSQL);
+     return addPersonQueryToList(query);
 }
-
-void SQLite::sortGender()
+//  raða tölvunarfræðingi eftir kyni
+vector<Person> SQLite::sortGender()
 {
      QSqlQuery query(m_db);
      const QString genderAscSQL = "SELECT * FROM person ORDER BY gender ASC";
      query.exec(genderAscSQL);
+     return addPersonQueryToList(query);
 }
-
-void SQLite::sortAscYearOfBirth()
+//  raða tölvunarfræðingi eftir fæðingardag frá 1-10
+vector<Person> SQLite::sortAscYearOfBirth()
 {
      QSqlQuery query(m_db);
      const QString yobAscSQL = "SELECT * FROM person ORDER BY yearOfBirth ASC";
      query.exec(yobAscSQL);
+     return addPersonQueryToList(query);
 }
-
-void SQLite::sortDescYearOfBirth()
+//  raða tölvunarfræðingi eftir fæðingardag frá 10-1
+vector<Person> SQLite::sortDescYearOfBirth()
 {
      QSqlQuery query(m_db);
      const QString yobDescSQL = "SELECT * FROM person ORDER BY yearOfBirth DESC";
      query.exec(yobDescSQL);
+     return addPersonQueryToList(query);
 }
-
-void SQLite::sortAscNameOfCpu()
+//  raða nafni á tölvu eftir stafrófsröð
+vector<Computers> SQLite::sortAscNameOfCpu()
 {
      QSqlQuery query(m_db);
      const QString cpuAscSQL = "SELECT * FROM computers ORDER BY nameOfCpu ASC";
      query.exec(cpuAscSQL);
+     return addComputerQueryToList(query);
 }
-void SQLite::sortDescNameOfCpu()
+//  raða nafni á tölvu eftir öfugri stafrófsröð
+vector<Computers> SQLite::sortDescNameOfCpu()
 {
      QSqlQuery query(m_db);
      const QString cpuDescSQL = "SELECT * FROM computers ORDER BY nameOfCpu DESC";
      query.exec(cpuDescSQL);
+     return addComputerQueryToList(query);
 }
-
-void SQLite::sortAscYearBuilt()
+//  raða tölvu eftir byggingarári 1-10
+vector<Computers> SQLite::sortAscYearBuilt()
 {
      QSqlQuery query(m_db);
      const QString ybAscSQL = "SELECT * FROM computers ORDER BY yearBuilt ASC";
      query.exec(ybAscSQL);
+     return addComputerQueryToList(query);
 }
-
-void SQLite::sortDescYearBuilt()
+//  raða tölvu eftir byggingarári 10-1
+vector<Computers> SQLite::sortDescYearBuilt()
 {
      QSqlQuery query(m_db);
      const QString ybDescSQL = "SELECT * FROM computers ORDER BY yearBuilt DESC";
      query.exec(ybDescSQL);
+     return addComputerQueryToList(query);
 }
-
-void SQLite::sortAscTypeOfCpu()
+//  raða tölvu eftir týpunafni í stafrófsröð
+vector<Computers> SQLite::sortAscTypeOfCpu()
 {
      QSqlQuery query(m_db);
      const QString typeAscSQL = "SELECT * FROM computers ORDER BY typeOfCpu ASC";
      query.exec(typeAscSQL);
+     return addComputerQueryToList(query);
 }
-
-void SQLite::sortDescTypeOfCpu()
+//  raða tölvu eftir týpunafni í öfugri stafrófsröð
+vector<Computers> SQLite::sortDescTypeOfCpu()
 {
      QSqlQuery query(m_db);
      const QString typeDescSQL = "SELECT * FROM computers ORDER BY typeOfCpu descSQL";
      query.exec(typeDescSQL);
+     return addComputerQueryToList(query);
 }
 

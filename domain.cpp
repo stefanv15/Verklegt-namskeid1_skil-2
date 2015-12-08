@@ -109,66 +109,63 @@ void Domain::createRelation(int computerID, int personID)
 
 // ------------------SORT-FÖLL-OG-UPPRAÐANIR------------------
 
-//Raðar upp lista af persónum í stafrófsröð.
+
 vector<Person> Domain::getPersonlistByName()
 {
     return m_sqlite.getPersonListByName();
 }
-
-void Domain::sortAscName()
+//Raðar upp lista af perónum í stafrófsröð.
+vector<Person> Domain::sortAscName()
 {
-    m_sqlite.sortAscName();
+    return  m_sqlite.sortAscName();
 }
-
-void Domain::sortDescName()
+//Raðar upp lista af perónum í öfugri stafrófsröð.
+vector<Person> Domain::sortDescName()
 {
-    m_sqlite.sortDescName();
+    return m_sqlite.sortDescName();
 }
-
-
-void Domain::sortGender()
+//Raðar upp lista af persónum eftir kyni.
+vector<Person> Domain::sortGender()
 {
-    m_sqlite.sortGender();
+    return m_sqlite.sortGender();
 }
-
-//Raðar upp lista af persónum í öfugri stafrófsröð.
-void Domain::sortAscYearOfBirth()
+//Raðar upp lista af persónum eftir fæðingarári 1-10.
+vector<Person> Domain::sortAscYearOfBirth()
 {
-    m_sqlite.sortAscYearOfBirth();
+    return m_sqlite.sortAscYearOfBirth();
 }
-
-void Domain::sortDescYearOfBirth()
+//Raðar upp lista af persónum eftir fæðingarári 10-1.
+vector<Person> Domain::sortDescYearOfBirth()
 {
-    m_sqlite.sortDescYearOfBirth();
+    return m_sqlite.sortDescYearOfBirth();
 }
-
-void Domain::sortAscNameOfCpu()
+//Raðar upp lista af tölvum eftir nafni á tölvu í stafrófsröð.
+vector<Computers> Domain::sortAscNameOfCpu()
 {
-    m_sqlite.sortAscNameOfCpu();
+    return m_sqlite.sortAscNameOfCpu();
 }
-
-//Raðar upp persónum eftir fæðingarári.
-void Domain::sortDescNameOfCpu()
+//Raðar upp lista af tölvum eftir nafni á tölvu í öfugri stafrófsröð.
+vector<Computers> Domain::sortDescNameOfCpu()
 {
-    m_sqlite.sortDescNameOfCpu();
+    return m_sqlite.sortDescNameOfCpu();
 }
-
-void Domain::sortAscYearBuilt()
+//Raðar upp lista af tölvum eftir byggingarári 1-10.
+vector<Computers> Domain::sortAscYearBuilt()
 {
-    m_sqlite.sortAscYearBuilt();
+    return m_sqlite.sortAscYearBuilt();
 }
-
-void Domain::sortDescYearBuilt()
+//Raðar upp lista af tölvum eftir byggingarári 10-1.
+vector<Computers> Domain::sortDescYearBuilt()
 {
-    m_sqlite.sortDescYearBuilt();
+    return m_sqlite.sortDescYearBuilt();
 }
-
-void Domain::sortAscTypeOfCpu()
+//Raðar upp lista af tölvum eftir týpunafni í stafrófsröð.
+vector<Computers> Domain::sortAscTypeOfCpu()
 {
-    m_sqlite.sortAscTypeOfCpu();
+    return m_sqlite.sortAscTypeOfCpu();
 }
-
-void Domain::sortDescTypeOfCpu()
+//Raðar upp lista af tölvum eftir týpunafni í öfugri stafrófsröð.
+vector<Computers> Domain::sortDescTypeOfCpu()
 {
-    m_sqlite.sortDescTypeOfCpu();
+    return m_sqlite.sortDescTypeOfCpu();
 }

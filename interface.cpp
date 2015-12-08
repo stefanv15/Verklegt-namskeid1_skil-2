@@ -331,27 +331,27 @@ void Interface::showListPerson()
         int sort_ans = sortMenu();
         if(sort_ans == 1)
         {
-            m_domain.sortAscName();
+            list = m_domain.sortAscName();
             printColumnListPerson(list);
         }
         if(sort_ans == 2)
         {
-            m_domain.sortDescName();
+            list = m_domain.sortDescName();
             printColumnListPerson(list);
         }
         if(sort_ans == 3)
         {
-            m_domain.sortGender();
+            list = m_domain.sortGender();
             printColumnListPerson(list);
         }
         if(sort_ans == 4)
         {
-            m_domain.sortAscYearOfBirth();
+            list = m_domain.sortAscYearOfBirth();
             printColumnListPerson(list);
         }
         if(sort_ans == 5)
         {
-            m_domain.sortDescName();
+            list = m_domain.sortDescYearOfBirth();
             printColumnListPerson(list);
         }
     }
@@ -379,32 +379,32 @@ void Interface::showListComputer()
         int sort_ans = sortMenu2();             //  <-- Hér koma sort föllin fyrir computer.
         if(sort_ans == 1)
         {
-            m_domain.sortAscNameOfCpu();
+            cpulist = m_domain.sortAscNameOfCpu();
             printListComputers(cpulist);
         }
         if(sort_ans == 2)
         {
-            m_domain.sortDescNameOfCpu();
+            cpulist = m_domain.sortDescNameOfCpu();
             printListComputers(cpulist);
         }
         if(sort_ans == 3)
         {
-            m_domain.sortAscYearBuilt();
+            cpulist = m_domain.sortAscYearBuilt();
             printListComputers(cpulist);
         }
         if(sort_ans == 4)
         {
-            m_domain.sortDescYearBuilt();
+            cpulist = m_domain.sortDescYearBuilt();
             printListComputers(cpulist);
         }
         if(sort_ans == 5)
         {
-            m_domain.sortAscTypeOfCpu();
+            cpulist = m_domain.sortAscTypeOfCpu();
             printListComputers(cpulist);
         }
         if(sort_ans == 6)
         {
-            m_domain.sortDescTypeOfCpu();
+            cpulist = m_domain.sortDescTypeOfCpu();
             printListComputers(cpulist);
         }
     }
