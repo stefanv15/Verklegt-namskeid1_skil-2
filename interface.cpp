@@ -321,7 +321,7 @@ void Interface::addRelation()
     int computerID;
     int personID;
     printColumnListComputers(m_domain.getComputerList()); //breyta
-    cout << "Please select a computer to relate to a computer scientist: " << endl;
+    cout << "Please select a computer ID to relate to a computer scientist: " << endl;
     cin >> computerID;
     while(cin.fail() || computerID < 0)
     {
@@ -331,7 +331,7 @@ void Interface::addRelation()
         cin >> computerID;
     }
     printColumnListPerson(m_domain.getList());
-    cout << "Please select a computer scientist to relate to the selected computer: " << endl;
+    cout << "Please select a computer scientist ID to relate to the selected computer: " << endl;
     cin >> personID;
     while(cin.fail() || personID < 0)
     {
