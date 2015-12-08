@@ -41,35 +41,28 @@ void Interface::start()
             }
             case 3:
             {
-                showListPerson();
+                addRelation();
                 break;
             }
             case 4:
             {
-                showListComputer();
+                showListPerson();
                 break;
             }
             case 5:
             {
-                searchSci();
+                showListComputer();
                 break;
             }
             case 6:
             {
-                searchComp();
+                searchSci();
                 break;
             }
             case 7:
             {
-                int computerID;
-                int personID;
-                printColumnListComputers(m_domain.getComputerList()); //breyta
-                cout << "Please select a computer to relate to a computer scientist: " << endl;
-                cin >> computerID;
-                printColumnListPerson(m_domain.getList());
-                cout << "Please select a computer scientist to relate to the selected computer: " << endl;
-                cin >> personID;
-                m_domain.createRelation(computerID, personID);
+                searchComp();
+                break;
             }
         }
     }
@@ -123,7 +116,7 @@ void Interface::mainMenu() const
         cout << "-------------- MAIN MENU --------------" << endl;
         cout << "                                       " << endl;
         cout << "A - Add to list "                        << endl;
-        cout << "          1. Scientist  2. Computer  7. Relation" << endl;
+        cout << "          1. Scientist  2. Computer  3. Relation" << endl;
         cout << "S - Show list "                          << endl;
         cout << "L - Search list "                        << endl;
         cout << "E - Quit "                               << endl;
@@ -137,7 +130,7 @@ void Interface::mainMenu() const
         cout << "                                                    "<< endl;
         cout << "A - Add to list "                                    << endl;
         cout << "S - Show list "                                      << endl;
-        cout << "        3. Scientists  4. Computers                " << endl;
+        cout << "        4. Scientists  5. Computers                " << endl;
         cout << "L - Search list "                                    << endl;
         cout << "Q - Quit " << endl;
     }
@@ -151,7 +144,7 @@ void Interface::mainMenu() const
         cout << "A - Add to list " << endl;
         cout << "S - Show list " << endl;
         cout << "L - Search list " << endl;
-        cout << "        5. Scientist list  6. Computer list   "       << endl;
+        cout << "        6. Scientist list  7. Computer list   "       << endl;
         cout << "Q - Quit " << endl;
     }
     if(pick == 'Q' || pick == 'q')
@@ -282,25 +275,31 @@ void Interface::printColumnListComputers(vector<Computers> listOfComputers)
 {
     cout << endl;
     cout << "LIST OF COMPUTERS" << endl;
-    cout << "----------------------------------------------------------------------------------------------" << endl;
-    cout << "ID\tName of computer\t\tYear built\tType of computer\t Was built?" << endl;
-    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "ID\tName of computer\tYear built\tType of computer\t Was built?\tRelated Scientists" << endl;
+    cout << "----------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
     for(unsigned int i = 0; i < listOfComputers.size(); i++)
     {
         cout << listOfComputers[i].getId() << "\t";
-        cout << listOfComputers[i].getNameOfCpu() << "\t\t\t\t";
+        cout << listOfComputers[i].getNameOfCpu() << "\t\t\t";
         if (listOfComputers[i].getYearBuilt() > 0)
             cout << listOfComputers[i].getYearBuilt() << "\t\t";
         if (listOfComputers[i].getTypeOfCpu() == "a")
-            cout << "Analog" << "\t\t";
+            cout << "Analog" << "\t\t\t";
         else if (listOfComputers[i].getTypeOfCpu() == "d")
-            cout << "Digital" << "\t\t";
+            cout << "Digital" << "\t\t\t";
         else
             cout << "Hybrid" << "\t\t\t ";
-        cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No") << endl;
+        cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No\t\t");
+        string compList = m_domain.getPersList(listOfComputers[i].getId());
+        if(compList.length()>0)
+        {
+            // Nú viljum við sækja hvaða tölvur tengjast þeim aðila sem við erum að prenta út.
+            cout << compList << endl;
+        }
     }
-    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 //Sækir upplýsingar og býr til persónu.
@@ -315,6 +314,19 @@ void Interface::addComputer()
 {
     Computers c = getComputerInfo();
     m_domain.createComputer(c);
+}
+
+void Interface::addRelation()
+{
+    int computerID;
+    int personID;
+    printColumnListComputers(m_domain.getComputerList()); //breyta
+    cout << "Please select a computer to relate to a computer scientist: " << endl;
+    cin >> computerID;
+    printColumnListPerson(m_domain.getList());
+    cout << "Please select a computer scientist to relate to the selected computer: " << endl;
+    cin >> personID;
+    m_domain.createRelation(computerID, personID);
 }
 
 //Sýnir lista yfir persónur & Sortmenu.

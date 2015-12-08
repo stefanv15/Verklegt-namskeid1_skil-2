@@ -27,6 +27,7 @@ private:
     void printColumnListComputers(vector<Computers> listOfComputers); //Prentar út upplýsingar um tölvur.
     void addPerson();
     void addComputer();
+    void addRelation();
     void showListPerson();
     void showListComputer();
     void removeScientist();

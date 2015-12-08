@@ -36,6 +36,20 @@ vector<Computers> Domain::getComputerList()
     return m_sqlite.getComputerList();
 }
 
+string Domain::getPersList(int pId)
+{
+    vector<Comp_pers> pList = m_sqlite.getLinkedPerson(pId);
+    string sPersons = "";
+    for(unsigned int i = 0; i < pList.size(); i++)
+    {
+        if (i>0)
+            sPersons += ", ";
+        Person pers = findPersonById(pList[i].getPersonID());
+        sPersons += pers.getName();
+    }
+    return sPersons;
+}
+
 //Sækir????????????????????????????????????????????????????????????????????????????????????
 string Domain::getComputerList(int pId)
 {
@@ -70,9 +84,23 @@ vector<Computers> Domain::searchComputer(string search)
     return m_sqlite.searchComputers(search);
 }
 
+Person Domain::findPersonById(int cID)
+{
+    vector<Person> list = m_sqlite.getPersonList();
+    Person retPers;
+    for(unsigned int i = 0; i < list.size(); i++)
+    {
+        if(list[i].getId()==cID)
+        {
+            retPers = list[i];
+            break;
+        }
+    }
+    return retPers;
+}
+
 //Leitar af tölvu í lista og skilar henni.
 Computers Domain::findComputerById(int cID)
-
 {
     vector<Computers> list = m_sqlite.getComputerList();
     Computers retComp;
