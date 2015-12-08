@@ -8,9 +8,11 @@ Interface::Interface()
 
 }
 
-void Interface::start()    //Keyrir forritið.
+//Keyrir forritið.
+void Interface::start()
 {
-    programInfo();     //Opnunarskilaboð til notanda.
+    //Opnunarskilaboð til notanda.
+    programInfo();
     int numb;
 
     while(true)
@@ -27,43 +29,46 @@ void Interface::start()    //Keyrir forritið.
         {
             case 1:
             {
-                Person p = getPersonInfo(); //sækja upplýsingar um persónu.
-                m_domain.createPerson(p);   //býr til eintak af persónu.
+                Person p = getPersonInfo();
+                m_domain.createPerson(p);
                 break;
             }           
             case 2:
             {
-                Computers c = getComputerInfo(); //Sækja upplýsingar um tölvu.
-                m_domain.createComputer(c); // Býr til eintak af tölvu.
+                Computers c = getComputerInfo();
+                m_domain.createComputer(c);
                 break;
             }
             case 3:
             {
-                vector<Person> list = m_domain.getList(); // Sækja lista.
+                vector<Person> list = m_domain.getList();
                 printColumnListPerson(list);
 
-                char sos_ans = listMenu();
+                while(true)
+                {
+                    char sos_ans = listMenu();
 
                     if(sos_ans == 'S' || sos_ans == 's')
                     {
                         int sort_ans = sortMenu();
-                        if(sort_ans == 1)
-                        {
-                            printSorted();
-                        }
-                        if(sort_ans == 2)
-                        {
-                            printSortedReverse();
-                        }
-                        if(sort_ans == 3)
-                        {
-                            printSortedYear();
-                        }
-                        if(sort_ans == 4)
-                        {
-                            printSortedYearReverse();
-                        }
-                    }
+
+                            if(sort_ans == 1)
+                            {
+                                printSorted();
+                            }
+                            if(sort_ans == 2)
+                            {
+                                printSortedReverse();
+                            }
+                            if(sort_ans == 3)
+                            {
+                                printSortedYear();
+                            }
+                            if(sort_ans == 4)
+                            {
+                                printSortedYearReverse();
+                            }
+                     }
                     if(sos_ans == 'R' || sos_ans == 'r')
                     {
                         int list_ans;
@@ -86,7 +91,7 @@ void Interface::start()    //Keyrir forritið.
                             printColumnListPerson(removelist);
                             break;
                         }
-                        /*if(list_ans == 2)
+                        if(list_ans == 2)
                         {
                             //HÉR KEMUR REMOVE COMPUTERFALLIÐ!!
                         }*/
@@ -98,8 +103,8 @@ void Interface::start()    //Keyrir forritið.
                         system("cls");
                         break;
                     }
-                   // sos_ans = listMenu();
-                    break;
+                  break;
+                }
              }
 
             case 4:
@@ -150,7 +155,7 @@ void Interface::start()    //Keyrir forritið.
                         printListPerson(removelist);
                         listMenu();
                     }
-                    /*if(list_ans == 2)
+                    if(list_ans == 2)
                     {
                         //HÉR KEMUR REMOVE COMPUTERFALLIÐ!!
                     }*/
@@ -508,19 +513,19 @@ void Interface::printSorted()   //Prentar út upplýsingar í Stafrófsröð.
 void Interface::printSortedReverse()    //Prentar út upplýsingar í öfugri stafrófsröð.
 {
     vector<Person>listOfPersons = m_domain.sortListReverse(m_domain.getList());
-    printListPerson(listOfPersons);
+    printColumnListPerson(listOfPersons);
 }
 
 void Interface::printSortedYear()   //Prentar út upplýsingar frá elsta ári til yngsta.
 {
     vector<Person>listOfPersons = m_domain.sortListYear(m_domain.getList());
-    printListPerson(listOfPersons);
+    printColumnListPerson(listOfPersons);
 }
 
 void Interface::printSortedYearReverse()    //Prentar út upplýsingar frá yngsta ári til elsta.
 {
     vector<Person>listOfPersons = m_domain.sortListYearReverse(m_domain.getList());
-    printListPerson(listOfPersons);
+    printColumnListPerson(listOfPersons);
 }
 
 // --------------SORTLISTI-OG-SORTFÖLL-FYRIR-COMPUTER------------ //

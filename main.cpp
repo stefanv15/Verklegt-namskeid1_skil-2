@@ -46,7 +46,7 @@ int main()
     }
     else
     {
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);        //grænt letur.
+        //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);        //grænt letur.
         Interface inter;                                                     //býr til smið af Interface klasanum.
         inter.start();                                                       //Keyrir forritið.
 

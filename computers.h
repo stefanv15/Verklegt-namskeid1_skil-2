@@ -8,17 +8,16 @@ using namespace std;
 class Computers
 {
 public:
-    Computers();
-    Computers(int idee, string nameOC, int yearB, string typeOC, string wasB);
-    Computers(string nameOC, int yearB, string typeOC, string wasB);
+    Computers();                //Sjálfgefinn smiður
+    Computers(int idee, string nameOC, int yearB, string typeOC, string wasB);      //Computers fall sem hefur aðgang að 5 private breytum.
+    Computers(string nameOC, int yearB, string typeOC, string wasB);                //Computers fall sem hefur aðgang að 4 private breytum.
+    string getNameOfCpu();      //Sækir nafn á tölvu.
+    int getYearBuilt();         //Sækir byggingarár tölvu.
+    int getId();                //Sækir ID á tölvu.
+    string getTypeOfCpu();      //Sækir tegund tölvu.
+    string getWasBuilt();       //Sækir upplýsingar um hvort tölva hafi verið byggð.
 
-    string getNameOfCpu();
-    int getYearBuilt();
-    int getId();
-    string getTypeOfCpu();
-    string getWasBuilt();
-
-private:
+private:                        //Private breytur.
     int id;
     string nameOfCpu;
     int yearBuilt;

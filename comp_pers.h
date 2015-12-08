@@ -5,13 +5,13 @@
 class Comp_pers
 {
 public:
-    Comp_pers();
-    Comp_pers(int cID, int pID);
+    Comp_pers();                    //Sjálfgefinn smiður fyrir comp_pers klasann.
+    Comp_pers(int cID, int pID);    //Fall sem hefur aðgang að private breytum.
 
-    int getPersonID();
-    int getComputerID();
+    int getPersonID();              //Skilar personID.
+    int getComputerID();            //Skilar computerID.
 
-private:
+private:                            //Private breytur fyrir comp_pers klasann.
     int personID;
     int computerID;
 };

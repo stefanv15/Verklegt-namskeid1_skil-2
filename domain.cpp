@@ -19,21 +19,25 @@ void Domain::createPerson(Person p)
     m_datalayer.addData(p);
 }
 
+//Býr til computer.
 void Domain::createComputer(Computers c)
 {
     m_datalayer.addComputer(c);
 }
 
-vector<Person> Domain::getList()                        //Nær í personlist úr datalayer og skilar honum.
+//Nær í personlist úr datalayer og skilar honum.
+vector<Person> Domain::getList()
 {
     return m_datalayer.getPersonList();
 }
 
+//Sækir ???????????????????????????????????????????????????????????????????????????????????
 vector<Computers> Domain::getComputerList()
 {
     return m_datalayer.getComputerList();
 }
 
+//Sækir????????????????????????????????????????????????????????????????????????????????????
 string Domain::getComputerList(int pId)
 {
     vector<Comp_pers> cpList = m_datalayer.getLinkedComputers(pId);
@@ -48,12 +52,15 @@ string Domain::getComputerList(int pId)
     return sComputers;
 }
 
-void Domain::saveAllData()                              // Nær í savedata fallið úr datalayer og skilar því.
+//Nær í savedata fallið úr domain og skilar því.
+void Domain::saveAllData()
 {
     m_datalayer.saveData();
 }
 
-vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í lista og skilar
+//Leitar af persónu í lista og skilar honum.
+vector<Person> Domain::searchScientist(string search)
+
 {
     return m_datalayer.searchPersons(search);
     /* geyma
@@ -69,7 +76,8 @@ vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í 
     return returnList;*/
 }
 
-vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu í lista og skilar
+//Leitar af persónu í lista og skilar honum.
+vector<Computers> Domain::searchComputer(string search)
 {                                                         // vector af persónum sem fundust.
     vector<Computers> list = m_datalayer.getComputerList();
     vector<Computers> returnList;
@@ -82,7 +90,9 @@ vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu 
     return returnList;
 }
 
-Computers Domain::findComputerById(int cID)               // Leitar af tölvu í lista og skilar henni
+//Leitar af tölvu í lista og skilar henni.
+Computers Domain::findComputerById(int cID)
+
 {
     vector<Computers> list = m_datalayer.getComputerList();
     Computers retComp;
@@ -97,54 +107,68 @@ Computers Domain::findComputerById(int cID)               // Leitar af tölvu í
     return retComp;
 }
 
+//Býr til tengingu milli pers og computer.
 void Domain::createRelation(int computerID, int personID)
 {
     m_datalayer.addRelation(computerID, personID);
 }
 
-void Domain::removeScientist(int input)                 //Leitar af persónu í lista og skilar
+//Leitar af persónu í lista og skilar
+void Domain::removeScientist(int input)
 {                                                       // vector án persónum sem leitar var af.
     return m_datalayer.removeScientist(input);
 }
 
-void Domain::removeComputer(int input)                  //Leitar af persónu í lista og skilar
+//Leitar af persónu í lista og skilar henni.
+void Domain::removeComputer(int input)
+
 {                                                       // vector án persónum sem leitar var af.
     return m_datalayer.removeComputer(input);
 }
 
-vector<Person> Domain::getPersonlistByName()            //Raðar upp lista af persónum í stafrófsröð.
+// ------------------SORT-FÖLL-OG-UPPRAÐANIR------------------
+
+//Raðar upp lista af persónum í stafrófsröð.
+vector<Person> Domain::getPersonlistByName()
 {
     return m_datalayer.getPersonListByName();
 }
 
-bool compareNameTwo(Person& name1, Person& name2)   //Hjálparfall fyrir sortListReverse fallið.
+//Hjálparfall fyrir sortListReverse fallið.
+bool compareNameTwo(Person& name1, Person& name2)
 {
     return name1.getName() > name2.getName();
 }
 
-vector<Person> Domain::sortListReverse(vector<Person> listOfPersons)    //Raðar upp lista af persónum í öfugri stafrófsröð.
-
+//Raðar upp lista af persónum í öfugri stafrófsröð.
+vector<Person> Domain::sortListReverse(vector<Person> listOfPersons)
 {
     sort(listOfPersons.begin(), listOfPersons.end(), compareNameTwo);
     return listOfPersons;
 }
-bool compareYear(Person& year1, Person& year2)  //Hjálparfall fyrir sortListYear fallið.
+
+//Hjálparfall fyrir sortListYear fallið.
+bool compareYear(Person& year1, Person& year2)
 {
     return year1.getDayOfBirth() < year2.getDayOfBirth();
 }
 
-vector<Person> Domain::sortListYear(vector<Person> listOfPersons)   //Raðar upp persónum eftir fæðingarári.
+//Raðar upp persónum eftir fæðingarári.
+vector<Person> Domain::sortListYear(vector<Person> listOfPersons)
 
 {
     sort(listOfPersons.begin(), listOfPersons.end(), compareYear);
     return listOfPersons;
 }
-bool compareYearTwo(Person& year1, Person& year2) //Hjálpar fall fyrir sortListYearReverse fallið.
+
+//Hjálpar fall fyrir sortListYearReverse fallið.
+bool compareYearTwo(Person& year1, Person& year2)
 {
     return year1.getDayOfBirth() > year2.getDayOfBirth();
 }
 
-vector<Person> Domain::sortListYearReverse(vector<Person> listOfPersons)    //Raðar upp persónum eftir öfugu fæðingarári (yngsti efst)
+//Raðar upp persónum eftir öfugu fæðingarári (yngsti efst).
+vector<Person> Domain::sortListYearReverse(vector<Person> listOfPersons)
 {
     sort(listOfPersons.begin(), listOfPersons.end(), compareYearTwo);
     return listOfPersons;

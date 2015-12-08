@@ -396,9 +396,9 @@ debug/main.o: main.cpp interface.h \
 		comp_pers.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
-debug/sqlite.o: sqlite.cpp sqlite.h \
-		person.h \
+debug/sqlite.o: sqlite.cpp person.h \
 		computers.h \
+		sqlite.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSql \
 		C:/Qt/5.5/mingw492_32/include/QtSql/QtSqlDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
