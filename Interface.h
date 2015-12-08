@@ -21,6 +21,7 @@ private:
     void mainMenu() const;  //Aðalvalmynd.
     char listMenu() const;   //Valmynd fyrir lista.
     int sortMenu() const;   //Valmynd fyrir uppröðun á lista.
+    int sortMenu2() const;
     Person getPersonInfo(); //Fær upplýsingar um persónu frá notanda.
     Computers getComputerInfo(); //Inntak fyrir upplýsingar um tölvu.
     void printListPerson(vector<Person> listOfPersons); //Prentar út lista af persónum.

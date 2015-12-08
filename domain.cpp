@@ -99,35 +99,57 @@ vector<Person> Domain::getPersonListByName()            //Raðar upp lista af pe
     return m_sqlite.getPersonListByName();
 }
 
-bool compareNameTwo(Person& name1, Person& name2)   //Hjálparfall fyrir sortListReverse fallið.
+void Domain::sortAscName()
 {
-    return name1.getName() > name2.getName();
+    m_sqlite.sortAscName();
 }
 
-vector<Person> Domain::sortListReverse(vector<Person> listOfPersons)    //Raðar upp lista af persónum í öfugri stafrófsröð.
-
+void Domain::sortDescName()
 {
-    sort(listOfPersons.begin(), listOfPersons.end(), compareNameTwo);
-    return listOfPersons;
-}
-bool compareYear(Person& year1, Person& year2)  //Hjálparfall fyrir sortListYear fallið.
-{
-    return year1.getDayOfBirth() < year2.getDayOfBirth();
+    m_sqlite.sortDescName();
 }
 
-vector<Person> Domain::sortListYear(vector<Person> listOfPersons)   //Raðar upp persónum eftir fæðingarári.
-
+void Domain::sortGender()
 {
-    sort(listOfPersons.begin(), listOfPersons.end(), compareYear);
-    return listOfPersons;
-}
-bool compareYearTwo(Person& year1, Person& year2) //Hjálpar fall fyrir sortListYearReverse fallið.
-{
-    return year1.getDayOfBirth() > year2.getDayOfBirth();
+    m_sqlite.sortGender();
 }
 
-vector<Person> Domain::sortListYearReverse(vector<Person> listOfPersons)    //Raðar upp persónum eftir öfugu fæðingarári (yngsti efst)
+void Domain::sortAscYearOfBirth()
 {
-    sort(listOfPersons.begin(), listOfPersons.end(), compareYearTwo);
-    return listOfPersons;
+    m_sqlite.sortAscYearOfBirth();
+}
+
+void Domain::sortDescYearOfBirth()
+{
+    m_sqlite.sortDescYearOfBirth();
+}
+
+void Domain::sortAscNameOfCpu()
+{
+    m_sqlite.sortAscNameOfCpu();
+}
+
+void Domain::sortDescNameOfCpu()
+{
+    m_sqlite.sortDescNameOfCpu();
+}
+
+void Domain::sortAscYearBuilt()
+{
+    m_sqlite.sortAscYearBuilt();
+}
+
+void Domain::sortDescYearBuilt()
+{
+    m_sqlite.sortDescYearBuilt();
+}
+
+void Domain::sortAscTypeOfCpu()
+{
+    m_sqlite.sortAscTypeOfCpu();
+}
+
+void Domain::sortDescTypeOfCpu()
+{
+    m_sqlite.sortDescTypeOfCpu();
 }

@@ -22,6 +22,17 @@ public:
     vector<Person> getPersonListByName();
     vector<Person> searchPersons(string search);
     vector<Computers> searchComputers(string search);
+    void sortAscName();
+    void sortDescName();
+    void sortGender();
+    void sortAscYearOfBirth();
+    void sortDescYearOfBirth();
+    void sortAscNameOfCpu();
+    void sortDescNameOfCpu();
+    void sortAscYearBuilt();
+    void sortDescYearBuilt();
+    void sortAscTypeOfCpu();
+    void sortDescTypeOfCpu();
 
 private:
     QSqlDatabase m_db;
