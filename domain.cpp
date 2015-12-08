@@ -112,7 +112,7 @@ void Domain::removeComputer(int input)                  //Leitar af persónu í 
     return m_datalayer.removeComputer(input);
 }
 
-vector<Person> Domain::getPersonlistByName()   //Raðar upp lista af persónum í stafrófsröð.
+vector<Person> Domain::getPersonlistByName()            //Raðar upp lista af persónum í stafrófsröð.
 {
     return m_datalayer.getPersonListByName();
 }

@@ -19,7 +19,7 @@ private:
     Domain m_domain;
     void programInfo()const;    //Opnunarskilaboð til notanda.
     void mainMenu() const;  //Aðalvalmynd.
-    int listMenu() const;   //Valmynd fyrir lista.
+    char listMenu() const;   //Valmynd fyrir lista.
     int sortMenu() const;   //Valmynd fyrir uppröðun á lista.
     Person getPersonInfo(); //Fær upplýsingar um persónu frá notanda.
     Computers getComputerInfo(); //Inntak fyrir upplýsingar um tölvu.
