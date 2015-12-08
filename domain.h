@@ -24,7 +24,7 @@ public:
     vector<Computers> searchComputer(string search);
     void removeScientist(int input);
     void removeComputer(int input);
-    vector<Person> getPersonlistByName();  //Raðar lista í stafrófsröð og skilar til baka.
+    vector<Person> getPersonListByName();  //Raðar lista í stafrófsröð og skilar til baka.
     vector<Person> sortListReverse(vector<Person> listOfPersons);   //Raðar lista í öfugri stafrófsröð og skilar til baka.
     vector<Person> sortListYear(vector<Person> listOfPersons);  //Raðar lista upp eftir fæðingarári og skilar til baka.
     vector<Person> sortListYearReverse(vector<Person> listOfPersons);   //Raðar lista upp eftir öfugu fæðingar ári(yngsti efst)
@@ -43,7 +43,7 @@ public:
     void sortDescTypeOfCpu();
 
 private:
-    SQLite m_datalayer;   //Object af DataLayer fyrir Worker klasann.
+    SQLite m_datalayer;   //Object af DataLayer fyrir Domain klasann.
 };
 
 #endif // DOMAIN_H

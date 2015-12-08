@@ -96,14 +96,12 @@ Computers Domain::findComputerById(int cID)               // Leitar af tölvu í
     return retComp;
 }
 
-//Leitar af persónu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
-void Domain::removeScientist(int input)
+void Domain::removeScientist(int input)   //Leitar af persónu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
 {
     return m_datalayer.removeScientist(input);
 }
 
-//Leitar af tölvu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
-void Domain::removeComputer(int input)
+void Domain::removeComputer(int input)   //Leitar af tölvu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
 {
     return m_datalayer.removeComputer(input);
 }
@@ -118,57 +116,35 @@ vector<Person> Domain::getPersonListByName()            //Raðar upp lista af pe
     return m_datalayer.getPersonListByName();
 }
 
-void Domain::sortAscName()
+bool compareNameTwo(Person& name1, Person& name2)   //Hjálparfall fyrir sortListReverse fallið.
 {
-    m_datalayer.sortAscName();
+    return name1.getName() > name2.getName();
 }
 
-void Domain::sortDescName()
+vector<Person> Domain::sortListReverse(vector<Person> listOfPersons)    //Raðar upp lista af persónum í öfugri stafrófsröð.
+
 {
-    m_datalayer.sortDescName();
+    sort(listOfPersons.begin(), listOfPersons.end(), compareNameTwo);
+    return listOfPersons;
+}
+bool compareYear(Person& year1, Person& year2)  //Hjálparfall fyrir sortListYear fallið.
+{
+    return year1.getDayOfBirth() < year2.getDayOfBirth();
 }
 
-void Domain::sortGender()
+vector<Person> Domain::sortListYear(vector<Person> listOfPersons)   //Raðar upp persónum eftir fæðingarári.
+
 {
-    m_datalayer.sortGender();
+    sort(listOfPersons.begin(), listOfPersons.end(), compareYear);
+    return listOfPersons;
+}
+bool compareYearTwo(Person& year1, Person& year2) //Hjálpar fall fyrir sortListYearReverse fallið.
+{
+    return year1.getDayOfBirth() > year2.getDayOfBirth();
 }
 
-void Domain::sortAscYearOfBirth()
+vector<Person> Domain::sortListYearReverse(vector<Person> listOfPersons)    //Raðar upp persónum eftir öfugu fæðingarári (yngsti efst)
 {
-    m_datalayer.sortAscYearOfBirth();
-}
-
-void Domain::sortDescYearOfBirth()
-{
-    m_datalayer.sortDescYearOfBirth();
-}
-
-void Domain::sortAscNameOfCpu()
-{
-    m_datalayer.sortAscNameOfCpu();
-}
-
-void Domain::sortDescNameOfCpu()
-{
-    m_datalayer.sortDescNameOfCpu();
-}
-
-void Domain::sortAscYearBuilt()
-{
-    m_datalayer.sortAscYearBuilt();
-}
-
-void Domain::sortDescYearBuilt()
-{
-    m_datalayer.sortDescYearBuilt();
-}
-
-void Domain::sortAscTypeOfCpu()
-{
-    m_datalayer.sortAscTypeOfCpu();
-}
-
-void Domain::sortDescTypeOfCpu()
-{
-    m_datalayer.sortDescTypeOfCpu();
+    sort(listOfPersons.begin(), listOfPersons.end(), compareYearTwo);
+    return listOfPersons;
 }

@@ -11,13 +11,13 @@ Interface::Interface()
 void Interface::start()    //Keyrir forritið.
 {
     programInfo();     //Opnunarskilaboð til notanda.
-    int numb;
 
     while(true)
     {
         mainMenu();
+        int numb;
         cin >> numb;
-        if(cin.fail())
+        while(cin.fail())
         {
             cin.clear();
             cin.ignore(100,'\n');
@@ -27,18 +27,17 @@ void Interface::start()    //Keyrir forritið.
         {
             case 1:
             {
-                Person p = getPersonInfo(); //sækja upplýsingar um persónu.
-                m_domain.createPerson(p);   //býr til eintak af persónu.
+                addPerson();
                 break;
             }           
             case 2:
             {
-                Computers c = getComputerInfo(); //Sækja upplýsingar um tölvu.
-                m_domain.createComputer(c); // Býr til eintak af tölvu.
+                addComputer();
                 break;
             }
             case 3:
             {
+<<<<<<< HEAD
                 vector<Person> list = m_domain.getList(); // Sækja lista.
                 printColumnListPerson(list);
 
@@ -188,30 +187,25 @@ void Interface::start()    //Keyrir forritið.
                 }
                // sos_ans = listMenu();
                 break;
+=======
+                showListPerson();
+                break;
+            }
+
+            case 4:
+            {
+                showListComputer();
+>>>>>>> 773706cb076e859a4713d73897fe92d95ccb8ad9
             }
 
             case 5:
             {
-                string search;
-
-                cout << "Enter search word: ";
-                cin >> search;
-
-                vector<Person> searchlist = m_domain.searchScientist(search);
-                printColumnListPerson(searchlist);
+                searchSci();
                 break;
-
-                m_domain.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
-                return;
             }
             case 6:
             {
-                string search;
-
-                cout << "Enter search word: ";
-                cin >> search;
-                vector<Computers> searchlist = m_domain.searchComputer(search);
-                printListComputers(searchlist);
+                searchComp();
                 break;
             }
             case 7:
@@ -228,6 +222,8 @@ void Interface::start()    //Keyrir forritið.
             }
         }
     }
+    m_domain.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
+    return;
 }
 
 void Interface::programInfo() const  //Opnunarskilaboð til notanda.
@@ -281,7 +277,7 @@ void Interface::mainMenu() const    //Aðalvalmynd.
         cout << "                                                    "<< endl;
         cout << "A - Add to list "                                    << endl;
         cout << "S - Show list "                                      << endl;
-        cout << "        3. SCIENTISTS  4. COMPUTERS                " << endl;
+        cout << "        3. Scientists  4. Computers                " << endl;
         cout << "L - Search list "                                    << endl;
         cout << "Q - Quit " << endl;
     }
@@ -290,19 +286,18 @@ void Interface::mainMenu() const    //Aðalvalmynd.
         system("cls");
         programInfo();
         cout << endl;
-        cout << "-------------- MAIN MENU --------------" << endl;
-        cout << "                                       " << endl;
+        cout << "-------------- MAIN MENU --------------"              << endl;
+        cout << "                                       "              << endl;
         cout << "A - Add to list " << endl;
         cout << "S - Show list " << endl;
         cout << "L - Search list " << endl;
-        cout << "        5. Scientist list  6. Computer list   " << endl;
+        cout << "        5. Scientist list  6. Computer list   "       << endl;
         cout << "Q - Quit " << endl;
     }
     if(pick == 'Q' || pick == 'q')
     {
         exit(1);
     }
-
 }
 
 Person Interface::getPersonInfo()   //Inntak fyrir upplýsingar um persónu.
@@ -337,7 +332,6 @@ Person Interface::getPersonInfo()   //Inntak fyrir upplýsingar um persónu.
     cout << "Year of passing (yyyy, Type -1 if scientist is alive): ";
     cin >> dayOfDeath;
     while(cin.fail() || dayOfDeath < -1 || dayOfDeath > 2015) // Villu tjékk á innslætti dayofbirth
-
     {
         cin.clear();
         cin.ignore(100,'\n');
@@ -402,7 +396,6 @@ void Interface::printListPerson(vector<Person> listOfPersons)   //Prentar út up
         cout << "Born: " << listOfPersons[i].getDayOfBirth() << endl;
         if (listOfPersons[i].getDayOfDeath() > 0)
             cout << "Died: " << listOfPersons[i].getDayOfDeath() << endl;
-
         string compList = m_domain.getComputerList(listOfPersons[i].getId());
         if(compList.length()>0)
         {
@@ -463,6 +456,97 @@ void Interface::printListComputers(vector<Computers> listOfComputers)   //Prenta
         cout << "Built?: " << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No") << endl;
         cout << "---------------------------" << endl;
     }
+}
+
+void Interface::addPerson()
+{
+    Person p = getPersonInfo(); //sækja upplýsingar um persónu.
+    m_domain.createPerson(p);   //býr til eintak af persónu.
+}
+
+void Interface::addComputer()
+{
+    Computers c = getComputerInfo(); //Sækja upplýsingar um tölvu.
+    m_domain.createComputer(c); // Býr til eintak af tölvu.
+}
+
+void Interface::showListPerson()
+{
+    vector<Person> list = m_domain.getList(); // Sækja lista.
+    this->printListPerson(list);
+
+    char sos_ans = listMenu();
+
+    if(sos_ans == 'S' || sos_ans == 's')
+    {
+        int sort_ans = sortMenu();
+        if(sort_ans == 1)
+        {
+            printSorted();
+        }
+        if(sort_ans == 2)
+        {
+            printSortedReverse();
+        }
+        if(sort_ans == 3)
+        {
+            printSortedYear();
+        }
+        if(sort_ans == 4)
+        {
+            printSortedYearReverse();
+        }
+    }
+    if(sos_ans == 'R' || sos_ans == 'r')
+    {
+        removeScientist();
+        return;
+    }
+    if(sos_ans == 'E' || sos_ans == 'e')
+    {
+        system("cls");
+        return;
+    }
+   // sos_ans = listMenu();
+}
+
+void Interface::showListComputer()
+{
+    vector<Computers> cpulist = m_domain.getComputerList();
+    printListComputers(cpulist);
+
+    char sos_ans = listMenu();
+    if(sos_ans == 'S' || sos_ans == 's')
+    {
+        /*int sort_ans = sortMenu();               <-- Hér koma sort föllin fyrir computer.
+        if(sort_ans == 1)
+        {
+
+        }
+        if(sort_ans == 2)
+        {
+
+        }
+        if(sort_ans == 3)
+        {
+
+        }
+        if(sort_ans == 4)
+        {
+
+        }*/
+    }
+    if(sos_ans == 'R' || sos_ans == 'r')
+    {
+        removeComputer();
+        return;
+    }
+    if(sos_ans == 'E' || sos_ans == 'e')
+    {
+        system("cls");
+        return;
+    }
+   // sos_ans = listMenu();
 }
 
 char Interface::listMenu() const    //Valmynd fyrir "Show list".
@@ -526,7 +610,42 @@ void Interface::removeComputer()
     m_domain.removeComputer(remove);
 }
 
+<<<<<<< HEAD
 int Interface::sortMenu2() const   //Valmynd fyrir "sort list hja computers".
+=======
+void Interface::searchSci()
+{
+    string search;
+
+    cout << "Enter search word: ";
+    cin >> search;
+
+    vector<Person> searchlist = m_domain.searchScientist(search);
+    printListPerson(searchlist);
+}
+
+void Interface::searchComp()
+{
+    string search;
+
+    cout << "Enter search word: ";
+    cin >> search;
+    vector<Computers> searchlist = m_domain.searchComputer(search);
+    printListComputers(searchlist);
+}
+
+void Interface::printSorted()   //Prentar út upplýsingar í Stafrófsröð.
+{
+    vector<Person>listOfPersons = m_domain.getPersonListByName();
+    printColumnListPerson(listOfPersons);
+}
+
+void Interface::printSortedReverse()    //Prentar út upplýsingar í öfugri stafrófsröð.
+{
+    vector<Person>listOfPersons = m_domain.sortListReverse(m_domain.getList());
+    printListPerson(listOfPersons);
+}
+>>>>>>> 773706cb076e859a4713d73897fe92d95ccb8ad9
 
 {
     int answer;

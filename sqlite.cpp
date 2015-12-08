@@ -152,7 +152,7 @@ void SQLite::removeScientist(int input)
 void SQLite::removeComputer(int input)
 {
     QSqlQuery query(m_db);
-    QString delSQL = "DELETE FROM person WHERE id = "+QString::number(input);
+    QString delSQL = "DELETE FROM computers WHERE id = "+QString::number(input);
     query.exec(delSQL);
 }
 
