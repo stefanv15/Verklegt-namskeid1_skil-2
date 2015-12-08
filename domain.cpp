@@ -43,7 +43,7 @@ string Domain::getPersList(int pId)
     for(unsigned int i = 0; i < pList.size(); i++)
     {
         if (i>0)
-            sPersons += ", ";
+            sPersons += " ";
         Person pers = findPersonById(pList[i].getPersonID());
         sPersons += pers.getName();
     }
@@ -58,7 +58,7 @@ string Domain::getComputerList(int pId)
     for(unsigned int i = 0; i < cpList.size(); i++)
     {
         if (i>0)
-            sComputers += ", ";
+            sComputers += " ";
         Computers comp = findComputerById(cpList[i].getComputerID());
         sComputers += comp.getNameOfCpu();
     }
