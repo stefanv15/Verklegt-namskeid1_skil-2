@@ -87,22 +87,26 @@ void SQLite::saveData()
 //Bætir persónu við gagnagrunninn.
 void SQLite::addData(Person& p)
 {
-    const QString sInsertSQL = QString("INSTERT INTO person(name, gender, yearOfBirth, yearOfDeath) VALUES ('%1','%2',%3,%4)").arg(QString::fromStdString(p.getName()),QString::fromStdString(p.getGender()),QString::number( p.getDayOfBirth()),QString::number(p.getDayOfDeath()));
-
+    QString sInsertSQL = "INSTERT INTO person(name, gender, yearOfBirth, yearOfDeath) "
+                         "VALUES (:name,:gender,:yearOfBirth,:yearOfDeath)";
     QSqlQuery query(m_db);
-    query.exec(sInsertSQL);
+    query.prepare(sInsertSQL);
+    query.bindValue(":name",QString::fromStdString(p.getName()));
+    query.bindValue(":gender",QString::fromStdString(p.getGender()));
+    query.bindValue(":yearOfBirth",p.getDayOfBirth());
+    query.bindValue(":yearOfDeath",p.getDayOfDeath());
+    query.exec();
 }
 
 //Bætir tölvu við gagnagrunn.
 void SQLite::addComputer(Computers& c)
 {
 
-    QString sInsertSQL = "Insert into computers(nameOfCpu, yearBuilt, typeOfCpu, wasBuilt) "
-                         "values (:nameOfCpu,:yearBuilt,:typeOfCpu,:wasBuilt)";
-
+    QString sInsertSQL = "INSTERT INTO computers(nameOfCpu, yearBuilt, typeOfCpu, wasBuilt) "
+                         "VALUES (:nameOfCpu,:yearBuilt,:typeOfCpu,:wasBuilt)";
     QSqlQuery query(m_db);
     query.prepare(sInsertSQL);
-    query.bindValue(":nameOfCpu", QString::fromStdString(c.getNameOfCpu()));
+    query.bindValue(":nameOfCpu",QString::fromStdString(c.getNameOfCpu()));
     query.bindValue(":yearBuilt",c.getYearBuilt());
     query.bindValue(":typeOfCpu",QString::fromStdString(c.getTypeOfCpu()));
     query.bindValue(":wasBuilt",QString::fromStdString(c.getWasBuilt()));
@@ -113,15 +117,16 @@ void SQLite::addComputer(Computers& c)
 void SQLite::addRelation(int computerID, int personID)
 {
 
-    const QString sInsertSQL = QString("INSERT INTO comp_pers(compID, persID) "
-                                       "VALUES (%1,%2)").arg(QString::number(computerID),QString::number(personID));
-
+    QString sInsertSQL = QString("INSERT INTO comp_pers(compID, persID)"
+                                 "VALUES (:computerID, :personID)");
     QSqlQuery query(m_db);
-    query.exec(sInsertSQL);
+    query.prepare(sInsertSQL);
+    query.bindValue(":computerID",computerID);
+    query.bindValue(":personID",personID);
+    query.exec();
 }
 
 //Sækir lista af venslafærslum fyrir tölvur.
-
 vector<Comp_pers> SQLite::getLinkedComputers(int pID)
 {
     QSqlQuery query(m_db);
@@ -166,10 +171,12 @@ vector<Person> SQLite::searchPersons(string search)
 {
     QSqlQuery query(m_db);
 
-    QString sSQL = "SELECT * FROM person WHERE name LIKE '%%%1%%'";
-    sSQL = sSQL.arg(QString::fromStdString(search));
+    QString sSQL = "SELECT * FROM person WHERE name LIKE :search";
+    query.prepare(sSQL);
+    search = "%%"+search+"%%";
+    query.bindValue(":search", QString::fromStdString(search));
 
-    query.exec(sSQL);
+    query.exec();
 
     return addPersonQueryToList(query);
 }
@@ -179,17 +186,17 @@ vector<Computers> SQLite::searchComputers(string search)
 {
     QSqlQuery query(m_db);
 
-    QString sSQL = "SELECT * FROM computers WHERE nameOfCpu LIKE '%%%1%%'";
-    sSQL = sSQL.arg(QString::fromStdString(search));
+    QString sSQL = "SELECT * FROM computers WHERE nameOfCpu LIKE :search";
+    query.prepare(sSQL);
+    search = "%%"+search+"%%";
+    query.bindValue(":search", QString::fromStdString(search));
 
-    query.exec(sSQL);
+    query.exec();
 
     return addComputerQueryToList(query);
 }
 
-
 //Fjarlægir persónu endanlega úr gagnagrunninum.
-
 void SQLite::removeScientist(int input)
 {
     QSqlQuery query(m_db);
