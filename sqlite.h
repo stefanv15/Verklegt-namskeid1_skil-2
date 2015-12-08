@@ -9,6 +9,7 @@ class SQLite
 {
 public:
     SQLite();
+<<<<<<< HEAD
     void saveData();                                //Vistar vector af persónum.
     void addData(Person& p);                        //Bætir persónu við listann.
     void addComputer(Computers& c);                 //Bætir computer við listann.
@@ -21,6 +22,30 @@ public:
     void removeComputer(int input);                 //Eyðir computer úr gagnagrunnninum.
     vector<Person> getPersonListByName();           //
     vector<Person> searchPersons(string search);    //
+=======
+    void saveData();                                // vistar vector af persónum.
+    void addData(Person& p);                        // bætir persónu við
+    void addComputer(Computers& c);
+    void addRelation(int computerID, int personID);
+    vector<Comp_pers> getLinkedComputers(int pID);  // Sækir lista af venslafærslum fyrir person
+    vector<Person> getPersonList();
+    vector<Computers> getComputerList();
+    void removeScientist(int input);
+    void removeComputer(int input);
+    vector<Person> getPersonListByName();
+    vector<Person> searchPersons(string search);
+    void sortAscName();
+    void sortDescName();
+    void sortGender();
+    void sortAscYearOfBirth();
+    void sortDescYearOfBirth();
+    void sortAscNameOfCpu();
+    void sortDescNameOfCpu();
+    void sortAscYearBuilt();
+    void sortDescYearBuilt();
+    void sortAscTypeOfCpu();
+    void sortDescTypeOfCpu();
+>>>>>>> 665a40f0bb7086337029b7471abdbb24f15521a6
 
 private:                                                    //Prívat breytur.
     QSqlDatabase m_db;                                      //

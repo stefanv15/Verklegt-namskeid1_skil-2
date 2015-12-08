@@ -7,8 +7,7 @@
 //#include <string>
 #include <algorithm>
 
-//Sjálfgefni smiðurinn fyrir domain klasann.
-Domain::Domain()
+Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann
 {
 
 }
@@ -107,12 +106,28 @@ Computers Domain::findComputerById(int cID)
     return retComp;
 }
 
+<<<<<<< HEAD
 //Býr til tengingu milli pers og computer.
+=======
+//Leitar af persónu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
+void Domain::removeScientist(int input)
+{
+    return m_datalayer.removeScientist(input);
+}
+
+//Leitar af tölvu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
+void Domain::removeComputer(int input)
+{
+    return m_datalayer.removeComputer(input);
+}
+
+>>>>>>> 665a40f0bb7086337029b7471abdbb24f15521a6
 void Domain::createRelation(int computerID, int personID)
 {
     m_datalayer.addRelation(computerID, personID);
 }
 
+<<<<<<< HEAD
 //Leitar af persónu í lista og skilar
 void Domain::removeScientist(int input)
 {                                                       // vector án persónum sem leitar var af.
@@ -130,46 +145,94 @@ void Domain::removeComputer(int input)
 
 //Raðar upp lista af persónum í stafrófsröð.
 vector<Person> Domain::getPersonlistByName()
+=======
+vector<Person> Domain::getPersonListByName()            //Raðar upp lista af persónum í stafrófsröð.
 {
     return m_datalayer.getPersonListByName();
 }
 
+void Domain::sortAscName()
+{
+    m_datalayer.sortAscName();
+}
+
+void Domain::sortDescName()
+>>>>>>> 665a40f0bb7086337029b7471abdbb24f15521a6
+{
+    m_datalayer.sortDescName();
+}
+
+<<<<<<< HEAD
 //Hjálparfall fyrir sortListReverse fallið.
 bool compareNameTwo(Person& name1, Person& name2)
+=======
+void Domain::sortGender()
+>>>>>>> 665a40f0bb7086337029b7471abdbb24f15521a6
 {
-    return name1.getName() > name2.getName();
+    m_datalayer.sortGender();
 }
 
+<<<<<<< HEAD
 //Raðar upp lista af persónum í öfugri stafrófsröð.
 vector<Person> Domain::sortListReverse(vector<Person> listOfPersons)
+=======
+void Domain::sortAscYearOfBirth()
 {
-    sort(listOfPersons.begin(), listOfPersons.end(), compareNameTwo);
-    return listOfPersons;
+    m_datalayer.sortAscYearOfBirth();
 }
 
+void Domain::sortDescYearOfBirth()
+>>>>>>> 665a40f0bb7086337029b7471abdbb24f15521a6
+{
+    m_datalayer.sortDescYearOfBirth();
+}
+
+<<<<<<< HEAD
 //Hjálparfall fyrir sortListYear fallið.
 bool compareYear(Person& year1, Person& year2)
+=======
+void Domain::sortAscNameOfCpu()
+>>>>>>> 665a40f0bb7086337029b7471abdbb24f15521a6
 {
-    return year1.getDayOfBirth() < year2.getDayOfBirth();
+    m_datalayer.sortAscNameOfCpu();
 }
 
+<<<<<<< HEAD
 //Raðar upp persónum eftir fæðingarári.
 vector<Person> Domain::sortListYear(vector<Person> listOfPersons)
-
+=======
+void Domain::sortDescNameOfCpu()
 {
-    sort(listOfPersons.begin(), listOfPersons.end(), compareYear);
-    return listOfPersons;
+    m_datalayer.sortDescNameOfCpu();
+}
+>>>>>>> 665a40f0bb7086337029b7471abdbb24f15521a6
+
+void Domain::sortAscYearBuilt()
+{
+    m_datalayer.sortAscYearBuilt();
 }
 
+<<<<<<< HEAD
 //Hjálpar fall fyrir sortListYearReverse fallið.
 bool compareYearTwo(Person& year1, Person& year2)
+=======
+void Domain::sortDescYearBuilt()
 {
-    return year1.getDayOfBirth() > year2.getDayOfBirth();
+    m_datalayer.sortDescYearBuilt();
 }
 
+void Domain::sortAscTypeOfCpu()
+>>>>>>> 665a40f0bb7086337029b7471abdbb24f15521a6
+{
+    m_datalayer.sortAscTypeOfCpu();
+}
+
+<<<<<<< HEAD
 //Raðar upp persónum eftir öfugu fæðingarári (yngsti efst).
 vector<Person> Domain::sortListYearReverse(vector<Person> listOfPersons)
+=======
+void Domain::sortDescTypeOfCpu()
+>>>>>>> 665a40f0bb7086337029b7471abdbb24f15521a6
 {
-    sort(listOfPersons.begin(), listOfPersons.end(), compareYearTwo);
-    return listOfPersons;
+    m_datalayer.sortDescTypeOfCpu();
 }
