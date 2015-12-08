@@ -71,11 +71,12 @@ void Interface::start()
             }
         }
     }
-    m_domain.saveAllData(); // Geymum öll gögn áður en forriti er lokað.
+    m_domain.saveAllData();
     return;
 }
 
-void Interface::programInfo() const  //Opnunarskilaboð til notanda.
+//Opnunarskilaboð til notanda.
+void Interface::programInfo() const
 {
     cout << "****************************************************" << endl;
     cout << "*                    WELCOME                       *" << endl;
@@ -86,7 +87,8 @@ void Interface::programInfo() const  //Opnunarskilaboð til notanda.
     cout << "****************************************************" << endl;
 }
 
-void Interface::mainMenu() const    //Aðalvalmynd.
+//Aðalvalmynd.
+void Interface::mainMenu() const
 {
     char pick;
     cout << endl;
@@ -149,7 +151,8 @@ void Interface::mainMenu() const    //Aðalvalmynd.
     }
 }
 
-Person Interface::getPersonInfo()   //Inntak fyrir upplýsingar um persónu.
+//Inntak fyrir upplýsingar um persónu.
+Person Interface::getPersonInfo()
 {
     string name;
     string gender;
@@ -191,7 +194,8 @@ Person Interface::getPersonInfo()   //Inntak fyrir upplýsingar um persónu.
     return Person(name, gender, dayOfBirth, dayOfDeath);
 }
 
-Computers Interface::getComputerInfo()  //Inntak fyrir upplýsingar um tölvu.
+//Inntak fyrir upplýsingar um tölvu.
+Computers Interface::getComputerInfo()
 {
     string name;
     int year;
@@ -232,7 +236,8 @@ Computers Interface::getComputerInfo()  //Inntak fyrir upplýsingar um tölvu.
     return Computers(name, year, type, built);
 }
 
-void Interface::printListPerson(vector<Person> listOfPersons)   //Prentar út upplýsingar um persónur.
+//Prentar út upplýsingar um persónur.
+void Interface::printListPerson(vector<Person> listOfPersons)
 {
     cout << endl;
     cout << "LIST OF COMPUTER SCIENTISTS" << endl;
@@ -255,7 +260,8 @@ void Interface::printListPerson(vector<Person> listOfPersons)   //Prentar út up
     }
 }
 
-void Interface::printColumnListPerson(vector<Person> listOfPersons)   //Prentar út upplýsingar um persónur.
+//Prentar út upplýsingar um persónur.
+void Interface::printColumnListPerson(vector<Person> listOfPersons)
 {
     cout << endl;
     cout << "LIST OF COMPUTER SCIENTISTS" << endl;
@@ -285,7 +291,8 @@ void Interface::printColumnListPerson(vector<Person> listOfPersons)   //Prentar 
     cout << "------------------------------------------------------------------------------" << endl;
 }
 
-void Interface::printListComputers(vector<Computers> listOfComputers)   //Prentar út upplýsingar um tölvur.
+//Prentar út upplýsingar um tölvur.
+void Interface::printListComputers(vector<Computers> listOfComputers)
 {
     cout << endl;
     cout << "     LIST OF COMPUTERS     " << endl;
@@ -307,18 +314,21 @@ void Interface::printListComputers(vector<Computers> listOfComputers)   //Prenta
     }
 }
 
+//Sækir upplýsingar og býr til persónu.
 void Interface::addPerson()
 {
-    Person p = getPersonInfo(); //sækja upplýsingar um persónu.
-    m_domain.createPerson(p);   //býr til eintak af persónu.
+    Person p = getPersonInfo();
+    m_domain.createPerson(p);
 }
 
+//Sækir upplýsingar og býr til eintak af tölvu.
 void Interface::addComputer()
 {
-    Computers c = getComputerInfo(); //Sækja upplýsingar um tölvu.
-    m_domain.createComputer(c); // Býr til eintak af tölvu.
+    Computers c = getComputerInfo();
+    m_domain.createComputer(c);
 }
 
+//Sýnir lista yfir persónur & Sortmenu.
 void Interface::showListPerson()
 {
     vector<Person> list = m_domain.getList(); // Sækja lista.
@@ -365,9 +375,9 @@ void Interface::showListPerson()
         system("cls");
         return;
     }
-   // sos_ans = listMenu();
 }
 
+//Sýnir lista yfir tölvur. Sortmenu.
 void Interface::showListComputer()
 {
     vector<Computers> cpulist = m_domain.getComputerList();
@@ -376,7 +386,7 @@ void Interface::showListComputer()
     char sos_ans = listMenu();
     if(sos_ans == 'S' || sos_ans == 's')
     {
-        int sort_ans = sortMenu2();             //  <-- Hér koma sort föllin fyrir computer.
+        int sort_ans = sortMenu2();
         if(sort_ans == 1)
         {
             cpulist = m_domain.sortAscNameOfCpu();
@@ -421,7 +431,8 @@ void Interface::showListComputer()
    // sos_ans = listMenu();
 }
 
-char Interface::listMenu() const    //Valmynd fyrir "Show list".
+//Valmynd fyrir Show list.
+char Interface::listMenu() const
 {
     char answer;
 
@@ -438,7 +449,8 @@ char Interface::listMenu() const    //Valmynd fyrir "Show list".
 
 // --------------SORTLISTI-OG-SORTFÖLL-FYRIR-PERSON------------ //
 
-int Interface::sortMenu() const   //Valmynd fyrir "sort list".
+//Valmynd fyrir "sort list".
+int Interface::sortMenu() const
 {
     int answer;
     cout << "--------------------------------" << endl;
@@ -465,6 +477,7 @@ int Interface::sortMenu() const   //Valmynd fyrir "sort list".
     return answer;
 }
 
+//Eyðir persónu úr gagnagrunni.
 void Interface::removeScientist()
 {
     int remove;
@@ -473,6 +486,7 @@ void Interface::removeScientist()
     m_domain.removeScientist(remove);
 }
 
+//Eyðir tölvu úr gagnagrunni.
 void Interface::removeComputer()
 {
     int remove;
@@ -481,6 +495,7 @@ void Interface::removeComputer()
     m_domain.removeComputer(remove);
 }
 
+//Leitar af persónu.
 void Interface::searchSci()
 {
     string search;
@@ -494,6 +509,7 @@ void Interface::searchSci()
         printListPerson(searchlist);
 }
 
+//Leitar af tölvu.
 void Interface::searchComp()
 {
     string search;
@@ -507,7 +523,8 @@ void Interface::searchComp()
         printListComputers(searchlist);
 }
 
-int Interface::sortMenu2() const   //Valmynd fyrir "sort list hja computers".
+//Valmynd fyrir "sort list hja computers".
+int Interface::sortMenu2() const
 {
     int answer;
     cout << "--------------------------------" << endl;
