@@ -291,7 +291,7 @@ void Interface::printColumnListComputers(vector<Computers> listOfComputers)
             cout << "Digital" << "\t\t\t";
         else
             cout << "Hybrid" << "\t\t\t ";
-        cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes":"No\t\t");
+        cout << (listOfComputers[i].getWasBuilt()=="y"?"Yes\t\t":"No\t\t");
         string persList = m_domain.getPersList(listOfComputers[i].getId());
         if(persList.length()>0)
         {
