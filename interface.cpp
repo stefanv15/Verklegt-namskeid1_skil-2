@@ -19,10 +19,12 @@ void Interface::start()
         mainMenu();
         int numb;
         cin >> numb;
-        while(cin.fail())
+        while(cin.fail() || numb > 7 || numb < 1)
         {
             cin.clear();
             cin.ignore(100,'\n');
+            cout << "Invalid input! Pick again:";
+            cin >> numb;
         }
 
         switch(numb)
@@ -100,11 +102,18 @@ void Interface::mainMenu() const
     cout << "Q - Quit   " << endl;
     cin >> pick;
 
-    /*while(pick != 'A' || pick != 'a' || pick != 'S' || pick != 's' || pick != 'L' || pick != 'L' || pick != 'Q' || pick != 'q')
+    while(pick != 'A' && pick != 'a' && pick != 'S' && pick != 's' && pick != 'L' && pick != 'l' && pick != 'Q' && pick != 'q')
     {
         cout << "The input you entered is not a valid option. Pick again!" << endl;
-        mainMenu();
-    }*/
+        cout << endl;
+        cout << "-- MAIN MENU -- " << endl;
+        cout << "                " << endl;
+        cout << "A - Add to list " << endl;
+        cout << "S - Show list   " << endl;
+        cout << "L - Search list " << endl;
+        cout << "Q - Quit   " << endl;
+        cin >> pick;
+    }
 
     if(pick == 'A' || pick == 'a')
     {
@@ -373,6 +382,7 @@ void Interface::showListPerson()
     if(sos_ans == 'E' || sos_ans == 'e')
     {
         system("cls");
+        programInfo();
         return;
     }
 }
@@ -426,6 +436,7 @@ void Interface::showListComputer()
     if(sos_ans == 'E' || sos_ans == 'e')
     {
         system("cls");
+        programInfo();
         return;
     }
    // sos_ans = listMenu();
@@ -443,6 +454,18 @@ char Interface::listMenu() const
     cout << "R - Remove from list" << endl;
     cout << "E - Return to main menu" << endl;
     cin >> answer;
+
+    while(answer != 's' && answer != 'S' && answer != 'r' && answer != 'R' && answer != 'e' && answer != 'E')
+    {
+        cout << "Invalid input!" << endl;
+        cout << endl;
+        cout << "       LIST MENU      " << endl;
+        cout << "       ---------      " << endl;
+        cout << "S - Sort list" << endl;
+        cout << "R - Remove from list" << endl;
+        cout << "E - Return to main menu" << endl;
+        cin >> answer;
+    }
 
     return answer;
 }
@@ -483,6 +506,13 @@ void Interface::removeScientist()
     int remove;
     cout << "Insert ID of the computer scientist you want to remove: ";
     cin >> remove;
+    while(cin.fail() || remove < 1)
+    {
+        cin.clear();
+        cin.ignore(100,'\n');
+        cout << "Invalid input! Insert again:";
+        cin >> remove;
+    }
     m_domain.removeScientist(remove);
 }
 
@@ -492,6 +522,13 @@ void Interface::removeComputer()
     int remove;
     cout << "Insert ID of the computer you want to remove: ";
     cin >> remove;
+    while(cin.fail() || remove < 1)
+    {
+        cin.clear();
+        cin.ignore(100,'\n');
+        cout << "Invalid input! Insert again:";
+        cin >> remove;
+    }
     m_domain.removeComputer(remove);
 }
 
