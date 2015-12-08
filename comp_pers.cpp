@@ -6,7 +6,7 @@ Comp_pers::Comp_pers()
 
 }
 
-//Fall sem hefur aðgang að private breytum.
+//Smiður sem upphafsstillir prívat breyturnar.
 Comp_pers::Comp_pers(int cID, int pID)
 {
     personID = pID;

@@ -1,14 +1,17 @@
 #include "person.h"
 
-Person::Person()            //Sjálfgefni smiðurinn fyrir Person klasann.
+//Sjálfgefni smiðurinn fyrir Person klasann.
+Person::Person()
 {
+    id = 0;
     name = "";
     gender = "";
     dayOfBirth = 0;
     dayOfDeath = 0;
 }
 
-Person::Person(string n, string g, int dob, int dod)    //Smiður fyrir Person klasann til að upphafstilla private breytur.
+//Smiður fyrir Person klasann til að upphafsstilla private breytur fyrir utan id.
+Person::Person(string n, string g, int dob, int dod)
 {
     id = 0;
     name = n;
@@ -17,6 +20,7 @@ Person::Person(string n, string g, int dob, int dod)    //Smiður fyrir Person k
     dayOfDeath = dod;
 }
 
+//Smiður fyrir Person klasann til að upphafsstilla private breytur.
 Person::Person(int i, string n, string g, int dob, int dod)
 {
     id = i;
@@ -26,27 +30,32 @@ Person::Person(int i, string n, string g, int dob, int dod)
     dayOfDeath = dod;
 }
 
+//Skilar "ID".
 int Person::getId()
 {
     return id;
 }
 
-string Person::getName()        //Skilar "name".
+//Skilar "name".
+string Person::getName()
 {
     return name;
 }
 
-string Person::getGender()      //Skilar "gender".
+//Skilar "gender".
+string Person::getGender()
 {
     return gender;
 }
 
-int Person::getDayOfBirth()     //Skilar "DayOfBirth".
+//Skilar "DayOfBirth".
+int Person::getDayOfBirth()
 {
     return dayOfBirth;
 }
 
-int Person::getDayOfDeath()     //Skilar "DayOfDeath".
+//Skilar "DayOfDeath".
+int Person::getDayOfDeath()
 {
     return dayOfDeath;
 }
