@@ -54,7 +54,10 @@ void Domain::saveAllData()                              // Nær í savedata fall
 }
 
 vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í lista og skilar
-{                                                       // vector af persónum sem fundust.
+{
+    return m_datalayer.searchPersons(search);
+    /* geyma
+    // vector af persónum sem fundust.
     vector<Person> list = m_datalayer.getPersonList();
     vector<Person> returnList;
 
@@ -63,7 +66,7 @@ vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í 
         if(list[i].getName().find(search, 0)!= string::npos)
             returnList.push_back(list[i]);
     }
-    return returnList;
+    return returnList;*/
 }
 
 vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu í lista og skilar
@@ -94,25 +97,24 @@ Computers Domain::findComputerById(int cID)               // Leitar af tölvu í
     return retComp;
 }
 
-void Domain::removeScientist(int input)   //Leitar af persónu í lista og skilar
+void Domain::createRelation(int computerID, int personID)
+{
+    m_datalayer.addRelation(computerID, personID);
+}
+
+void Domain::removeScientist(int input)                 //Leitar af persónu í lista og skilar
 {                                                       // vector án persónum sem leitar var af.
     return m_datalayer.removeScientist(input);
 }
 
-void Domain::removeComputer(int input)   //Leitar af persónu í lista og skilar
+void Domain::removeComputer(int input)                  //Leitar af persónu í lista og skilar
 {                                                       // vector án persónum sem leitar var af.
     return m_datalayer.removeComputer(input);
 }
 
-bool compareName(Person& name1, Person& name2)              //Hjálparfall fyrir Sortföllin.
+vector<Person> Domain::getPersonlistByName()   //Raðar upp lista af persónum í stafrófsröð.
 {
-    return name1.getName() < name2.getName();
-}
-
-vector<Person> Domain::sortList(vector<Person> listOfPersons)   //Raðar upp lista af persónum í stafrófsröð.
-{
-    sort(listOfPersons.begin(), listOfPersons.end(), compareName);
-    return listOfPersons;
+    return m_datalayer.getPersonListByName();
 }
 
 bool compareNameTwo(Person& name1, Person& name2)   //Hjálparfall fyrir sortListReverse fallið.

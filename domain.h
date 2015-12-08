@@ -24,11 +24,12 @@ public:
     vector<Computers> searchComputer(string search);
     void removeScientist(int input);
     void removeComputer(int input);
-    vector<Person> sortList(vector<Person> listOfPersons);  //Raðar lista í stafrófsröð og skilar til baka.
+    vector<Person> getPersonlistByName();  //Raðar lista í stafrófsröð og skilar til baka.
     vector<Person> sortListReverse(vector<Person> listOfPersons);   //Raðar lista í öfugri stafrófsröð og skilar til baka.
     vector<Person> sortListYear(vector<Person> listOfPersons);  //Raðar lista upp eftir fæðingarári og skilar til baka.
     vector<Person> sortListYearReverse(vector<Person> listOfPersons);   //Raðar lista upp eftir öfugu fæðingar ári(yngsti efst)
     Computers findComputerById(int cID);
+    void createRelation(int computerID, int personID);
 
 private:
     SQLite m_datalayer;   //Object af DataLayer fyrir Worker klasann.
