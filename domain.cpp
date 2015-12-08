@@ -7,12 +7,7 @@
 //#include <string>
 #include <algorithm>
 
-<<<<<<< HEAD
-Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann.
-=======
-//Sjálfgefni smiðurinn fyrir domain klasann.
-Domain::Domain()
->>>>>>> 526ed041765fd279637b4377dd71b5e016824a28
+Domain::Domain()    //Sjálfgefni smiðurinn fyrir domain klasann
 {
 
 }
@@ -70,13 +65,8 @@ vector<Person> Domain::searchScientist(string search)   //Leitar af persónu í 
     return returnList;
 }
 
-<<<<<<< HEAD
-vector<Computers> Domain::searchComputer(string search)   //Leitar af persónu í lista og skilar
-{                                                       // vector af persónum sem fundust.
-=======
 vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu í lista og skilar
 {                                                         // vector af persónum sem fundust.
->>>>>>> 526ed041765fd279637b4377dd71b5e016824a28
     vector<Computers> list = m_datalayer.getComputerList();
     vector<Computers> returnList;
 
@@ -88,11 +78,7 @@ vector<Computers> Domain::searchComputer(string search)   // Leitar af persónu 
     return returnList;
 }
 
-<<<<<<< HEAD
-Computers Domain::findComputerById(int cID) // Leitar af tölvu í lista og skilar henni
-=======
 Computers Domain::findComputerById(int cID)               // Leitar af tölvu í lista og skilar henni
->>>>>>> 526ed041765fd279637b4377dd71b5e016824a28
 {
     vector<Computers> list = m_datalayer.getComputerList();
     Computers retComp;
@@ -107,13 +93,13 @@ Computers Domain::findComputerById(int cID)               // Leitar af tölvu í
     return retComp;
 }
 
-void Domain::removeScientist(int input)   //Leitar af persónu í lista og skilar
-{                                                       // vector án persónum sem leitar var af.
+void Domain::removeScientist(int input)   //Leitar af persónu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
+{
     return m_datalayer.removeScientist(input);
 }
 
-void Domain::removeComputer(int input)   //Leitar af persónu í lista og skilar
-{                                                       // vector án persónum sem leitar var af.
+void Domain::removeComputer(int input)   //Leitar af tölvu í lista eftir ID og fjarlægir hana endanlega úr gagnagrunninum.
+{
     return m_datalayer.removeComputer(input);
 }
 

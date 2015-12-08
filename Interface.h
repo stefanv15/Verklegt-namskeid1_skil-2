@@ -24,8 +24,14 @@ private:
     Computers getComputerInfo(); //Inntak fyrir upplýsingar um tölvu.
     void printListPerson(vector<Person> listOfPersons); //Prentar út lista af persónum.
     void printListComputers(vector<Computers> listOfComputers); //Prentar út upplýsingar um tölvur.
+    void addPerson();
+    void addComputer();
+    void showListPerson();
+    void showListComputer();
     void removeScientist();
     void removeComputer();
+    void searchSci();
+    void searchComp();
     void printSortedReverse(); //Prentar út upplýsingar í öfugri stafrófsröð.
     void printSorted(); //Prentar út upplýsingar í stafrófsröð.
     void printSortedYear(); //Prentar út upplýsingar frá elsta ári til yngsta.
