@@ -28,7 +28,7 @@ private:
     void printColumnListPerson(vector<Person> listOfPersons);           //Prentar út upplýsingar um persónur.
     void addPerson();               //Bætir við persónu.
     void addComputer();             //Bætir við tölvu.
-    void addRelation();             //Bætir við tengslu persónu og tölvu
+    void addRelation();             //Bætir við tengslu persónu og tölvu.
     void showListPerson();          //Sýnir lista yfir persónur, listmenu og sortmenu.
     void showListComputer();        //Sýnir lista yfir tölvur, listmenu og sortmenu2.
     void removeScientist();         //Fjarlægir persónu endanlega úr gagnagrunni.

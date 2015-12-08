@@ -66,7 +66,8 @@ vector<Person> SQLite::getPersonList()
     return addPersonQueryToList(query);
 }
 
-//Sækir lista af tölvum
+//Sækir lista af tölvum.
+
 vector<Computers> SQLite::getComputerList()
 {
     QSqlQuery query(m_db);
@@ -86,7 +87,7 @@ void SQLite::saveData()
 //Bætir persónu við gagnagrunninn.
 void SQLite::addData(Person& p)
 {
-    const QString sInsertSQL = QString("Insert into person(name, gender, yearOfBirth, yearOfDeath) values ('%1','%2',%3,%4)").arg(QString::fromStdString(p.getName()),QString::fromStdString(p.getGender()),QString::number( p.getDayOfBirth()),QString::number(p.getDayOfDeath()));
+    const QString sInsertSQL = QString("INSTERT INTO person(name, gender, yearOfBirth, yearOfDeath) VALUES ('%1','%2',%3,%4)").arg(QString::fromStdString(p.getName()),QString::fromStdString(p.getGender()),QString::number( p.getDayOfBirth()),QString::number(p.getDayOfDeath()));
 
     QSqlQuery query(m_db);
     query.exec(sInsertSQL);
@@ -95,6 +96,7 @@ void SQLite::addData(Person& p)
 //Bætir tölvu við gagnagrunn.
 void SQLite::addComputer(Computers& c)
 {
+
     QString sInsertSQL = "Insert into computers(nameOfCpu, yearBuilt, typeOfCpu, wasBuilt) "
                          "values (:nameOfCpu,:yearBuilt,:typeOfCpu,:wasBuilt)";
 
@@ -110,18 +112,21 @@ void SQLite::addComputer(Computers& c)
 //Venslar persónu og tölvu saman.
 void SQLite::addRelation(int computerID, int personID)
 {
-    const QString sInsertSQL = QString("Insert into comp_pers(compID, persID) "
-                                       "values (%1,%2)").arg(QString::number(computerID),QString::number(personID));
+
+    const QString sInsertSQL = QString("INSERT INTO comp_pers(compID, persID) "
+                                       "VALUES (%1,%2)").arg(QString::number(computerID),QString::number(personID));
+
     QSqlQuery query(m_db);
     query.exec(sInsertSQL);
 }
 
-//Sækir lista af venslafærslum fyrir tölvur
+//Sækir lista af venslafærslum fyrir tölvur.
+
 vector<Comp_pers> SQLite::getLinkedComputers(int pID)
 {
     QSqlQuery query(m_db);
 
-    const QString sSQL = "SELECT * FROM comp_pers where persID = "+QString::number(pID);
+    const QString sSQL = "SELECT * FROM comp_pers WHERE persID = "+QString::number(pID);
     query.exec(sSQL);
 
     vector<Comp_pers> cpList;
@@ -141,7 +146,7 @@ vector<Comp_pers> SQLite::getLinkedPerson(int cID)
 {
     QSqlQuery query(m_db);
 
-    const QString sSQL = "SELECT * FROM comp_pers where compID =  "+QString::number(cID);
+    const QString sSQL = "SELECT * FROM comp_pers WHERE compID =  "+QString::number(cID);
     query.exec(sSQL);
 
     vector<Comp_pers> persList;
@@ -161,7 +166,7 @@ vector<Person> SQLite::searchPersons(string search)
 {
     QSqlQuery query(m_db);
 
-    QString sSQL = "select * from person where name like '%%%1%%'";
+    QString sSQL = "SELECT * FROM person WHERE name LIKE '%%%1%%'";
     sSQL = sSQL.arg(QString::fromStdString(search));
 
     query.exec(sSQL);
@@ -174,7 +179,7 @@ vector<Computers> SQLite::searchComputers(string search)
 {
     QSqlQuery query(m_db);
 
-    QString sSQL = "select * from computers where nameOfCpu like '%%%1%%'";
+    QString sSQL = "SELECT * FROM computers WHERE nameOfCpu LIKE '%%%1%%'";
     sSQL = sSQL.arg(QString::fromStdString(search));
 
     query.exec(sSQL);
@@ -182,7 +187,9 @@ vector<Computers> SQLite::searchComputers(string search)
     return addComputerQueryToList(query);
 }
 
-//Fjarlægir persónu endanlega úr gagnagrunninum
+
+//Fjarlægir persónu endanlega úr gagnagrunninum.
+
 void SQLite::removeScientist(int input)
 {
     QSqlQuery query(m_db);
@@ -190,7 +197,8 @@ void SQLite::removeScientist(int input)
     query.exec(delSQL);
 }
 
-//Fjarlægir tölvu endanlega úr gagnagrunninum
+//Fjarlægir tölvu endanlega úr gagnagrunninum.
+
 void SQLite::removeComputer(int input)
 {
     QSqlQuery query(m_db);
@@ -198,7 +206,8 @@ void SQLite::removeComputer(int input)
     query.exec(delSQL);
 }
 
-//Raðar nafni tölvunarfræðings eftir stafrófsröð
+//Raðar nafni tölvunarfræðings eftir stafrófsröð.
+
 vector <Person> SQLite::sortAscName()
 {
     QSqlQuery query(m_db);
@@ -207,7 +216,8 @@ vector <Person> SQLite::sortAscName()
     return addPersonQueryToList(query);
 }
 
-//Raðar nafni tölvunarfræðings í öfugri stafrófsröð
+//Raðar nafni tölvunarfræðings í öfugri stafrófsröð.
+
 vector<Person> SQLite::sortDescName()
 {
      QSqlQuery query(m_db);
@@ -216,7 +226,8 @@ vector<Person> SQLite::sortDescName()
      return addPersonQueryToList(query);
 }
 
-//Raðar tölvunarfræðingi eftir kyni
+//Raðar tölvunarfræðingi eftir kyni.
+
 vector<Person> SQLite::sortGender()
 {
      QSqlQuery query(m_db);
@@ -225,7 +236,8 @@ vector<Person> SQLite::sortGender()
      return addPersonQueryToList(query);
 }
 
-//Raðar tölvunarfræðingi eftir fæðingarári frá 1-10
+//Raðar tölvunarfræðingi eftir fæðingarári frá 1-10.
+
 vector<Person> SQLite::sortAscYearOfBirth()
 {
      QSqlQuery query(m_db);
@@ -234,7 +246,8 @@ vector<Person> SQLite::sortAscYearOfBirth()
      return addPersonQueryToList(query);
 }
 
-//Raðar tölvunarfræðingi eftir fæðingarári frá 10-1
+//Raðar tölvunarfræðingi eftir fæðingarári frá 10-1.
+
 vector<Person> SQLite::sortDescYearOfBirth()
 {
      QSqlQuery query(m_db);
@@ -243,7 +256,7 @@ vector<Person> SQLite::sortDescYearOfBirth()
      return addPersonQueryToList(query);
 }
 
-//Raðar nafni á tölvu eftir stafrófsröð
+//Raðar nafni á tölvu eftir stafrófsröð.
 vector<Computers> SQLite::sortAscNameOfCpu()
 {
      QSqlQuery query(m_db);
@@ -252,7 +265,7 @@ vector<Computers> SQLite::sortAscNameOfCpu()
      return addComputerQueryToList(query);
 }
 
-//Raðar nafni á tölvu eftir öfugri stafrófsröð
+//Raðar nafni á tölvu eftir öfugri stafrófsröð.
 vector<Computers> SQLite::sortDescNameOfCpu()
 {
      QSqlQuery query(m_db);
@@ -261,7 +274,7 @@ vector<Computers> SQLite::sortDescNameOfCpu()
      return addComputerQueryToList(query);
 }
 
-//Raðar tölvu eftir byggingarári 1-10
+//Raðar tölvu eftir byggingarári 1-10.
 vector<Computers> SQLite::sortAscYearBuilt()
 {
      QSqlQuery query(m_db);
@@ -270,7 +283,7 @@ vector<Computers> SQLite::sortAscYearBuilt()
      return addComputerQueryToList(query);
 }
 
-//Raðar tölvu eftir byggingarári 10-1
+//Raðar tölvu eftir byggingarári 10-1.
 vector<Computers> SQLite::sortDescYearBuilt()
 {
      QSqlQuery query(m_db);
@@ -279,7 +292,7 @@ vector<Computers> SQLite::sortDescYearBuilt()
      return addComputerQueryToList(query);
 }
 
-//Raðar tölvu eftir týpunafni í stafrófsröð
+//Raðar tölvu eftir týpunafni í stafrófsröð.
 vector<Computers> SQLite::sortAscTypeOfCpu()
 {
      QSqlQuery query(m_db);
@@ -288,7 +301,7 @@ vector<Computers> SQLite::sortAscTypeOfCpu()
      return addComputerQueryToList(query);
 }
 
-//Raðar tölvu eftir týpunafni í öfugri stafrófsröð
+//Raðar tölvu eftir týpunafni í öfugri stafrófsröð.
 vector<Computers> SQLite::sortDescTypeOfCpu()
 {
      QSqlQuery query(m_db);
