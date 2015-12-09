@@ -32,7 +32,7 @@ void Interface::start()
             {
                 addPerson();
                 break;
-            }           
+            }
             case 2:
             {
                 addComputer();
@@ -317,6 +317,7 @@ void Interface::addRelation()
     int personID;
     printColumnListComputers(m_domain.getComputerList());
 
+
     cout << "Please select a computer ID to relate to a computer scientist: " << endl;
     cin >> computerID;
     while(cin.fail() || computerID < 0)
@@ -588,3 +589,4 @@ void Interface::searchComp()
     else
         printColumnListComputers(searchlist);
 }
+

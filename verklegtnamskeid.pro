@@ -20,7 +20,6 @@ SOURCES += domain.cpp
 
 HEADERS += \
     sqlite.h \
-    datalayer.h \
     interface.h \
     person.h \
     computers.h \

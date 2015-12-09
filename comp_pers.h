@@ -1,7 +1,6 @@
 #ifndef COMP_PERS_H
 #define COMP_PERS_H
 
-
 class Comp_pers
 {
 public:
